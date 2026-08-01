@@ -80,6 +80,12 @@
           "@id": "#prop_license_RepositoryCollection"
         },
         {
+          "@id": "#prop_portalName_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_portalDescription_RepositoryCollection"
+        },
+        {
           "@id": "#class_Person"
         },
         {
@@ -242,6 +248,42 @@
       },
       "rangeIncludes": {
         "@id": "http://schema.org/URL"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_portalName_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "portalName",
+      "name": "portalName",
+      "rdfs:comment": "Name shown in the portal popup, if different from the collection title.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_portalDescription_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "portalDescription",
+      "name": "portalDescription",
+      "rdfs:comment": "Description shown in the portal popup, if different from the collection description.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
       },
       "isPartOf": {
         "@id": "#hasSpecializedSchema"
