@@ -39,7 +39,7 @@
     "inputMode": "generic",
     "enableLanguageLookups": true,
     "merge": true,
-    "collectionLabelsBuilder": false,
-    "templateRepoFolder": "dyirbal"
+    "templateRepoFolder": "dyirbal",
+    "hiddenOptionKeys": ["collectionLabelsBuilder"]
   }
 }

@@ -23,9 +23,7 @@
   ],
   "buildOptions": {
     "inputMode": "docx",
-    "enableLanguageLookups": false,
-    "merge": false,
-    "collectionLabelsBuilder": true,
-    "templateRepoFolder": "person-centred"
+    "templateRepoFolder": "person-centred",
+    "hiddenOptionKeys": ["enableLanguageLookups", "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups", "includeAlternateNames"]
   }
 }
