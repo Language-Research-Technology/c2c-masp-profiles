@@ -1,0 +1,374 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "@vocab": "http://schema.org/",
+      "ldac": "https://w3id.org/ldac/terms#",
+      "bibo": "http://purl.org/ontology/bibo/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "https://benfoley.github.io/masp-profiles/structured-doc-data/profile-crate/"
+      }
+    },
+    {
+      "@id": "https://benfoley.github.io/masp-profiles/structured-doc-data/profile-crate/",
+      "@type": [
+        "Dataset",
+        "Profile"
+      ],
+      "name": "Structured Document Collections Profile",
+      "description": "Profile for a collection built from structured Word documents (Heading 1/2/3 parsed into Collections, DocumentParts, and Chapters) — e.g. person-centred oral history / community website collections.",
+      "version": "0.1.0",
+      "isProfileOf": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        }
+      ],
+      "author": {
+        "@id": "#author"
+      },
+      "hasResource": [
+        {
+          "@id": "#hasSpecializedSchema"
+        },
+        {
+          "@id": "#hasEditorMode"
+        }
+      ]
+    },
+    {
+      "@id": "#author",
+      "@type": "Organization",
+      "name": "Ben Foley"
+    },
+    {
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/schema"
+      },
+      "hasPart": [
+        {
+          "@id": "#class_Dataset"
+        },
+        {
+          "@id": "#prop_name_Dataset"
+        },
+        {
+          "@id": "#prop_description_Dataset"
+        },
+        {
+          "@id": "#prop_datePublished_Dataset"
+        },
+        {
+          "@id": "#prop_creator_Dataset"
+        },
+        {
+          "@id": "#prop_license_Dataset"
+        },
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#prop_name_Person"
+        },
+        {
+          "@id": "#class_Collection"
+        },
+        {
+          "@id": "#prop_name_Collection"
+        },
+        {
+          "@id": "#class_bibo:DocumentPart"
+        },
+        {
+          "@id": "#prop_name_bibo:DocumentPart"
+        },
+        {
+          "@id": "#prop_text_bibo:DocumentPart"
+        },
+        {
+          "@id": "#class_RO-Crate_Metadata_Descriptor"
+        },
+        {
+          "@id": "#propertyValue_RO-Crate_Metadata_Descriptor.id"
+        },
+        {
+          "@id": "#prop_@id_RO-Crate_Metadata_Descriptor"
+        }
+      ]
+    },
+    {
+      "@id": "#hasEditorMode",
+      "@type": "ResourceDescriptor",
+      "name": "Editor Mode / Build Workflow",
+      "hasRole": {
+        "@id": "https://w3id.org/ro/mode"
+      },
+      "hasArtifact": {
+        "@id": "crate-o-mode.json"
+      }
+    },
+    {
+      "@id": "#class_Dataset",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Dataset",
+      "name": "Dataset",
+      "rdfs:comment": "The root dataset: a collection of structured-document collections.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Dataset"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_name_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Collection title.",
+      "domainIncludes": {
+        "@id": "#class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_description_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "rdfs:comment": "A short summary of the collection.",
+      "domainIncludes": {
+        "@id": "#class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_datePublished_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "rdfs:comment": "Date published (YYYY-MM-DD).",
+      "domainIncludes": {
+        "@id": "#class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Date"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_creator_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "creator",
+      "name": "creator",
+      "rdfs:comment": "Person(s) who compiled/created this collection.",
+      "domainIncludes": {
+        "@id": "#class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "#class_Person"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0"
+    },
+    {
+      "@id": "#prop_license_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "rdfs:comment": "A URL identifying the licence.",
+      "domainIncludes": {
+        "@id": "#class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/URL"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_Person",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Person",
+      "name": "Person",
+      "rdfs:comment": "A contributor or subject of the collection.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Person"
+      }
+    },
+    {
+      "@id": "#prop_name_Person",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "",
+      "domainIncludes": {
+        "@id": "#class_Person"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_Collection",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Collection",
+      "name": "Collection",
+      "rdfs:comment": "One top-level folder of structured .docx documents (shown as a menu entry in the generated site).",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#Collection"
+      }
+    },
+    {
+      "@id": "#prop_name_Collection",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Menu label — see the collection-name mapping builder.",
+      "domainIncludes": {
+        "@id": "#class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_bibo:DocumentPart",
+      "@type": "rdfs:Class",
+      "rdfs:label": "bibo:DocumentPart",
+      "name": "bibo:DocumentPart",
+      "rdfs:comment": "One structured .docx document within a Collection.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://purl.org/ontology/bibo/DocumentPart"
+      }
+    },
+    {
+      "@id": "#prop_name_bibo:DocumentPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "",
+      "domainIncludes": {
+        "@id": "#class_bibo:DocumentPart"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_text_bibo:DocumentPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "The document's parsed body content.",
+      "domainIncludes": {
+        "@id": "#class_bibo:DocumentPart"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_RO-Crate_Metadata_Descriptor",
+      "@type": "rdfs:Class",
+      "rdfs:label": "RO-Crate Metadata Descriptor",
+      "name": "RO-Crate Metadata Descriptor",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      }
+    },
+    {
+      "@id": "#propertyValue_RO-Crate_Metadata_Descriptor.id",
+      "@type": "PropertyValue",
+      "value": "ro-crate-metadata.json",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      }
+    },
+    {
+      "@id": "#prop_@id_RO-Crate_Metadata_Descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": "@id",
+      "name": "@id",
+      "domainIncludes": {
+        "@id": "#class_RO-Crate_Metadata_Descriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_RO-Crate_Metadata_Descriptor.id"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "rootDataset": {
+    "type": [
+      "Dataset",
+      "RepositoryCollection"
+    ]
+  },
+  "propertyGroups": [
+    {
+      "name": "About",
+      "inputs": [
+        "name",
+        "description",
+        "datePublished",
+        "license"
+      ]
+    },
+    {
+      "name": "Language",
+      "inputs": [
+        "inLanguage"
+      ]
+    },
+    {
+      "name": "People",
+      "inputs": [
+        "creator"
+      ]
+    }
+  ],
+  "buildOptions": {
+    "inputMode": "generic",
+    "enableLanguageLookups": true,
+    "merge": true,
+    "collectionLabelsBuilder": false,
+    "templateRepoFolder": "dyirbal"
+  }
+}

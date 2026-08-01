@@ -1,0 +1,31 @@
+{
+  "rootDataset": {
+    "type": [
+      "Dataset"
+    ]
+  },
+  "propertyGroups": [
+    {
+      "name": "About",
+      "inputs": [
+        "name",
+        "description",
+        "datePublished",
+        "license"
+      ]
+    },
+    {
+      "name": "People",
+      "inputs": [
+        "creator"
+      ]
+    }
+  ],
+  "buildOptions": {
+    "inputMode": "docx",
+    "enableLanguageLookups": false,
+    "merge": false,
+    "collectionLabelsBuilder": true,
+    "templateRepoFolder": "person-centred"
+  }
+}

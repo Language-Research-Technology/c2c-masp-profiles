@@ -1,0 +1,436 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "@vocab": "http://schema.org/",
+      "ldac": "https://w3id.org/ldac/terms#",
+      "bibo": "http://purl.org/ontology/bibo/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "https://benfoley.github.io/masp-profiles/language-resources/profile-crate/"
+      }
+    },
+    {
+      "@id": "https://benfoley.github.io/masp-profiles/language-resources/profile-crate/",
+      "@type": [
+        "Dataset",
+        "Profile"
+      ],
+      "name": "Language Resources Collection Profile",
+      "description": "Profile for a collection of digitised language-documentation resources (dictionaries, wordlists, recordings, field materials) with AUSTLANG-style language metadata, contributing people, and content locations.",
+      "version": "0.1.0",
+      "isProfileOf": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        }
+      ],
+      "author": {
+        "@id": "#author"
+      },
+      "hasResource": [
+        {
+          "@id": "#hasSpecializedSchema"
+        },
+        {
+          "@id": "#hasEditorMode"
+        }
+      ]
+    },
+    {
+      "@id": "#author",
+      "@type": "Organization",
+      "name": "Ben Foley"
+    },
+    {
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/schema"
+      },
+      "hasPart": [
+        {
+          "@id": "#class_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_name_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_description_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_datePublished_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_inLanguage_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_creator_RepositoryCollection"
+        },
+        {
+          "@id": "#prop_license_RepositoryCollection"
+        },
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#prop_name_Person"
+        },
+        {
+          "@id": "#class_Language"
+        },
+        {
+          "@id": "#prop_name_Language"
+        },
+        {
+          "@id": "#prop_ldac:austlangCode_Language"
+        },
+        {
+          "@id": "#prop_ldac:iso639-3_Language"
+        },
+        {
+          "@id": "#class_Place"
+        },
+        {
+          "@id": "#prop_name_Place"
+        },
+        {
+          "@id": "#prop_description_Place"
+        },
+        {
+          "@id": "#class_RO-Crate_Metadata_Descriptor"
+        },
+        {
+          "@id": "#propertyValue_RO-Crate_Metadata_Descriptor.id"
+        },
+        {
+          "@id": "#prop_@id_RO-Crate_Metadata_Descriptor"
+        }
+      ]
+    },
+    {
+      "@id": "#hasEditorMode",
+      "@type": "ResourceDescriptor",
+      "name": "Editor Mode / Build Workflow",
+      "hasRole": {
+        "@id": "https://w3id.org/ro/mode"
+      },
+      "hasArtifact": {
+        "@id": "crate-o-mode.json"
+      }
+    },
+    {
+      "@id": "#class_RepositoryCollection",
+      "@type": "rdfs:Class",
+      "rdfs:label": "RepositoryCollection",
+      "name": "RepositoryCollection",
+      "rdfs:comment": "The root dataset: a collection of language resources.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#Collection"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_name_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Collection title.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_description_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "rdfs:comment": "A short summary of the collection.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_datePublished_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "rdfs:comment": "Date published (YYYY-MM-DD).",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Date"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_inLanguage_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "inLanguage",
+      "name": "inLanguage",
+      "rdfs:comment": "The language(s) the collection documents.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "#class_Language"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0"
+    },
+    {
+      "@id": "#prop_creator_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "creator",
+      "name": "creator",
+      "rdfs:comment": "Person(s) who compiled/created this collection.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "#class_Person"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0"
+    },
+    {
+      "@id": "#prop_license_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "rdfs:comment": "A URL identifying the licence.",
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/URL"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_Person",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Person",
+      "name": "Person",
+      "rdfs:comment": "A contributor, compiler, or participant.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Person"
+      }
+    },
+    {
+      "@id": "#prop_name_Person",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "",
+      "domainIncludes": {
+        "@id": "#class_Person"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_Language",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Language",
+      "name": "Language",
+      "rdfs:comment": "A language documented in this collection.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Language"
+      }
+    },
+    {
+      "@id": "#prop_name_Language",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "",
+      "domainIncludes": {
+        "@id": "#class_Language"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_ldac:austlangCode_Language",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:austlangCode",
+      "name": "ldac:austlangCode",
+      "rdfs:comment": "The AUSTLANG code for this language.",
+      "domainIncludes": {
+        "@id": "#class_Language"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_ldac:iso639-3_Language",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:iso639-3",
+      "name": "ldac:iso639-3",
+      "rdfs:comment": "The ISO 639-3 code for this language.",
+      "domainIncludes": {
+        "@id": "#class_Language"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_Place",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Place",
+      "name": "Place",
+      "rdfs:comment": "A location referenced by items in the collection.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Place"
+      }
+    },
+    {
+      "@id": "#prop_name_Place",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "",
+      "domainIncludes": {
+        "@id": "#class_Place"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_description_Place",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "rdfs:comment": "",
+      "domainIncludes": {
+        "@id": "#class_Place"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "0",
+      "sh:maxCount": "1"
+    },
+    {
+      "@id": "#class_RO-Crate_Metadata_Descriptor",
+      "@type": "rdfs:Class",
+      "rdfs:label": "RO-Crate Metadata Descriptor",
+      "name": "RO-Crate Metadata Descriptor",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      }
+    },
+    {
+      "@id": "#propertyValue_RO-Crate_Metadata_Descriptor.id",
+      "@type": "PropertyValue",
+      "value": "ro-crate-metadata.json",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      }
+    },
+    {
+      "@id": "#prop_@id_RO-Crate_Metadata_Descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": "@id",
+      "name": "@id",
+      "domainIncludes": {
+        "@id": "#class_RO-Crate_Metadata_Descriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_RO-Crate_Metadata_Descriptor.id"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": "1",
+      "sh:maxCount": "1"
+    }
+  ]
+}
