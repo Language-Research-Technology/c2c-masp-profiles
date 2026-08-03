@@ -30,8 +30,8 @@
     {
       "name": "Portal",
       "inputs": [
-        "portalName",
-        "portalDescription"
+        "custom:portalName",
+        "custom:portalDescription"
       ]
     }
   ],

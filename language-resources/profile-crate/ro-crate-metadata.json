@@ -4,7 +4,8 @@
     {
       "@vocab": "http://schema.org/",
       "ldac": "https://w3id.org/ldac/terms#",
-      "bibo": "http://purl.org/ontology/bibo/"
+      "bibo": "http://purl.org/ontology/bibo/",
+      "custom": "arcp://name,custom/terms#"
     }
   ],
   "@graph": [
@@ -258,8 +259,8 @@
     {
       "@id": "#prop_portalName_RepositoryCollection",
       "@type": "rdf:Property",
-      "rdfs:label": "portalName",
-      "name": "portalName",
+      "rdfs:label": "custom:portalName",
+      "name": "custom:portalName",
       "rdfs:comment": "Name shown in the portal popup, if different from the collection title.",
       "domainIncludes": {
         "@id": "#class_RepositoryCollection"
@@ -276,8 +277,8 @@
     {
       "@id": "#prop_portalDescription_RepositoryCollection",
       "@type": "rdf:Property",
-      "rdfs:label": "portalDescription",
-      "name": "portalDescription",
+      "rdfs:label": "custom:portalDescription",
+      "name": "custom:portalDescription",
       "rdfs:comment": "Description shown in the portal popup, if different from the collection description.",
       "domainIncludes": {
         "@id": "#class_RepositoryCollection"
