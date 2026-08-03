@@ -19,6 +19,36 @@
       "inputs": [
         "creator"
       ]
+    },
+    {
+      "name": "Structure",
+      "inputs": [
+        "hasPart",
+        "position"
+      ]
+    },
+    {
+      "name": "Content",
+      "inputs": [
+        "text"
+      ]
+    },
+    {
+      "name": "Media",
+      "inputs": [
+        "image",
+        "audio",
+        "caption",
+        "creditText",
+        "custom:imageReference"
+      ]
+    },
+    {
+      "name": "Files",
+      "inputs": [
+        "encodingFormat",
+        "sameAs"
+      ]
     }
   ],
   "longTextInputs": ["description"],

@@ -18,13 +18,21 @@
     {
       "name": "Language",
       "inputs": [
-        "inLanguage"
+        "inLanguage",
+        "ldac:austlangCode",
+        "ldac:iso639-3"
       ]
     },
     {
       "name": "People",
       "inputs": [
-        "creator"
+        "creator",
+        "author",
+        "publisher",
+        "ldac:compiler",
+        "custom:participant",
+        "custom:compiler",
+        "custom:contentPerson"
       ]
     },
     {
@@ -32,6 +40,42 @@
       "inputs": [
         "custom:portalName",
         "custom:portalDescription"
+      ]
+    },
+    {
+      "name": "Structure",
+      "inputs": [
+        "hasPart",
+        "isPartOf",
+        "pcdm:memberOf",
+        "pcdm:hasMember",
+        "conformsTo",
+        "custom:possibleDuplicate"
+      ]
+    },
+    {
+      "name": "Files",
+      "inputs": [
+        "encodingFormat",
+        "contentLocation",
+        "comment",
+        "dateCreated",
+        "custom:dateCaptured",
+        "numberOfPages",
+        "custom:pageRange",
+        "ldac:doi",
+        "url",
+        "ldac:subjectLanguage",
+        "ldac:hasDerivation",
+        "ldac:derivationOf",
+        "ldac:materialType"
+      ]
+    },
+    {
+      "name": "Location",
+      "inputs": [
+        "geo",
+        "asWKT"
       ]
     }
   ],
