@@ -99,10 +99,10 @@
           "@id": "#prop_name_Language"
         },
         {
-          "@id": "#prop_ldac:austlangCode_Language"
+          "@id": "#prop_custom:austlangCode_Language"
         },
         {
-          "@id": "#prop_ldac:iso639-3_Language"
+          "@id": "#prop_custom:iso639-3_Language"
         },
         {
           "@id": "#class_Place"
@@ -355,10 +355,10 @@
       "sh:maxCount": "1"
     },
     {
-      "@id": "#prop_ldac:austlangCode_Language",
+      "@id": "#prop_custom:austlangCode_Language",
       "@type": "rdf:Property",
-      "rdfs:label": "ldac:austlangCode",
-      "name": "ldac:austlangCode",
+      "rdfs:label": "custom:austlangCode",
+      "name": "custom:austlangCode",
       "rdfs:comment": "The AUSTLANG code for this language.",
       "domainIncludes": {
         "@id": "#class_Language"
@@ -373,10 +373,10 @@
       "sh:maxCount": "1"
     },
     {
-      "@id": "#prop_ldac:iso639-3_Language",
+      "@id": "#prop_custom:iso639-3_Language",
       "@type": "rdf:Property",
-      "rdfs:label": "ldac:iso639-3",
-      "name": "ldac:iso639-3",
+      "rdfs:label": "custom:iso639-3",
+      "name": "custom:iso639-3",
       "rdfs:comment": "The ISO 639-3 code for this language.",
       "domainIncludes": {
         "@id": "#class_Language"
