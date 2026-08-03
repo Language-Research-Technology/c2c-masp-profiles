@@ -24,6 +24,8 @@
   "buildOptions": {
     "inputMode": "docx",
     "templateRepoFolder": "person-centred",
-    "hiddenOptionKeys": ["enableLanguageLookups", "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups", "includeAlternateNames"]
+    "enabledOptionKeys": [
+      "makeHtml", "templateRepoFolder", "collectionLabelsBuilder", "styledPreview", "configFile"
+    ]
   }
 }

@@ -40,6 +40,10 @@
     "enableLanguageLookups": true,
     "merge": true,
     "templateRepoFolder": "dyirbal",
-    "hiddenOptionKeys": ["collectionLabelsBuilder"]
+    "enabledOptionKeys": [
+      "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
+      "enableLanguageLookups", "includeAlternateNames",
+      "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"
+    ]
   }
 }
