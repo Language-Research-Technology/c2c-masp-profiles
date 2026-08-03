@@ -21,6 +21,7 @@
       ]
     }
   ],
+  "longTextInputs": ["description"],
   "buildOptions": {
     "inputMode": "docx",
     "templateRepoFolder": "person-centred",

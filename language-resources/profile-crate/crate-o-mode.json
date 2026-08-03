@@ -35,6 +35,7 @@
       ]
     }
   ],
+  "longTextInputs": ["description", "custom:portalDescription"],
   "buildOptions": {
     "inputMode": "generic",
     "enableLanguageLookups": true,
