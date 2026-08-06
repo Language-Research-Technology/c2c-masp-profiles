@@ -120,6 +120,24 @@
       }
     },
     {
+      "@id": "https://w3id.org/ro/mode",
+      "@type": "DefinedTerm",
+      "name": "Editor Mode",
+      "description": "Role indicating a resource is an editor configuration mode file."
+    },
+    {
+      "@id": "crate-o-mode.json",
+      "@type": "File",
+      "name": "Resource2Crate config file",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+        },
+        "application/json"
+      ],
+      "description": "Mini Crate-O mode file for this profile (metadata, input groups, lookup and enabled classes — the schema/grammar is provided by the MASP profile crate itself)."
+    },    
+    {
       "@id": "#class_Dataset",
       "@type": "rdfs:Class",
       "rdfs:label": "Dataset",

@@ -1,0 +1,8 @@
+node_modules/
+.npm/
+.pnpm-store/
+.nvm/
+*.log
+.env
+
+node_modules/
