@@ -26,6 +26,7 @@ Each profile folder is:
 
 ```
 <profile-name>/
+  profile-text.md             # human-authored profile narrative/source text
   profile-crate/
     ro-crate-metadata.json   # the MASP itself — classes, properties, cardinality
     crate-o-mode.json        # editor hints (rootDataset.type, propertyGroups) —
@@ -33,6 +34,8 @@ Each profile folder is:
                               # to resolve correctly — plus a resources2crate-
                               # specific "buildOptions" key (ignored by Crate-O)
                               # listing which build options this profile enables.
+    index.html               # generated profile documentation site
+    profile-documentation.md # generated profile documentation markdown
 ```
 
 This follows MASP's own extension pattern: rules that don't belong in the core
