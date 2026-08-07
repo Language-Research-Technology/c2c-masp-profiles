@@ -258,24 +258,6 @@
       }
     },
     {
-      "@id": "crate-o-mode.json",
-      "@type": "File",
-      "name": "Resource2Crate config file",
-      "description": "Mini Crate-O mode file for this profile (root dataset types, input groups and long-text inputs — the schema/grammar is provided by the MASP profile crate itself). No `buildOptions` yet.",
-      "encodingFormat": [
-        {
-          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
-        },
-        "application/json"
-      ]
-    },
-    {
-      "@id": "https://w3id.org/ro/mode",
-      "@type": "DefinedTerm",
-      "name": "Editor Mode",
-      "description": "Role indicating a resource is an editor configuration mode file."
-    },
-    {
       "@id": "#hasConformanceIndicators",
       "@type": "ResourceDescriptor",
       "name": "Conformance Indicators",
@@ -300,7 +282,20 @@
       "about": {
         "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
       },
-      "dateModified": "2026-08-07T17:45:15+10:00"
+      "dateModified": "2026-08-07T18:27:45+10:00"
+    },
+    {
+      "@id": "crate-o-mode.json",
+      "@type": "File",
+      "name": "Resource2Crate config file",
+      "description": "Mini Crate-O mode file for this profile (root dataset types, input groups and long-text inputs — the schema/grammar is provided by the MASP profile crate itself). No `buildOptions` yet.",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+        },
+        "application/json"
+      ],
+      "dateModified": "2026-08-07T18:00:42+10:00"
     },
     {
       "@id": "examples/birds-crate/ro-crate-metadata.json",
@@ -903,6 +898,17 @@
       ]
     },
     {
+      "@id": "https://w3id.org/ro/mode",
+      "@type": "DefinedTerm",
+      "name": "Editor Mode",
+      "description": "Role indicating a resource is an editor configuration mode file."
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817",
+      "@type": "DigitalFormat",
+      "name": "JSON Data Interchange Format"
+    },
+    {
       "@id": "https://w3id.org/ro/conformance-indicators",
       "@type": "DefinedTerm",
       "name": "Conformance Indicators",
@@ -925,11 +931,6 @@
       "name": "Markdown"
     },
     {
-      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817",
-      "@type": "DigitalFormat",
-      "name": "JSON Data Interchange Format"
-    },
-    {
       "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile",
       "@type": [
         "CreativeWork",
@@ -943,7 +944,7 @@
       "@type": "File",
       "name": "index.html",
       "description": "",
-      "dateModified": "2026-08-07T17:45:15+10:00",
+      "dateModified": "2026-08-07T18:27:45+10:00",
       "encodingFormat": [
         {
           "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/471"
@@ -970,6 +971,9 @@
         },
         {
           "@id": "examples"
+        },
+        {
+          "@id": "crate-o-mode.json"
         }
       ]
     }
