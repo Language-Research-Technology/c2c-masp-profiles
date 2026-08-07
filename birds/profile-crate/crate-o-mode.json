@@ -18,6 +18,21 @@
       ]
     },
     {
+      "name": "Language",
+      "inputs": [
+        "inLanguage",
+        "ldac:subjectLanguage"
+      ]
+    },
+    {
+      "name": "Rights",
+      "inputs": [
+        "author",
+        "publisher",
+        "ldac:metadataIsPublic"
+      ]
+    },
+    {
       "name": "Entry",
       "inputs": [
         "custom:translation",
@@ -57,5 +72,19 @@
     "description",
     "custom:sentence",
     "custom:sentenceTranslation"
-  ]
+  ],
+  "buildOptions": {
+    "inputMode": "generic",
+    "xlsxCrate": true,
+    "enabledOptionKeys": [
+      "xlsxCrate",
+      "xlsxCrateFile",
+      "makeHtml",
+      "makeXlsx",
+      "styledPreview",
+      "templateRepoFolder",
+      "configFile",
+      "overwrite"
+    ]
+  }
 }

@@ -43,6 +43,23 @@ the static site generator turns it into the site's About page.
 Collections and Objects are joined in both directions: the Collection lists its members with
 `pcdm:hasMember` and each Object points back with `pcdm:memberOf`.
 
+### Collection-level metadata
+
+Beyond a name and description, the Collection may carry `datePublished` (a bare year like `2026` is
+fine), a `license` URL covering the whole collection, `author` and `publisher`, `inLanguage` for the
+language the metadata is written in, `ldac:subjectLanguage` for the language the collection is *about*,
+and `ldac:metadataIsPublic`. All are optional; only `name`, `description`, `pcdm:hasMember` and
+`conformsTo` are required.
+
+`author` and `publisher` **should** point at a Person or Organization the crate describes, and an
+**Organization** class is defined for that purpose — an organisation that appears must have a `name`.
+The two properties are deliberately left unconstrained in range, though: a reference to an entity the
+crate doesn't describe (a bare ROR identifier, say) is worth flagging, but it is a warning for tooling
+to raise, not grounds for failing the whole crate.
+
+`ldac:metadataIsPublic` accepts either a real boolean or the strings `true`/`false`, because a crate
+authored in a spreadsheet round-trips the value as text.
+
 ### The custom vocabulary
 
 The bird-specific properties are not in Schema.org. The example crate mints them under the ARCP
@@ -120,6 +137,13 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#prop_Collection_description" title="#prop_Collection_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | Yes | Prose describing the collection, shown on the landing page. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Collection_name" title="#prop_Collection_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | Yes | A short title for the collection; used as the site title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a> | <a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a> | Yes | Links the Collection to each of its bird entries. MUST have at least one member. | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |  |
+| <a href="#prop_Collection_author" title="#prop_Collection_author">author</a> | <a href="http://schema.org/author" target="_blank" rel="noopener">http://schema.org/author</a> | No | Who made the collection. SHOULD reference a Person or Organization described in the crate. Deliberately unconstrained in range: a reference to an entity the crate does not describe is reported as a warning by the tooling rather than failing validation here. |  |  |
+| <a href="#prop_Collection_datePublished" title="#prop_Collection_datePublished">datePublished</a> | <a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a> | No | When the collection was published. A year on its own (`2026`) is acceptable; the format is not otherwise constrained. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
+| <a href="#prop_Collection_inLanguage" title="#prop_Collection_inLanguage">inLanguage</a> | <a href="http://schema.org/inLanguage" target="_blank" rel="noopener">http://schema.org/inLanguage</a> | No | The language the collection's metadata and descriptions are written in. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
+| <a href="#prop_Collection_metadataIsPublic" title="#prop_Collection_metadataIsPublic">ldac:metadataIsPublic</a> | <a href="https://w3id.org/ldac/terms#metadataIsPublic" target="_blank" rel="noopener">https://w3id.org/ldac/terms#metadataIsPublic</a> | No | Whether this collection's metadata may be exposed publicly, independently of access to the content itself. Accepts a real boolean or the strings `true`/`false` — a spreadsheet-authored crate round-trips this value as text. | <a href="http://schema.org/Boolean" title="http://schema.org/Boolean" target="_blank" rel="noopener">Boolean</a>, <a href="#propertyValue_booleanText" title="#propertyValue_booleanText">Boolean-as-text Constraint</a> |  |
+| <a href="#prop_Collection_subjectLanguage" title="#prop_Collection_subjectLanguage">ldac:subjectLanguage</a> | <a href="https://w3id.org/ldac/terms#subjectLanguage" target="_blank" rel="noopener">https://w3id.org/ldac/terms#subjectLanguage</a> | No | The language the collection is *about* — the language the bird names and stories are in. LDAC normally expects a Language entity; this profile accepts the plain name the birds crate uses. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
+| <a href="#prop_Collection_license" title="#prop_Collection_license">license</a> | <a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a> | No | The licence covering the collection as a whole, given as an http(s) URL. Individual entries may override it with their own `license`. | <a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a> |  |
+| <a href="#prop_Collection_publisher" title="#prop_Collection_publisher">publisher</a> | <a href="http://schema.org/publisher" target="_blank" rel="noopener">http://schema.org/publisher</a> | No | Who published the collection. SHOULD reference a Person or Organization described in the crate — a ROR identifier still deserves its own entity. Unconstrained in range for the same reason as `author`. |  |  |
 
 
 ### <a id="Class_Object" title="#Class_Object"></a> Class: RepositoryObject
@@ -203,6 +227,22 @@ Instances of this type SHOULD be present in the crate.
 | <a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | Yes | The About page MUST say what it is about — the Collection. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |  |
 | <a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a> | <a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a> | Yes | The About page MUST be Markdown. | <a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a> |  |
 
+
+### <a id="Class_Organization" title="#Class_Organization"></a> Class: Organization
+
+An organisation credited as the collection's author or publisher. Referencing one by identifier alone is not enough — the crate must describe it.
+
+Instances of this type SHOULD be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| 0 | N/A |
+
+| Property | Specialization Of | Required | Description | Range | Value |
+| -------- | ----------------- | -------- | ----------- | ----- | ----- |
+| @type |  | Yes |  |  | <a href="http://schema.org/Organization" title="http://schema.org/Organization" target="_blank" rel="noopener">Organization</a> |
+| <a href="#prop_Organization_name" title="#prop_Organization_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | Yes | The organisation's name. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
+
 ## All Properties
 
 ### <a id="prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id"></a> Property: @id
@@ -220,6 +260,11 @@ Instances of this type SHOULD be present in the crate.
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | The About page MUST say what it is about — the Collection. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_AboutPage" title="#Class_AboutPage">AboutPage</a> |
+### <a id="prop_Collection_author" title="#prop_Collection_author"></a> Property: author
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_author" title="#prop_Collection_author">author</a> | <a href="http://schema.org/author" target="_blank" rel="noopener">http://schema.org/author</a> | Who made the collection. SHOULD reference a Person or Organization described in the crate. Deliberately unconstrained in range: a reference to an entity the crate does not describe is reported as a warning by the tooling rather than failing validation here. |  | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo"></a> Property: conformsTo
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
@@ -270,6 +315,11 @@ Instances of this type SHOULD be present in the crate.
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a> |  | The translation of the entry's name into the language of description. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
+### <a id="prop_Collection_datePublished" title="#prop_Collection_datePublished"></a> Property: datePublished
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_datePublished" title="#prop_Collection_datePublished">datePublished</a> | <a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a> | When the collection was published. A year on its own (`2026`) is acceptable; the format is not otherwise constrained. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_datePublished" title="#prop_Object_datePublished"></a> Property: datePublished
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
@@ -300,16 +350,36 @@ Instances of this type SHOULD be present in the crate.
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_Object_image" title="#prop_Object_image">image</a> | <a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a> | A picture of the bird, as a Media File in the crate. | <a href="#Class_File" title="#Class_File">File</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
+### <a id="prop_Collection_inLanguage" title="#prop_Collection_inLanguage"></a> Property: inLanguage
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_inLanguage" title="#prop_Collection_inLanguage">inLanguage</a> | <a href="http://schema.org/inLanguage" target="_blank" rel="noopener">http://schema.org/inLanguage</a> | The language the collection's metadata and descriptions are written in. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_File_isPartOf" title="#prop_File_isPartOf"></a> Property: isPartOf
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a> | <a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a> | A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry. | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> | <a href="#Class_File" title="#Class_File">File</a> |
+### <a id="prop_Collection_metadataIsPublic" title="#prop_Collection_metadataIsPublic"></a> Property: ldac:metadataIsPublic
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_metadataIsPublic" title="#prop_Collection_metadataIsPublic">ldac:metadataIsPublic</a> | <a href="https://w3id.org/ldac/terms#metadataIsPublic" target="_blank" rel="noopener">https://w3id.org/ldac/terms#metadataIsPublic</a> | Whether this collection's metadata may be exposed publicly, independently of access to the content itself. Accepts a real boolean or the strings `true`/`false` — a spreadsheet-authored crate round-trips this value as text. | <a href="http://schema.org/Boolean" title="http://schema.org/Boolean" target="_blank" rel="noopener">Boolean</a>, <a href="#propertyValue_booleanText" title="#propertyValue_booleanText">Boolean-as-text Constraint</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_speaker" title="#prop_Object_speaker"></a> Property: ldac:speaker
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a> | <a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a> | The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`. | <a href="#Class_Speaker" title="#Class_Speaker">Person</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
+### <a id="prop_Collection_subjectLanguage" title="#prop_Collection_subjectLanguage"></a> Property: ldac:subjectLanguage
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_subjectLanguage" title="#prop_Collection_subjectLanguage">ldac:subjectLanguage</a> | <a href="https://w3id.org/ldac/terms#subjectLanguage" target="_blank" rel="noopener">https://w3id.org/ldac/terms#subjectLanguage</a> | The language the collection is *about* — the language the bird names and stories are in. LDAC normally expects a Language entity; this profile accepts the plain name the birds crate uses. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
+### <a id="prop_Collection_license" title="#prop_Collection_license"></a> Property: license
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_license" title="#prop_Collection_license">license</a> | <a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a> | The licence covering the collection as a whole, given as an http(s) URL. Individual entries may override it with their own `license`. | <a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_license" title="#prop_Object_license"></a> Property: license
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
@@ -320,6 +390,11 @@ Instances of this type SHOULD be present in the crate.
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_Collection_name" title="#prop_Collection_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | A short title for the collection; used as the site title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
+### <a id="prop_Organization_name" title="#prop_Organization_name"></a> Property: name
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Organization_name" title="#prop_Organization_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | The organisation's name. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Organization" title="#Class_Organization">Organization</a> |
 ### <a id="prop_Object_name" title="#prop_Object_name"></a> Property: name
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
@@ -340,7 +415,22 @@ Instances of this type SHOULD be present in the crate.
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a> | <a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a> | Each entry MUST point back at the Collection it belongs to. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
+### <a id="prop_Collection_publisher" title="#prop_Collection_publisher"></a> Property: publisher
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_Collection_publisher" title="#prop_Collection_publisher">publisher</a> | <a href="http://schema.org/publisher" target="_blank" rel="noopener">http://schema.org/publisher</a> | Who published the collection. SHOULD reference a Person or Organization described in the crate — a ROR identifier still deserves its own entity. Unconstrained in range for the same reason as `author`. |  | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ## Property Values
+
+### <a id="propertyValue_booleanText" title="#propertyValue_booleanText"></a> Property Value: Boolean-as-text Constraint
+
+ID: #propertyValue_booleanText
+
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_booleanText" title="#propertyValue_booleanText">Boolean-as-text Constraint</a></td><td>The strings `true` and `false`, as written by spreadsheet round-tripping. Carries no minimum count: it widens what the property accepts rather than requiring every value to match it.</td><td><div><strong>Regex Pattern</strong><pre><code>/^(true|false)$/</code></pre></div></td><td>0</td><td>N/A</td></tr>
+</tbody></table>
 
 ### <a id="propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo"></a> Property Value: Collection Profile Constraint
 

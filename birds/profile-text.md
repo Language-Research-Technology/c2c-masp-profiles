@@ -43,6 +43,23 @@ the static site generator turns it into the site's About page.
 Collections and Objects are joined in both directions: the Collection lists its members with
 `pcdm:hasMember` and each Object points back with `pcdm:memberOf`.
 
+### Collection-level metadata
+
+Beyond a name and description, the Collection may carry `datePublished` (a bare year like `2026` is
+fine), a `license` URL covering the whole collection, `author` and `publisher`, `inLanguage` for the
+language the metadata is written in, `ldac:subjectLanguage` for the language the collection is *about*,
+and `ldac:metadataIsPublic`. All are optional; only `name`, `description`, `pcdm:hasMember` and
+`conformsTo` are required.
+
+`author` and `publisher` **should** point at a Person or Organization the crate describes, and an
+**Organization** class is defined for that purpose — an organisation that appears must have a `name`.
+The two properties are deliberately left unconstrained in range, though: a reference to an entity the
+crate doesn't describe (a bare ROR identifier, say) is worth flagging, but it is a warning for tooling
+to raise, not grounds for failing the whole crate.
+
+`ldac:metadataIsPublic` accepts either a real boolean or the strings `true`/`false`, because a crate
+authored in a spreadsheet round-trips the value as text.
+
 ### The custom vocabulary
 
 The bird-specific properties are not in Schema.org. The example crate mints them under the ARCP
