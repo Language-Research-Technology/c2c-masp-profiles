@@ -101,12 +101,12 @@ error list alone.</p>
     <h3>Classes</h3>
     <input class="entity-filter" type="search" placeholder="Filter classes…" data-target="class-list">
     <ul id="class-list" class="entity-list">
-<li><a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a> <small style="color:#aaa">#Class_AboutPage</small></li>
-<li><a href="#Class_Collection" title="#Class_Collection">Collection</a> <small style="color:#aaa">#Class_Collection</small></li>
-<li><a href="#Class_File" title="#Class_File">Media File</a> <small style="color:#aaa">#Class_File</small></li>
-<li><a href="#Class_Object" title="#Class_Object">Object</a> <small style="color:#aaa">#Class_Object</small></li>
+<li><a href="#Class_AboutPage" title="#Class_AboutPage">AboutPage</a> <small style="color:#aaa">#Class_AboutPage</small></li>
+<li><a href="#Class_File" title="#Class_File">File</a> <small style="color:#aaa">#Class_File</small></li>
+<li><a href="#Class_Speaker" title="#Class_Speaker">Person</a> <small style="color:#aaa">#Class_Speaker</small></li>
+<li><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> <small style="color:#aaa">#Class_Collection</small></li>
+<li><a href="#Class_Object" title="#Class_Object">RepositoryObject</a> <small style="color:#aaa">#Class_Object</small></li>
 <li><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a> <small style="color:#aaa">#Class_MetadataDescriptor</small></li>
-<li><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a> <small style="color:#aaa">#Class_Speaker</small></li>
     </ul>
   </div>
   <div class="col-md-6 col-panel">
@@ -195,7 +195,7 @@ error list alone.</p>
 <td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
 <td>Yes</td>
 <td>MUST reference the Collection (the Root Data Entity).</td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 <td></td>
 </tr>
 <tr>
@@ -208,8 +208,8 @@ error list alone.</p>
 </tr>
 </tbody>
 </table>
-<h3><a id="Class_Collection" title="#Class_Collection"></a> Class: Collection</h3>
-<p>The Root Data Entity. A Collection groups the bird entries (Objects) that make up the site. It MUST be typed <code>[&quot;Dataset&quot;, &quot;RepositoryCollection&quot;]</code>.</p>
+<h3><a id="Class_Collection" title="#Class_Collection"></a> Class: RepositoryCollection</h3>
+<p>The Collection — the Root Data Entity. It groups the bird entries (Objects) that make up the site, and MUST be typed <code>[&quot;Dataset&quot;, &quot;RepositoryCollection&quot;]</code>.</p>
 <p>At least 1 instances of this type MUST be present in the crate.</p>
 <p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
 <table>
@@ -275,13 +275,13 @@ error list alone.</p>
 <td><a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a></td>
 <td>Yes</td>
 <td>Links the Collection to each of its bird entries. MUST have at least one member.</td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3><a id="Class_Object" title="#Class_Object"></a> Class: Object</h3>
-<p>A member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird. Typed <code>RepositoryObject</code>.</p>
+<h3><a id="Class_Object" title="#Class_Object"></a> Class: RepositoryObject</h3>
+<p>An Object — a member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird.</p>
 <p>At least 1 instances of this type MUST be present in the crate.</p>
 <table>
 <thead>
@@ -346,7 +346,7 @@ error list alone.</p>
 <td><a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a></td>
 <td>Yes</td>
 <td>The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the <code>ldac</code> prefix to <code>https://w3id.org/ldac/terms#</code> in their <code>@context</code>.</td>
-<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Person</a></td>
 <td></td>
 </tr>
 <tr>
@@ -370,7 +370,7 @@ error list alone.</p>
 <td><a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a></td>
 <td>Yes</td>
 <td>Each entry MUST point back at the Collection it belongs to.</td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 <td></td>
 </tr>
 <tr>
@@ -378,7 +378,7 @@ error list alone.</p>
 <td></td>
 <td>No</td>
 <td>A recording of the bird's call.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
 <td></td>
 </tr>
 <tr>
@@ -386,7 +386,7 @@ error list alone.</p>
 <td></td>
 <td>No</td>
 <td>A recording of the bird's name being spoken.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
 <td></td>
 </tr>
 <tr>
@@ -418,7 +418,7 @@ error list alone.</p>
 <td></td>
 <td>No</td>
 <td>A recording of <code>custom:sentence</code> being spoken.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
 <td></td>
 </tr>
 <tr>
@@ -434,13 +434,13 @@ error list alone.</p>
 <td><a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a></td>
 <td>No</td>
 <td>A picture of the bird, as a Media File in the crate.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3><a id="Class_Speaker" title="#Class_Speaker"></a> Class: Speaker</h3>
-<p>The person heard in an Object's recordings. <code>ldac:speaker</code> also permits an <code>Organization</code>; this profile requires a <code>Person</code>.</p>
+<h3><a id="Class_Speaker" title="#Class_Speaker"></a> Class: Person</h3>
+<p>The Speaker — the person heard in an Object's recordings, linked with <code>ldac:speaker</code>. That term also permits an <code>Organization</code>; this profile requires a <code>Person</code>.</p>
 <p>At least 1 instances of this type MUST be present in the crate.</p>
 <table>
 <thead>
@@ -494,8 +494,8 @@ error list alone.</p>
 </tr>
 </tbody>
 </table>
-<h3><a id="Class_File" title="#Class_File"></a> Class: Media File</h3>
-<p>An image or audio file in the crate. Media files that belong to a bird entry link back to it with <code>isPartOf</code>.</p>
+<h3><a id="Class_File" title="#Class_File"></a> Class: File</h3>
+<p>A Media File — an image or audio file in the crate. Media files that belong to a bird entry link back to it with <code>isPartOf</code>.</p>
 <p>At least 1 instances of this type MUST be present in the crate.</p>
 <table>
 <thead>
@@ -536,13 +536,13 @@ error list alone.</p>
 <td><a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a></td>
 <td>No</td>
 <td>A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry.</td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h3><a id="Class_AboutPage" title="#Class_AboutPage"></a> Class: About Page</h3>
-<p>An optional Markdown file typed <code>[&quot;File&quot;, &quot;AboutPage&quot;]</code> holding prose about the Collection. The static site generator renders it as the site's About page.</p>
+<h3><a id="Class_AboutPage" title="#Class_AboutPage"></a> Class: AboutPage</h3>
+<p>The About Page — an optional Markdown file typed <code>[&quot;File&quot;, &quot;AboutPage&quot;]</code> holding prose about the Collection. The static site generator renders it as the site's About page.</p>
 <p>Instances of this type SHOULD be present in the crate.</p>
 <p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
 <table>
@@ -584,7 +584,7 @@ error list alone.</p>
 <td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
 <td>Yes</td>
 <td>The About page MUST say what it is about — the Collection.</td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 <td></td>
 </tr>
 <tr>
@@ -635,7 +635,7 @@ error list alone.</p>
 <td><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a></td>
 <td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
 <td>MUST reference the Collection (the Root Data Entity).</td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 <td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
 </tr>
 </tbody>
@@ -656,8 +656,8 @@ error list alone.</p>
 <td><a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a></td>
 <td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
 <td>The About page MUST say what it is about — the Collection.</td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
-<td><a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
+<td><a href="#Class_AboutPage" title="#Class_AboutPage">AboutPage</a></td>
 </tr>
 </tbody>
 </table>
@@ -699,7 +699,7 @@ error list alone.</p>
 <td></td>
 <td>The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises.</td>
 <td><a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a></td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 </tr>
 </tbody>
 </table>
@@ -719,8 +719,8 @@ error list alone.</p>
 <td><a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a></td>
 <td></td>
 <td>A recording of the bird's call.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -740,8 +740,8 @@ error list alone.</p>
 <td><a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a></td>
 <td></td>
 <td>A recording of the bird's name being spoken.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -762,7 +762,7 @@ error list alone.</p>
 <td></td>
 <td>Credit for the image: the name of the photographer. SHOULD be present whenever <code>image</code> is.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -783,7 +783,7 @@ error list alone.</p>
 <td></td>
 <td>The binomial (Linnaean) name of the bird.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -804,7 +804,7 @@ error list alone.</p>
 <td></td>
 <td>A sentence or short story about the bird, in the language of the collection.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -824,8 +824,8 @@ error list alone.</p>
 <td><a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a></td>
 <td></td>
 <td>A recording of <code>custom:sentence</code> being spoken.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -846,7 +846,7 @@ error list alone.</p>
 <td></td>
 <td>The translation of <code>custom:sentence</code>. SHOULD be present whenever <code>custom:sentence</code> is.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -867,7 +867,7 @@ error list alone.</p>
 <td></td>
 <td>The translation of the entry's name into the language of description.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -888,7 +888,7 @@ error list alone.</p>
 <td><a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a></td>
 <td>When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than <code>T</code> between date and time).</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -909,7 +909,7 @@ error list alone.</p>
 <td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
 <td>Prose describing the collection, shown on the landing page.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 </tr>
 </tbody>
 </table>
@@ -930,7 +930,7 @@ error list alone.</p>
 <td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
 <td>A description of the entry.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -951,7 +951,7 @@ error list alone.</p>
 <td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
 <td>A biographical note about the speaker.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Person</a></td>
 </tr>
 </tbody>
 </table>
@@ -972,7 +972,7 @@ error list alone.</p>
 <td><a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a></td>
 <td>The About page MUST be Markdown.</td>
 <td><a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a></td>
-<td><a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a></td>
+<td><a href="#Class_AboutPage" title="#Class_AboutPage">AboutPage</a></td>
 </tr>
 </tbody>
 </table>
@@ -992,8 +992,8 @@ error list alone.</p>
 <td><a href="#prop_Object_image" title="#prop_Object_image">image</a></td>
 <td><a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a></td>
 <td>A picture of the bird, as a Media File in the crate.</td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -1013,8 +1013,8 @@ error list alone.</p>
 <td><a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a></td>
 <td><a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a></td>
 <td>A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry.</td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
-<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
 </tr>
 </tbody>
 </table>
@@ -1034,8 +1034,8 @@ error list alone.</p>
 <td><a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a></td>
 <td><a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a></td>
 <td>The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the <code>ldac</code> prefix to <code>https://w3id.org/ldac/terms#</code> in their <code>@context</code>.</td>
-<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Person</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -1056,7 +1056,7 @@ error list alone.</p>
 <td><a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a></td>
 <td>Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate.</td>
 <td><a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -1077,7 +1077,7 @@ error list alone.</p>
 <td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
 <td>A short title for the collection; used as the site title.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 </tr>
 </tbody>
 </table>
@@ -1098,7 +1098,7 @@ error list alone.</p>
 <td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
 <td>The name of the bird in the language of the collection. Used as the entry's heading.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>
@@ -1119,7 +1119,7 @@ error list alone.</p>
 <td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
 <td>The speaker's name, or a pseudonym.</td>
 <td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
-<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Person</a></td>
 </tr>
 </tbody>
 </table>
@@ -1139,8 +1139,8 @@ error list alone.</p>
 <td><a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a></td>
 <td><a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a></td>
 <td>Links the Collection to each of its bird entries. MUST have at least one member.</td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
 </tr>
 </tbody>
 </table>
@@ -1160,8 +1160,8 @@ error list alone.</p>
 <td><a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a></td>
 <td><a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a></td>
 <td>Each entry MUST point back at the Collection it belongs to.</td>
-<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
-<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
+<td><a href="#Class_Object" title="#Class_Object">RepositoryObject</a></td>
 </tr>
 </tbody>
 </table>

@@ -97,13 +97,13 @@ At least 1 instances of this type MUST be present in the crate.
 | -------- | ----------------- | -------- | ----------- | ----- | ----- |
 | @type |  | Yes |  |  | <a href="http://schema.org/CreativeWork" title="http://schema.org/CreativeWork" target="_blank" rel="noopener">CreativeWork</a> |
 | <a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a> |  | Yes | The metadata descriptor MUST have the identifier `ro-crate-metadata.json`. | <a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a> |  |
-| <a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | Yes | MUST reference the Collection (the Root Data Entity). | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |  |
+| <a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | Yes | MUST reference the Collection (the Root Data Entity). | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |  |
 | <a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a> |  | Yes | MUST declare the RO-Crate version the metadata file conforms to. | <a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a> |  |
 
 
-### <a id="Class_Collection" title="#Class_Collection"></a> Class: Collection
+### <a id="Class_Collection" title="#Class_Collection"></a> Class: RepositoryCollection
 
-The Root Data Entity. A Collection groups the bird entries (Objects) that make up the site. It MUST be typed `["Dataset", "RepositoryCollection"]`.
+The Collection — the Root Data Entity. It groups the bird entries (Objects) that make up the site, and MUST be typed `["Dataset", "RepositoryCollection"]`.
 
 At least 1 instances of this type MUST be present in the crate.
 
@@ -119,12 +119,12 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#prop_Collection_conformsTo" title="#prop_Collection_conformsTo">conformsTo</a> |  | Yes | The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises. | <a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a> |  |
 | <a href="#prop_Collection_description" title="#prop_Collection_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | Yes | Prose describing the collection, shown on the landing page. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Collection_name" title="#prop_Collection_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | Yes | A short title for the collection; used as the site title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
-| <a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a> | <a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a> | Yes | Links the Collection to each of its bird entries. MUST have at least one member. | <a href="#Class_Object" title="#Class_Object">Object</a> |  |
+| <a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a> | <a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a> | Yes | Links the Collection to each of its bird entries. MUST have at least one member. | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |  |
 
 
-### <a id="Class_Object" title="#Class_Object"></a> Class: Object
+### <a id="Class_Object" title="#Class_Object"></a> Class: RepositoryObject
 
-A member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird. Typed `RepositoryObject`.
+An Object — a member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird.
 
 At least 1 instances of this type MUST be present in the crate.
 
@@ -138,23 +138,23 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a> |  | Yes | The translation of the entry's name into the language of description. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Object_datePublished" title="#prop_Object_datePublished">datePublished</a> | <a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a> | Yes | When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than `T` between date and time). | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Object_description" title="#prop_Object_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | Yes | A description of the entry. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
-| <a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a> | <a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a> | Yes | The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`. | <a href="#Class_Speaker" title="#Class_Speaker">Speaker</a> |  |
+| <a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a> | <a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a> | Yes | The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`. | <a href="#Class_Speaker" title="#Class_Speaker">Person</a> |  |
 | <a href="#prop_Object_license" title="#prop_Object_license">license</a> | <a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a> | Yes | Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate. | <a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a> |  |
 | <a href="#prop_Object_name" title="#prop_Object_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | Yes | The name of the bird in the language of the collection. Used as the entry's heading. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
-| <a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a> | <a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a> | Yes | Each entry MUST point back at the Collection it belongs to. | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |  |
-| <a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a> |  | No | A recording of the bird's call. | <a href="#Class_File" title="#Class_File">Media File</a> |  |
-| <a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a> |  | No | A recording of the bird's name being spoken. | <a href="#Class_File" title="#Class_File">Media File</a> |  |
+| <a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a> | <a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a> | Yes | Each entry MUST point back at the Collection it belongs to. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |  |
+| <a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a> |  | No | A recording of the bird's call. | <a href="#Class_File" title="#Class_File">File</a> |  |
+| <a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a> |  | No | A recording of the bird's name being spoken. | <a href="#Class_File" title="#Class_File">File</a> |  |
 | <a href="#prop_Object_photographerName" title="#prop_Object_photographerName">custom:photographerName</a> |  | No | Credit for the image: the name of the photographer. SHOULD be present whenever `image` is. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Object_scientificName" title="#prop_Object_scientificName">custom:scientificName</a> |  | No | The binomial (Linnaean) name of the bird. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Object_sentence" title="#prop_Object_sentence">custom:sentence</a> |  | No | A sentence or short story about the bird, in the language of the collection. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
-| <a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a> |  | No | A recording of `custom:sentence` being spoken. | <a href="#Class_File" title="#Class_File">Media File</a> |  |
+| <a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a> |  | No | A recording of `custom:sentence` being spoken. | <a href="#Class_File" title="#Class_File">File</a> |  |
 | <a href="#prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation">custom:sentenceTranslation</a> |  | No | The translation of `custom:sentence`. SHOULD be present whenever `custom:sentence` is. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
-| <a href="#prop_Object_image" title="#prop_Object_image">image</a> | <a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a> | No | A picture of the bird, as a Media File in the crate. | <a href="#Class_File" title="#Class_File">Media File</a> |  |
+| <a href="#prop_Object_image" title="#prop_Object_image">image</a> | <a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a> | No | A picture of the bird, as a Media File in the crate. | <a href="#Class_File" title="#Class_File">File</a> |  |
 
 
-### <a id="Class_Speaker" title="#Class_Speaker"></a> Class: Speaker
+### <a id="Class_Speaker" title="#Class_Speaker"></a> Class: Person
 
-The person heard in an Object's recordings. `ldac:speaker` also permits an `Organization`; this profile requires a `Person`.
+The Speaker — the person heard in an Object's recordings, linked with `ldac:speaker`. That term also permits an `Organization`; this profile requires a `Person`.
 
 At least 1 instances of this type MUST be present in the crate.
 
@@ -169,9 +169,9 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#prop_Speaker_description" title="#prop_Speaker_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | No | A biographical note about the speaker. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 
 
-### <a id="Class_File" title="#Class_File"></a> Class: Media File
+### <a id="Class_File" title="#Class_File"></a> Class: File
 
-An image or audio file in the crate. Media files that belong to a bird entry link back to it with `isPartOf`.
+A Media File — an image or audio file in the crate. Media files that belong to a bird entry link back to it with `isPartOf`.
 
 At least 1 instances of this type MUST be present in the crate.
 
@@ -182,12 +182,12 @@ At least 1 instances of this type MUST be present in the crate.
 | Property | Specialization Of | Required | Description | Range | Value |
 | -------- | ----------------- | -------- | ----------- | ----- | ----- |
 | @type |  | Yes |  |  | <a href="http://schema.org/MediaObject" title="http://schema.org/MediaObject" target="_blank" rel="noopener">MediaObject</a> |
-| <a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a> | <a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a> | No | A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry. | <a href="#Class_Object" title="#Class_Object">Object</a> |  |
+| <a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a> | <a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a> | No | A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry. | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |  |
 
 
-### <a id="Class_AboutPage" title="#Class_AboutPage"></a> Class: About Page
+### <a id="Class_AboutPage" title="#Class_AboutPage"></a> Class: AboutPage
 
-An optional Markdown file typed `["File", "AboutPage"]` holding prose about the Collection. The static site generator renders it as the site's About page.
+The About Page — an optional Markdown file typed `["File", "AboutPage"]` holding prose about the Collection. The static site generator renders it as the site's About page.
 
 Instances of this type SHOULD be present in the crate.
 
@@ -200,7 +200,7 @@ Instances of this type SHOULD be present in the crate.
 | Property | Specialization Of | Required | Description | Range | Value |
 | -------- | ----------------- | -------- | ----------- | ----- | ----- |
 | @type |  | Yes |  |  | <a href="http://schema.org/MediaObject" title="http://schema.org/MediaObject" target="_blank" rel="noopener">MediaObject</a>, <a href="http://schema.org/AboutPage" title="http://schema.org/AboutPage" target="_blank" rel="noopener">AboutPage</a> |
-| <a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | Yes | The About page MUST say what it is about — the Collection. | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |  |
+| <a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | Yes | The About page MUST say what it is about — the Collection. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |  |
 | <a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a> | <a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a> | Yes | The About page MUST be Markdown. | <a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a> |  |
 
 ## All Properties
@@ -214,12 +214,12 @@ Instances of this type SHOULD be present in the crate.
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | MUST reference the Collection (the Root Data Entity). | <a href="#Class_Collection" title="#Class_Collection">Collection</a> | <a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a> |
+| <a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | MUST reference the Collection (the Root Data Entity). | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a> |
 ### <a id="prop_AboutPage_about" title="#prop_AboutPage_about"></a> Property: about
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | The About page MUST say what it is about — the Collection. | <a href="#Class_Collection" title="#Class_Collection">Collection</a> | <a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a> |
+| <a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> | <a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a> | The About page MUST say what it is about — the Collection. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_AboutPage" title="#Class_AboutPage">AboutPage</a> |
 ### <a id="prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo"></a> Property: conformsTo
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
@@ -229,117 +229,117 @@ Instances of this type SHOULD be present in the crate.
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Collection_conformsTo" title="#prop_Collection_conformsTo">conformsTo</a> |  | The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises. | <a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a> | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |
+| <a href="#prop_Collection_conformsTo" title="#prop_Collection_conformsTo">conformsTo</a> |  | The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises. | <a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_callAudio" title="#prop_Object_callAudio"></a> Property: custom:callAudio
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a> |  | A recording of the bird's call. | <a href="#Class_File" title="#Class_File">Media File</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a> |  | A recording of the bird's call. | <a href="#Class_File" title="#Class_File">File</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_nameAudio" title="#prop_Object_nameAudio"></a> Property: custom:nameAudio
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a> |  | A recording of the bird's name being spoken. | <a href="#Class_File" title="#Class_File">Media File</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a> |  | A recording of the bird's name being spoken. | <a href="#Class_File" title="#Class_File">File</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_photographerName" title="#prop_Object_photographerName"></a> Property: custom:photographerName
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_photographerName" title="#prop_Object_photographerName">custom:photographerName</a> |  | Credit for the image: the name of the photographer. SHOULD be present whenever `image` is. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_photographerName" title="#prop_Object_photographerName">custom:photographerName</a> |  | Credit for the image: the name of the photographer. SHOULD be present whenever `image` is. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_scientificName" title="#prop_Object_scientificName"></a> Property: custom:scientificName
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_scientificName" title="#prop_Object_scientificName">custom:scientificName</a> |  | The binomial (Linnaean) name of the bird. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_scientificName" title="#prop_Object_scientificName">custom:scientificName</a> |  | The binomial (Linnaean) name of the bird. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_sentence" title="#prop_Object_sentence"></a> Property: custom:sentence
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_sentence" title="#prop_Object_sentence">custom:sentence</a> |  | A sentence or short story about the bird, in the language of the collection. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_sentence" title="#prop_Object_sentence">custom:sentence</a> |  | A sentence or short story about the bird, in the language of the collection. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio"></a> Property: custom:sentenceAudio
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a> |  | A recording of `custom:sentence` being spoken. | <a href="#Class_File" title="#Class_File">Media File</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a> |  | A recording of `custom:sentence` being spoken. | <a href="#Class_File" title="#Class_File">File</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation"></a> Property: custom:sentenceTranslation
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation">custom:sentenceTranslation</a> |  | The translation of `custom:sentence`. SHOULD be present whenever `custom:sentence` is. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation">custom:sentenceTranslation</a> |  | The translation of `custom:sentence`. SHOULD be present whenever `custom:sentence` is. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_translation" title="#prop_Object_translation"></a> Property: custom:translation
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a> |  | The translation of the entry's name into the language of description. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a> |  | The translation of the entry's name into the language of description. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_datePublished" title="#prop_Object_datePublished"></a> Property: datePublished
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_datePublished" title="#prop_Object_datePublished">datePublished</a> | <a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a> | When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than `T` between date and time). | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_datePublished" title="#prop_Object_datePublished">datePublished</a> | <a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a> | When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than `T` between date and time). | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Collection_description" title="#prop_Collection_description"></a> Property: description
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Collection_description" title="#prop_Collection_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | Prose describing the collection, shown on the landing page. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |
+| <a href="#prop_Collection_description" title="#prop_Collection_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | Prose describing the collection, shown on the landing page. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_description" title="#prop_Object_description"></a> Property: description
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_description" title="#prop_Object_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | A description of the entry. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_description" title="#prop_Object_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | A description of the entry. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Speaker_description" title="#prop_Speaker_description"></a> Property: description
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Speaker_description" title="#prop_Speaker_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | A biographical note about the speaker. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Speaker" title="#Class_Speaker">Speaker</a> |
+| <a href="#prop_Speaker_description" title="#prop_Speaker_description">description</a> | <a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a> | A biographical note about the speaker. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Speaker" title="#Class_Speaker">Person</a> |
 ### <a id="prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat"></a> Property: encodingFormat
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a> | <a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a> | The About page MUST be Markdown. | <a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a> | <a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a> |
+| <a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a> | <a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a> | The About page MUST be Markdown. | <a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a> | <a href="#Class_AboutPage" title="#Class_AboutPage">AboutPage</a> |
 ### <a id="prop_Object_image" title="#prop_Object_image"></a> Property: image
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_image" title="#prop_Object_image">image</a> | <a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a> | A picture of the bird, as a Media File in the crate. | <a href="#Class_File" title="#Class_File">Media File</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_image" title="#prop_Object_image">image</a> | <a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a> | A picture of the bird, as a Media File in the crate. | <a href="#Class_File" title="#Class_File">File</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_File_isPartOf" title="#prop_File_isPartOf"></a> Property: isPartOf
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a> | <a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a> | A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry. | <a href="#Class_Object" title="#Class_Object">Object</a> | <a href="#Class_File" title="#Class_File">Media File</a> |
+| <a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a> | <a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a> | A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry. | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> | <a href="#Class_File" title="#Class_File">File</a> |
 ### <a id="prop_Object_speaker" title="#prop_Object_speaker"></a> Property: ldac:speaker
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a> | <a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a> | The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`. | <a href="#Class_Speaker" title="#Class_Speaker">Speaker</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a> | <a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a> | The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`. | <a href="#Class_Speaker" title="#Class_Speaker">Person</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Object_license" title="#prop_Object_license"></a> Property: license
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_license" title="#prop_Object_license">license</a> | <a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a> | Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate. | <a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_license" title="#prop_Object_license">license</a> | <a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a> | Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate. | <a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Collection_name" title="#prop_Collection_name"></a> Property: name
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Collection_name" title="#prop_Collection_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | A short title for the collection; used as the site title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |
+| <a href="#prop_Collection_name" title="#prop_Collection_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | A short title for the collection; used as the site title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_name" title="#prop_Object_name"></a> Property: name
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_name" title="#prop_Object_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | The name of the bird in the language of the collection. Used as the entry's heading. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_name" title="#prop_Object_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | The name of the bird in the language of the collection. Used as the entry's heading. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ### <a id="prop_Speaker_name" title="#prop_Speaker_name"></a> Property: name
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Speaker_name" title="#prop_Speaker_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | The speaker's name, or a pseudonym. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Speaker" title="#Class_Speaker">Speaker</a> |
+| <a href="#prop_Speaker_name" title="#prop_Speaker_name">name</a> | <a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a> | The speaker's name, or a pseudonym. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Speaker" title="#Class_Speaker">Person</a> |
 ### <a id="prop_Collection_hasMember" title="#prop_Collection_hasMember"></a> Property: pcdm:hasMember
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a> | <a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a> | Links the Collection to each of its bird entries. MUST have at least one member. | <a href="#Class_Object" title="#Class_Object">Object</a> | <a href="#Class_Collection" title="#Class_Collection">Collection</a> |
+| <a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a> | <a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a> | Links the Collection to each of its bird entries. MUST have at least one member. | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |
 ### <a id="prop_Object_memberOf" title="#prop_Object_memberOf"></a> Property: pcdm:memberOf
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a> | <a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a> | Each entry MUST point back at the Collection it belongs to. | <a href="#Class_Collection" title="#Class_Collection">Collection</a> | <a href="#Class_Object" title="#Class_Object">Object</a> |
+| <a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a> | <a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a> | Each entry MUST point back at the Collection it belongs to. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_Object" title="#Class_Object">RepositoryObject</a> |
 ## Property Values
 
 ### <a id="propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo"></a> Property Value: Collection Profile Constraint

@@ -328,7 +328,7 @@
     {
       "@id": "#Class_Collection",
       "@type": "rdfs:Class",
-      "name": "Collection",
+      "name": "RepositoryCollection",
       "prov:specializationOf": [
         {
           "@id": "http://schema.org/Dataset"
@@ -337,44 +337,44 @@
           "@id": "http://pcdm.org/models#Collection"
         }
       ],
-      "description": "The Root Data Entity. A Collection groups the bird entries (Objects) that make up the site. It MUST be typed `[\"Dataset\", \"RepositoryCollection\"]`.",
+      "description": "The Collection — the Root Data Entity. It groups the bird entries (Objects) that make up the site, and MUST be typed `[\"Dataset\", \"RepositoryCollection\"]`.",
       "sh:minCount": 1,
       "sh:maxCount": 1
     },
     {
       "@id": "#Class_Object",
       "@type": "rdfs:Class",
-      "name": "Object",
+      "name": "RepositoryObject",
       "prov:specializationOf": {
         "@id": "http://pcdm.org/models#Object"
       },
-      "description": "A member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird. Typed `RepositoryObject`.",
+      "description": "An Object — a member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird.",
       "sh:minCount": 1
     },
     {
       "@id": "#Class_Speaker",
       "@type": "rdfs:Class",
-      "name": "Speaker",
+      "name": "Person",
       "prov:specializationOf": {
         "@id": "http://schema.org/Person"
       },
-      "description": "The person heard in an Object's recordings. `ldac:speaker` also permits an `Organization`; this profile requires a `Person`.",
+      "description": "The Speaker — the person heard in an Object's recordings, linked with `ldac:speaker`. That term also permits an `Organization`; this profile requires a `Person`.",
       "sh:minCount": 1
     },
     {
       "@id": "#Class_File",
       "@type": "rdfs:Class",
-      "name": "Media File",
+      "name": "File",
       "prov:specializationOf": {
         "@id": "http://schema.org/MediaObject"
       },
-      "description": "An image or audio file in the crate. Media files that belong to a bird entry link back to it with `isPartOf`.",
+      "description": "A Media File — an image or audio file in the crate. Media files that belong to a bird entry link back to it with `isPartOf`.",
       "sh:minCount": 1
     },
     {
       "@id": "#Class_AboutPage",
       "@type": "rdfs:Class",
-      "name": "About Page",
+      "name": "AboutPage",
       "prov:specializationOf": [
         {
           "@id": "http://schema.org/MediaObject"
@@ -383,7 +383,7 @@
           "@id": "http://schema.org/AboutPage"
         }
       ],
-      "description": "An optional Markdown file typed `[\"File\", \"AboutPage\"]` holding prose about the Collection. The static site generator renders it as the site's About page.",
+      "description": "The About Page — an optional Markdown file typed `[\"File\", \"AboutPage\"]` holding prose about the Collection. The static site generator renders it as the site's About page.",
       "sh:minCount": 0,
       "sh:maxCount": 1
     },
