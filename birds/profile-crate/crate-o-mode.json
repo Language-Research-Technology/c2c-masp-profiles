@@ -1,0 +1,61 @@
+{
+  "rootDataset": {
+    "type": [
+      "Dataset",
+      "RepositoryCollection"
+    ],
+    "conformsTo": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+  },
+  "propertyGroups": [
+    {
+      "name": "About",
+      "inputs": [
+        "name",
+        "description",
+        "datePublished",
+        "license",
+        "conformsTo"
+      ]
+    },
+    {
+      "name": "Entry",
+      "inputs": [
+        "custom:translation",
+        "custom:scientificName",
+        "custom:sentence",
+        "custom:sentenceTranslation"
+      ]
+    },
+    {
+      "name": "People",
+      "inputs": [
+        "ldac:speaker",
+        "custom:photographerName"
+      ]
+    },
+    {
+      "name": "Media",
+      "inputs": [
+        "image",
+        "custom:callAudio",
+        "custom:nameAudio",
+        "custom:sentenceAudio"
+      ]
+    },
+    {
+      "name": "Structure",
+      "inputs": [
+        "pcdm:hasMember",
+        "pcdm:memberOf",
+        "isPartOf",
+        "about",
+        "encodingFormat"
+      ]
+    }
+  ],
+  "longTextInputs": [
+    "description",
+    "custom:sentence",
+    "custom:sentenceTranslation"
+  ]
+}

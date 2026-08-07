@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birds Collection Profile</title>
+  <link rel="describedby" href="ro-crate-metadata.json" type="application/ld+json">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { padding: 2rem; }
+    table { width: 100%; margin-bottom: 1rem; }
+    th, td { padding: 0.5rem; border: 1px solid #dee2e6; }
+    th { background-color: #f8f9fa; }
+    pre { background: #f8f9fa; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+    pre.mermaid { background: none; padding: 0; }
+    code { background: #f8f9fa; padding: 0.2em 0.4em; border-radius: 3px; }
+  </style>
+  <style>
+    .entity-filter { margin-bottom: 0.5rem; width: 100%; padding: 0.4rem 0.6rem; font-size: 0.95rem; border: 1px solid #ced4da; border-radius: 4px; }
+    .entity-list { height: 420px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 4px; padding: 0.5rem 1rem; background: #fff; list-style: none; margin: 0; }
+    .entity-list li { padding: 0.15rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    .entity-list li:last-child { border-bottom: none; }
+    .entity-list li.hidden { display: none; }
+    .col-panel h3 { margin-top: 0; }
+    .col-panel { padding: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <p>
+      <a href="ro-crate-metadata.json">⬇️ Download profile metadata (JSON-LD)</a> &nbsp;|&nbsp;
+      <a href="ro-crate-metadata.xlsx">⬇️ Download profile metadata (Excel)</a>
+    </p>
+    <hr>
+<h2>title: Birds Collection Profile -- EXPERIMENTAL RO-Crate MASP Profile</h2>
+<!--  https://signposting.org/FAIR/  markup --->
+<link href="https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile" rel="cite-as" />
+<link href="https://www.researchobject.org/ro-crate/1.2-DRAFT/profiles" rel="type"  />
+<link href="http://purl.org/dc/terms/Standard" rel="type"  />
+<link href="https://schema.org/CreativeWork" rel="type"  />
+<link href="ro-crate-metadata.json" rel="describedby" type='application/ld+json; profile="https://w3id.org/ro/crate"' />
+<link href="profile-documentation.md" rel="item"  />
+<link href="examples/birds-crate/ro-crate-metadata.json" rel="item"  />
+<ul>
+<li>Title: Birds Collection Profile</li>
+<li>Version: 0.1.0</li>
+<li>Permalink: <a href="https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile">https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile</a></li>
+<li><a href="ro-crate-metadata.json">Profile Crate <code>ro-crate-metadata.json</code></a></li>
+<li><a href="examples/birds-crate/ro-crate-metadata.json">Example RO-Crate <code>ro-crate-metadata.json</code></a></li>
+</ul>
+<h2>About this profile</h2>
+<p>This profile describes the shape of the small language-and-media collections that
+<a href="https://github.com/Language-Research-Technology/ro-crate-html-lite"><code>ro-crate-static-site</code></a> renders as
+multi-page static sites. It was written by reading one such crate — the <code>birds</code> test collection — and
+writing down the rules that crate already follows, so it is deliberately narrow: it is a description of
+a working example rather than an aspirational standard.</p>
+<p>The model has four moving parts:</p>
+<ul>
+<li>a <strong>Collection</strong> (the Root Data Entity), typed <code>[&quot;Dataset&quot;, &quot;RepositoryCollection&quot;]</code>;</li>
+<li>one or more <strong>Objects</strong>, typed <code>RepositoryObject</code>, each describing a single bird — its name, its name
+translated, a sentence in the language, that sentence translated, and its scientific name;</li>
+<li>a <strong>Speaker</strong> for each Object, the person heard in the recordings;</li>
+<li><strong>Media Files</strong> — one image and up to three audio recordings (the bird's call, its name spoken, and the
+sentence spoken) — each linked back to its Object with <code>isPartOf</code>.</li>
+</ul>
+<p>An optional Markdown <strong>About Page</strong>, typed <code>[&quot;File&quot;, &quot;AboutPage&quot;]</code>, carries prose about the collection;
+the static site generator turns it into the site's About page.</p>
+<p>Collections and Objects are joined in both directions: the Collection lists its members with
+<code>pcdm:hasMember</code> and each Object points back with <code>pcdm:memberOf</code>.</p>
+<h3>The custom vocabulary</h3>
+<p>The bird-specific properties are not in Schema.org. The example crate mints them under the ARCP
+namespace <code>arcp://name,custom/terms#</code> (prefix <code>custom:</code>) and defines each one as an <code>rdf:Property</code>
+contextual entity in the crate itself. This profile keeps that convention: <code>custom:translation</code>,
+<code>custom:sentence</code>, <code>custom:sentenceTranslation</code>, <code>custom:scientificName</code>, <code>custom:photographerName</code>,
+<code>custom:callAudio</code>, <code>custom:nameAudio</code> and <code>custom:sentenceAudio</code>.</p>
+<h3>Known deviations in the example crate</h3>
+<p>One thing a future version should tighten, recorded here rather than quietly enforced:</p>
+<ul>
+<li><strong><code>datePublished</code> is not quite ISO 8601.</strong> The example uses <code>2016-11-08 01:36:17</code> — a space where ISO
+8601 wants a <code>T</code>. The profile requires the property but does not yet constrain its format.</li>
+</ul>
+<p>Two earlier deviations have since been fixed in the example crate: the speaker link was a bare <code>speaker</code>
+property that resolved to nothing, and speakers were typed <code>Thing</code>. Both now follow LDAC —
+<a href="https://w3id.org/ldac/terms#speaker"><code>ldac:speaker</code></a> pointing at a <code>Person</code> — and the profile requires
+that.</p>
+<h3>What validation of the About Page will and will not catch</h3>
+<p>The About Page is the one optional class here (<code>sh:minCount: 0</code>). Class rules count only the entities
+that pass every one of their property rules, and that count is then checked against the cardinality — so
+an About Page that gets its <code>encodingFormat</code> or <code>about</code> wrong is simply not counted, the count is zero,
+and zero is a legal number of About Pages. Nothing is reported as an error.</p>
+<p>The diagnosis is still made, it just does not reach the error list or the exit code: look under
+<code>rules[&quot;#Class_AboutPage&quot;]</code> in the JSON report (<code>npm run validate:birds:json</code>) for <code>property-errors</code>
+naming the property that failed. A malformed About Page and an absent one are indistinguishable to the
+error list alone.</p>
+<p>This does not apply to the optional <em>properties</em> elsewhere in the profile — a bad <code>image</code> or
+<code>custom:callAudio</code> invalidates its Object, and Object is required, so it surfaces as an error.</p>
+<p><strong>6</strong> classes &middot; <strong>27</strong> properties</p>
+<div class="row">
+  <div class="col-md-6 col-panel">
+    <h3>Classes</h3>
+    <input class="entity-filter" type="search" placeholder="Filter classes…" data-target="class-list">
+    <ul id="class-list" class="entity-list">
+<li><a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a> <small style="color:#aaa">#Class_AboutPage</small></li>
+<li><a href="#Class_Collection" title="#Class_Collection">Collection</a> <small style="color:#aaa">#Class_Collection</small></li>
+<li><a href="#Class_File" title="#Class_File">Media File</a> <small style="color:#aaa">#Class_File</small></li>
+<li><a href="#Class_Object" title="#Class_Object">Object</a> <small style="color:#aaa">#Class_Object</small></li>
+<li><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a> <small style="color:#aaa">#Class_MetadataDescriptor</small></li>
+<li><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a> <small style="color:#aaa">#Class_Speaker</small></li>
+    </ul>
+  </div>
+  <div class="col-md-6 col-panel">
+    <h3>Properties</h3>
+    <input class="entity-filter" type="search" placeholder="Filter properties…" data-target="prop-list">
+    <ul id="prop-list" class="entity-list">
+<li><a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a> — The metadata descriptor MUST have the identifier `ro-crate-metadata.json`. <small style="color:#aaa">#prop_MetadataDescriptor_id</small></li>
+<li><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a> — MUST reference the Collection (the Root Data Entity). <small style="color:#aaa">#prop_MetadataDescriptor_about</small></li>
+<li><a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a> — The About page MUST say what it is about — the Collection. <small style="color:#aaa">#prop_AboutPage_about</small></li>
+<li><a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a> — MUST declare the RO-Crate version the metadata file conforms to. <small style="color:#aaa">#prop_MetadataDescriptor_conformsTo</small></li>
+<li><a href="#prop_Collection_conformsTo" title="#prop_Collection_conformsTo">conformsTo</a> — The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises. <small style="color:#aaa">#prop_Collection_conformsTo</small></li>
+<li><a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a> — A recording of the bird's call. <small style="color:#aaa">#prop_Object_callAudio</small></li>
+<li><a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a> — A recording of the bird's name being spoken. <small style="color:#aaa">#prop_Object_nameAudio</small></li>
+<li><a href="#prop_Object_photographerName" title="#prop_Object_photographerName">custom:photographerName</a> — Credit for the image: the name of the photographer. SHOULD be present whenever `image` is. <small style="color:#aaa">#prop_Object_photographerName</small></li>
+<li><a href="#prop_Object_scientificName" title="#prop_Object_scientificName">custom:scientificName</a> — The binomial (Linnaean) name of the bird. <small style="color:#aaa">#prop_Object_scientificName</small></li>
+<li><a href="#prop_Object_sentence" title="#prop_Object_sentence">custom:sentence</a> — A sentence or short story about the bird, in the language of the collection. <small style="color:#aaa">#prop_Object_sentence</small></li>
+<li><a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a> — A recording of `custom:sentence` being spoken. <small style="color:#aaa">#prop_Object_sentenceAudio</small></li>
+<li><a href="#prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation">custom:sentenceTranslation</a> — The translation of `custom:sentence`. SHOULD be present whenever `custom:sentence` is. <small style="color:#aaa">#prop_Object_sentenceTranslation</small></li>
+<li><a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a> — The translation of the entry's name into the language of description. <small style="color:#aaa">#prop_Object_translation</small></li>
+<li><a href="#prop_Object_datePublished" title="#prop_Object_datePublished">datePublished</a> — When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than `T` between date and time). <small style="color:#aaa">#prop_Object_datePublished</small></li>
+<li><a href="#prop_Collection_description" title="#prop_Collection_description">description</a> — Prose describing the collection, shown on the landing page. <small style="color:#aaa">#prop_Collection_description</small></li>
+<li><a href="#prop_Object_description" title="#prop_Object_description">description</a> — A description of the entry. <small style="color:#aaa">#prop_Object_description</small></li>
+<li><a href="#prop_Speaker_description" title="#prop_Speaker_description">description</a> — A biographical note about the speaker. <small style="color:#aaa">#prop_Speaker_description</small></li>
+<li><a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a> — The About page MUST be Markdown. <small style="color:#aaa">#prop_AboutPage_encodingFormat</small></li>
+<li><a href="#prop_Object_image" title="#prop_Object_image">image</a> — A picture of the bird, as a Media File in the crate. <small style="color:#aaa">#prop_Object_image</small></li>
+<li><a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a> — A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry. <small style="color:#aaa">#prop_File_isPartOf</small></li>
+<li><a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a> — The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`. <small style="color:#aaa">#prop_Object_speaker</small></li>
+<li><a href="#prop_Object_license" title="#prop_Object_license">license</a> — Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate. <small style="color:#aaa">#prop_Object_license</small></li>
+<li><a href="#prop_Collection_name" title="#prop_Collection_name">name</a> — A short title for the collection; used as the site title. <small style="color:#aaa">#prop_Collection_name</small></li>
+<li><a href="#prop_Object_name" title="#prop_Object_name">name</a> — The name of the bird in the language of the collection. Used as the entry's heading. <small style="color:#aaa">#prop_Object_name</small></li>
+<li><a href="#prop_Speaker_name" title="#prop_Speaker_name">name</a> — The speaker's name, or a pseudonym. <small style="color:#aaa">#prop_Speaker_name</small></li>
+<li><a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a> — Links the Collection to each of its bird entries. MUST have at least one member. <small style="color:#aaa">#prop_Collection_hasMember</small></li>
+<li><a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a> — Each entry MUST point back at the Collection it belongs to. <small style="color:#aaa">#prop_Object_memberOf</small></li>
+    </ul>
+  </div>
+</div>
+<h2>Types of entities (specializations of Classes) and expected Properties</h2>
+<h3><a id="Class_MetadataDescriptor" title="#Class_MetadataDescriptor"></a> Class: RO-Crate Metadata Descriptor</h3>
+<p>Every crate MUST contain exactly one RO-Crate Metadata Descriptor: the entity that describes the <code>ro-crate-metadata.json</code> file itself and points at the Collection.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/CreativeWork" title="http://schema.org/CreativeWork" target="_blank" rel="noopener">CreativeWork</a></td>
+</tr>
+<tr>
+<td><a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a></td>
+<td></td>
+<td>Yes</td>
+<td>The metadata descriptor MUST have the identifier <code>ro-crate-metadata.json</code>.</td>
+<td><a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a></td>
+<td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
+<td>Yes</td>
+<td>MUST reference the Collection (the Root Data Entity).</td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a></td>
+<td></td>
+<td>Yes</td>
+<td>MUST declare the RO-Crate version the metadata file conforms to.</td>
+<td><a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Collection" title="#Class_Collection"></a> Class: Collection</h3>
+<p>The Root Data Entity. A Collection groups the bird entries (Objects) that make up the site. It MUST be typed <code>[&quot;Dataset&quot;, &quot;RepositoryCollection&quot;]</code>.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/Dataset" title="http://schema.org/Dataset" target="_blank" rel="noopener">Dataset</a>, <a href="http://pcdm.org/models#Collection" title="http://pcdm.org/models#Collection" target="_blank" rel="noopener">Collection</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Collection_conformsTo" title="#prop_Collection_conformsTo">conformsTo</a></td>
+<td></td>
+<td>Yes</td>
+<td>The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises.</td>
+<td><a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Collection_description" title="#prop_Collection_description">description</a></td>
+<td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
+<td>Yes</td>
+<td>Prose describing the collection, shown on the landing page.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Collection_name" title="#prop_Collection_name">name</a></td>
+<td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
+<td>Yes</td>
+<td>A short title for the collection; used as the site title.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a></td>
+<td><a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a></td>
+<td>Yes</td>
+<td>Links the Collection to each of its bird entries. MUST have at least one member.</td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Object" title="#Class_Object"></a> Class: Object</h3>
+<p>A member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird. Typed <code>RepositoryObject</code>.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://pcdm.org/models#Object" title="http://pcdm.org/models#Object" target="_blank" rel="noopener">Object</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a></td>
+<td></td>
+<td>Yes</td>
+<td>The translation of the entry's name into the language of description.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_datePublished" title="#prop_Object_datePublished">datePublished</a></td>
+<td><a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a></td>
+<td>Yes</td>
+<td>When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than <code>T</code> between date and time).</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_description" title="#prop_Object_description">description</a></td>
+<td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
+<td>Yes</td>
+<td>A description of the entry.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a></td>
+<td><a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a></td>
+<td>Yes</td>
+<td>The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the <code>ldac</code> prefix to <code>https://w3id.org/ldac/terms#</code> in their <code>@context</code>.</td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_license" title="#prop_Object_license">license</a></td>
+<td><a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a></td>
+<td>Yes</td>
+<td>Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate.</td>
+<td><a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_name" title="#prop_Object_name">name</a></td>
+<td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
+<td>Yes</td>
+<td>The name of the bird in the language of the collection. Used as the entry's heading.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a></td>
+<td><a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a></td>
+<td>Yes</td>
+<td>Each entry MUST point back at the Collection it belongs to.</td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a></td>
+<td></td>
+<td>No</td>
+<td>A recording of the bird's call.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a></td>
+<td></td>
+<td>No</td>
+<td>A recording of the bird's name being spoken.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_photographerName" title="#prop_Object_photographerName">custom:photographerName</a></td>
+<td></td>
+<td>No</td>
+<td>Credit for the image: the name of the photographer. SHOULD be present whenever <code>image</code> is.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_scientificName" title="#prop_Object_scientificName">custom:scientificName</a></td>
+<td></td>
+<td>No</td>
+<td>The binomial (Linnaean) name of the bird.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_sentence" title="#prop_Object_sentence">custom:sentence</a></td>
+<td></td>
+<td>No</td>
+<td>A sentence or short story about the bird, in the language of the collection.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a></td>
+<td></td>
+<td>No</td>
+<td>A recording of <code>custom:sentence</code> being spoken.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation">custom:sentenceTranslation</a></td>
+<td></td>
+<td>No</td>
+<td>The translation of <code>custom:sentence</code>. SHOULD be present whenever <code>custom:sentence</code> is.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Object_image" title="#prop_Object_image">image</a></td>
+<td><a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a></td>
+<td>No</td>
+<td>A picture of the bird, as a Media File in the crate.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Speaker" title="#Class_Speaker"></a> Class: Speaker</h3>
+<p>The person heard in an Object's recordings. <code>ldac:speaker</code> also permits an <code>Organization</code>; this profile requires a <code>Person</code>.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/Person" title="http://schema.org/Person" target="_blank" rel="noopener">Person</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Speaker_name" title="#prop_Speaker_name">name</a></td>
+<td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
+<td>Yes</td>
+<td>The speaker's name, or a pseudonym.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Speaker_description" title="#prop_Speaker_description">description</a></td>
+<td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
+<td>No</td>
+<td>A biographical note about the speaker.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_File" title="#Class_File"></a> Class: Media File</h3>
+<p>An image or audio file in the crate. Media files that belong to a bird entry link back to it with <code>isPartOf</code>.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/MediaObject" title="http://schema.org/MediaObject" target="_blank" rel="noopener">MediaObject</a></td>
+</tr>
+<tr>
+<td><a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a></td>
+<td><a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a></td>
+<td>No</td>
+<td>A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry.</td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_AboutPage" title="#Class_AboutPage"></a> Class: About Page</h3>
+<p>An optional Markdown file typed <code>[&quot;File&quot;, &quot;AboutPage&quot;]</code> holding prose about the Collection. The static site generator renders it as the site's About page.</p>
+<p>Instances of this type SHOULD be present in the crate.</p>
+<p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/MediaObject" title="http://schema.org/MediaObject" target="_blank" rel="noopener">MediaObject</a>, <a href="http://schema.org/AboutPage" title="http://schema.org/AboutPage" target="_blank" rel="noopener">AboutPage</a></td>
+</tr>
+<tr>
+<td><a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a></td>
+<td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
+<td>Yes</td>
+<td>The About page MUST say what it is about — the Collection.</td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a></td>
+<td><a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a></td>
+<td>Yes</td>
+<td>The About page MUST be Markdown.</td>
+<td><a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>All Properties</h2>
+<h3><a id="prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id"></a> Property: @id</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a></td>
+<td></td>
+<td>The metadata descriptor MUST have the identifier <code>ro-crate-metadata.json</code>.</td>
+<td><a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a></td>
+<td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about"></a> Property: about</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a></td>
+<td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
+<td>MUST reference the Collection (the Root Data Entity).</td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_AboutPage_about" title="#prop_AboutPage_about"></a> Property: about</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_AboutPage_about" title="#prop_AboutPage_about">about</a></td>
+<td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
+<td>The About page MUST say what it is about — the Collection.</td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo"></a> Property: conformsTo</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a></td>
+<td></td>
+<td>MUST declare the RO-Crate version the metadata file conforms to.</td>
+<td><a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a></td>
+<td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Collection_conformsTo" title="#prop_Collection_conformsTo"></a> Property: conformsTo</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Collection_conformsTo" title="#prop_Collection_conformsTo">conformsTo</a></td>
+<td></td>
+<td>The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises.</td>
+<td><a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_callAudio" title="#prop_Object_callAudio"></a> Property: custom:callAudio</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_callAudio" title="#prop_Object_callAudio">custom:callAudio</a></td>
+<td></td>
+<td>A recording of the bird's call.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_nameAudio" title="#prop_Object_nameAudio"></a> Property: custom:nameAudio</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_nameAudio" title="#prop_Object_nameAudio">custom:nameAudio</a></td>
+<td></td>
+<td>A recording of the bird's name being spoken.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_photographerName" title="#prop_Object_photographerName"></a> Property: custom:photographerName</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_photographerName" title="#prop_Object_photographerName">custom:photographerName</a></td>
+<td></td>
+<td>Credit for the image: the name of the photographer. SHOULD be present whenever <code>image</code> is.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_scientificName" title="#prop_Object_scientificName"></a> Property: custom:scientificName</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_scientificName" title="#prop_Object_scientificName">custom:scientificName</a></td>
+<td></td>
+<td>The binomial (Linnaean) name of the bird.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_sentence" title="#prop_Object_sentence"></a> Property: custom:sentence</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_sentence" title="#prop_Object_sentence">custom:sentence</a></td>
+<td></td>
+<td>A sentence or short story about the bird, in the language of the collection.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio"></a> Property: custom:sentenceAudio</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_sentenceAudio" title="#prop_Object_sentenceAudio">custom:sentenceAudio</a></td>
+<td></td>
+<td>A recording of <code>custom:sentence</code> being spoken.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation"></a> Property: custom:sentenceTranslation</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_sentenceTranslation" title="#prop_Object_sentenceTranslation">custom:sentenceTranslation</a></td>
+<td></td>
+<td>The translation of <code>custom:sentence</code>. SHOULD be present whenever <code>custom:sentence</code> is.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_translation" title="#prop_Object_translation"></a> Property: custom:translation</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_translation" title="#prop_Object_translation">custom:translation</a></td>
+<td></td>
+<td>The translation of the entry's name into the language of description.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_datePublished" title="#prop_Object_datePublished"></a> Property: datePublished</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_datePublished" title="#prop_Object_datePublished">datePublished</a></td>
+<td><a href="http://schema.org/datePublished" target="_blank" rel="noopener">http://schema.org/datePublished</a></td>
+<td>When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than <code>T</code> between date and time).</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Collection_description" title="#prop_Collection_description"></a> Property: description</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Collection_description" title="#prop_Collection_description">description</a></td>
+<td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
+<td>Prose describing the collection, shown on the landing page.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_description" title="#prop_Object_description"></a> Property: description</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_description" title="#prop_Object_description">description</a></td>
+<td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
+<td>A description of the entry.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Speaker_description" title="#prop_Speaker_description"></a> Property: description</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Speaker_description" title="#prop_Speaker_description">description</a></td>
+<td><a href="http://schema.org/description" target="_blank" rel="noopener">http://schema.org/description</a></td>
+<td>A biographical note about the speaker.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat"></a> Property: encodingFormat</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_AboutPage_encodingFormat" title="#prop_AboutPage_encodingFormat">encodingFormat</a></td>
+<td><a href="http://schema.org/encodingFormat" target="_blank" rel="noopener">http://schema.org/encodingFormat</a></td>
+<td>The About page MUST be Markdown.</td>
+<td><a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a></td>
+<td><a href="#Class_AboutPage" title="#Class_AboutPage">About Page</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_image" title="#prop_Object_image"></a> Property: image</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_image" title="#prop_Object_image">image</a></td>
+<td><a href="http://schema.org/image" target="_blank" rel="noopener">http://schema.org/image</a></td>
+<td>A picture of the bird, as a Media File in the crate.</td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_File_isPartOf" title="#prop_File_isPartOf"></a> Property: isPartOf</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_File_isPartOf" title="#prop_File_isPartOf">isPartOf</a></td>
+<td><a href="http://schema.org/isPartOf" target="_blank" rel="noopener">http://schema.org/isPartOf</a></td>
+<td>A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry.</td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_File" title="#Class_File">Media File</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_speaker" title="#prop_Object_speaker"></a> Property: ldac:speaker</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_speaker" title="#prop_Object_speaker">ldac:speaker</a></td>
+<td><a href="https://w3id.org/ldac/terms#speaker" target="_blank" rel="noopener">https://w3id.org/ldac/terms#speaker</a></td>
+<td>The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the <code>ldac</code> prefix to <code>https://w3id.org/ldac/terms#</code> in their <code>@context</code>.</td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_license" title="#prop_Object_license"></a> Property: license</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_license" title="#prop_Object_license">license</a></td>
+<td><a href="http://schema.org/license" target="_blank" rel="noopener">http://schema.org/license</a></td>
+<td>Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate.</td>
+<td><a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Collection_name" title="#prop_Collection_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Collection_name" title="#prop_Collection_name">name</a></td>
+<td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
+<td>A short title for the collection; used as the site title.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_name" title="#prop_Object_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_name" title="#prop_Object_name">name</a></td>
+<td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
+<td>The name of the bird in the language of the collection. Used as the entry's heading.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Speaker_name" title="#prop_Speaker_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Speaker_name" title="#prop_Speaker_name">name</a></td>
+<td><a href="http://schema.org/name" target="_blank" rel="noopener">http://schema.org/name</a></td>
+<td>The speaker's name, or a pseudonym.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Speaker" title="#Class_Speaker">Speaker</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Collection_hasMember" title="#prop_Collection_hasMember"></a> Property: pcdm:hasMember</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Collection_hasMember" title="#prop_Collection_hasMember">pcdm:hasMember</a></td>
+<td><a href="http://pcdm.org/models#hasMember" target="_blank" rel="noopener">http://pcdm.org/models#hasMember</a></td>
+<td>Links the Collection to each of its bird entries. MUST have at least one member.</td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Object_memberOf" title="#prop_Object_memberOf"></a> Property: pcdm:memberOf</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Object_memberOf" title="#prop_Object_memberOf">pcdm:memberOf</a></td>
+<td><a href="http://pcdm.org/models#memberOf" target="_blank" rel="noopener">http://pcdm.org/models#memberOf</a></td>
+<td>Each entry MUST point back at the Collection it belongs to.</td>
+<td><a href="#Class_Collection" title="#Class_Collection">Collection</a></td>
+<td><a href="#Class_Object" title="#Class_Object">Object</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Property Values</h2>
+<h3><a id="propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo"></a> Property Value: Collection Profile Constraint</h3>
+<p>ID: #propertyValue_Collection_conformsTo</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a></td><td>The Collection must declare conformance to this profile or to the LDAC Collection profile.</td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile&quot;,
+  &quot;@type&quot;: [
+    &quot;CreativeWork&quot;,
+    &quot;Profile&quot;
+  ],
+  &quot;name&quot;: &quot;Birds Collection Profile&quot;,
+  &quot;url&quot;: &quot;https://benfoley.github.io/masp-profiles/birds/profile-crate/&quot;
+}</code></pre><hr /><pre><code>{
+  &quot;@id&quot;: &quot;https://w3id.org/ldac/profile#Collection&quot;,
+  &quot;@type&quot;: [
+    &quot;CreativeWork&quot;,
+    &quot;Profile&quot;
+  ],
+  &quot;name&quot;: &quot;LDAC Collection Profile&quot;,
+  &quot;description&quot;: &quot;The Language Data Commons collection profile, of which this profile is a (much smaller) specialisation.&quot;
+}</code></pre></td><td>1</td><td>N/A</td></tr>
+</tbody></table>
+<h3><a id="propertyValue_licenseUrl" title="#propertyValue_licenseUrl"></a> Property Value: Licence URL Constraint</h3>
+<p>ID: #propertyValue_licenseUrl</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_licenseUrl" title="#propertyValue_licenseUrl">Licence URL Constraint</a></td><td>A licence must be given as an http(s) URL.</td><td><div><strong>Regex Pattern</strong><pre><code>/^https?:\/\//</code></pre></div></td><td>1</td><td>1</td></tr>
+</tbody></table>
+<h3><a id="propertyValue_markdown" title="#propertyValue_markdown"></a> Property Value: Markdown Media Type Constraint</h3>
+<p>ID: #propertyValue_markdown</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_markdown" title="#propertyValue_markdown">Markdown Media Type Constraint</a></td><td>The About page's `encodingFormat` must be `text/markdown`.</td><td><div><strong>Literal String</strong><pre><code>text/markdown</code></pre></div></td><td>1</td><td>1</td></tr>
+</tbody></table>
+<h3><a id="propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id"></a> Property Value: Metadata Descriptor Identifier Constraint</h3>
+<p>ID: #propertyValue_MetadataDescriptor_id</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a></td><td>The metadata descriptor's identifier must be `ro-crate-metadata.json`.</td><td><div><strong>Literal String</strong><pre><code>ro-crate-metadata.json</code></pre></div></td><td>1</td><td>1</td></tr>
+</tbody></table>
+<h3><a id="propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion"></a> Property Value: RO-Crate Version Constraint</h3>
+<p>ID: #propertyValue_roCrateVersion</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a></td><td>The metadata descriptor must declare conformance to RO-Crate 1.2.</td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://w3id.org/ro/crate/1.2&quot;
+}</code></pre></td><td>1</td><td>1</td></tr>
+</tbody></table>
+<h2>Item Lists</h2>
+<h3><a id="itemList_collectionProfiles"></a>Item List: Collection Profiles</h3>
+<p>Profile identifiers that a conforming Collection may declare with <code>conformsTo</code>.</p>
+<table>
+<thead><tr><th>Name</th><th>@id</th><th>Entity</th></tr></thead>
+<tbody>
+<tr><td>Birds Collection Profile</td><td><a id="profile" href="https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile" target="_blank" rel="noopener">https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile</a></td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile&quot;,
+  &quot;@type&quot;: [
+    &quot;CreativeWork&quot;,
+    &quot;Profile&quot;
+  ],
+  &quot;name&quot;: &quot;Birds Collection Profile&quot;,
+  &quot;url&quot;: &quot;https://benfoley.github.io/masp-profiles/birds/profile-crate/&quot;
+}</code></pre></td></tr>
+<tr><td>LDAC Collection Profile</td><td><a id="Collection" href="https://w3id.org/ldac/profile#Collection" target="_blank" rel="noopener">https://w3id.org/ldac/profile#Collection</a></td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://w3id.org/ldac/profile#Collection&quot;,
+  &quot;@type&quot;: [
+    &quot;CreativeWork&quot;,
+    &quot;Profile&quot;
+  ],
+  &quot;name&quot;: &quot;LDAC Collection Profile&quot;,
+  &quot;description&quot;: &quot;The Language Data Commons collection profile, of which this profile is a (much smaller) specialisation.&quot;
+}</code></pre></td></tr>
+</tbody></table>
+<h3><a id="conformanceIndicators"></a>Item List: Supported conformsTo identifiers</h3>
+<p>Canonical identifiers that indicate conformance to this profile.</p>
+<table>
+<thead><tr><th>Name</th><th>@id</th><th>Entity</th></tr></thead>
+<tbody>
+<tr><td>Birds Collection Profile</td><td><a id="profile" href="https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile" target="_blank" rel="noopener">https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile</a></td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile&quot;,
+  &quot;@type&quot;: [
+    &quot;CreativeWork&quot;,
+    &quot;Profile&quot;
+  ],
+  &quot;name&quot;: &quot;Birds Collection Profile&quot;,
+  &quot;url&quot;: &quot;https://benfoley.github.io/masp-profiles/birds/profile-crate/&quot;
+}</code></pre></td></tr>
+</tbody></table>
+<p><a id="hasExampleCrate"></a></p>
+<h2>Example-1: Example: the Birds crate</h2>
+<h3><a id="examples%2Fbirds-crate%2Fro-crate-metadata.json"></a> Artifact: Birds example crate metadata</h3>
+<pre>
+ {
+  "@id": "examples/birds-crate/ro-crate-metadata.json",
+  "@type": "File",
+  "name": "Birds example crate metadata",
+  "description": "A copy of the RO-Crate metadata from the `birds` test collection in the ro-crate-static-site repository. This crate is the source from which this profile was derived, and it validates against it.",
+  "encodingFormat": [
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+    },
+    "application/ld+json"
+  ]
+}
+</pre>
+<h2>Provenance</h2>
+<p>This document was compiled using <a href="https://github.com/benfoley/masp-profiles/blob/main/generate-masp-docs.js">generate-masp-docs.js</a>, based on <a href="https://github.com/benfoley/masp-profiles/blob/main/../../birds/profile-text.md">../../birds/profile-text.md</a> using a MASP Schema defined in <a href="https://github.com/benfoley/masp-profiles/blob/main/../../birds/profile-crate/ro-crate-metadata.json">../../birds/profile-crate/ro-crate-metadata.json</a>.</p>
+
+  </div>
+  <script>
+    document.querySelectorAll('.entity-filter').forEach(function(input) {
+      input.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        var list = document.getElementById(this.dataset.target);
+        list.querySelectorAll('li').forEach(function(li) {
+          li.classList.toggle('hidden', q.length > 0 && !li.textContent.toLowerCase().includes(q));
+        });
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

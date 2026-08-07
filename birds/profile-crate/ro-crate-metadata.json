@@ -1,0 +1,977 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "@vocab": "http://schema.org/",
+      "ldac": "https://w3id.org/ldac/terms#",
+      "custom": "arcp://name,custom/terms#"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
+      }
+    },
+    {
+      "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/",
+      "@type": [
+        "Dataset",
+        "Profile"
+      ],
+      "name": "Birds Collection Profile",
+      "description": "A machine actionable profile for small language/media collections of the kind used by the `ro-crate-static-site` birds demonstration crate: a RepositoryCollection of RepositoryObjects, each of which describes one bird with a name, a story, a speaker, an image and three audio files.",
+      "version": "0.1.0",
+      "isProfileOf": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        },
+        {
+          "@id": "https://w3id.org/ldac/profile#Collection"
+        }
+      ],
+      "author": {
+        "@id": "#author"
+      },
+      "license": "Apache-2.0",
+      "conformsTo": [
+        {
+          "@id": "https://language-research-technology.github.io/ro-crate-masp/profiles/ro-crate-masp/profile-crate/#profile"
+        }
+      ],
+      "hasResource": [
+        {
+          "@id": "#hasSpecializedSchema"
+        },
+        {
+          "@id": "#hasExampleCrate"
+        },
+        {
+          "@id": "#hasGuidance"
+        },
+        {
+          "@id": "#hasEditorMode"
+        },
+        {
+          "@id": "#hasConformanceIndicators"
+        }
+      ],
+      "hasPart": [
+        {
+          "@id": "profile-documentation.md"
+        },
+        {
+          "@id": "crate-o-mode.json"
+        },
+        {
+          "@id": "examples/birds-crate/ro-crate-metadata.json"
+        }
+      ]
+    },
+    {
+      "@id": "https://w3id.org/ldac/profile#Collection",
+      "@type": [
+        "CreativeWork",
+        "Profile"
+      ],
+      "name": "LDAC Collection Profile",
+      "description": "The Language Data Commons collection profile, of which this profile is a (much smaller) specialisation."
+    },
+    {
+      "@id": "#author",
+      "@type": "Organization",
+      "name": "University of Queensland"
+    },
+    {
+      "@id": "https://language-research-technology.github.io/ro-crate-masp/profiles/ro-crate-masp/profile-crate/#profile",
+      "@type": [
+        "CreativeWork",
+        "Profile"
+      ],
+      "name": "RO-Crate MASP Profile",
+      "url": "https://language-research-technology.github.io/ro-crate-masp/profiles/ro-crate-masp/profile-crate/"
+    },
+    {
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/schema"
+      },
+      "hasPart": [
+        {
+          "@id": "#Class_MetadataDescriptor"
+        },
+        {
+          "@id": "#Class_Collection"
+        },
+        {
+          "@id": "#Class_Object"
+        },
+        {
+          "@id": "#Class_Speaker"
+        },
+        {
+          "@id": "#Class_File"
+        },
+        {
+          "@id": "#Class_AboutPage"
+        },
+        {
+          "@id": "#prop_MetadataDescriptor_id"
+        },
+        {
+          "@id": "#prop_MetadataDescriptor_about"
+        },
+        {
+          "@id": "#prop_MetadataDescriptor_conformsTo"
+        },
+        {
+          "@id": "#prop_Collection_name"
+        },
+        {
+          "@id": "#prop_Collection_description"
+        },
+        {
+          "@id": "#prop_Collection_hasMember"
+        },
+        {
+          "@id": "#prop_Collection_conformsTo"
+        },
+        {
+          "@id": "#prop_Object_name"
+        },
+        {
+          "@id": "#prop_Object_description"
+        },
+        {
+          "@id": "#prop_Object_memberOf"
+        },
+        {
+          "@id": "#prop_Object_speaker"
+        },
+        {
+          "@id": "#prop_Object_datePublished"
+        },
+        {
+          "@id": "#prop_Object_license"
+        },
+        {
+          "@id": "#prop_Object_image"
+        },
+        {
+          "@id": "#prop_Object_translation"
+        },
+        {
+          "@id": "#prop_Object_sentence"
+        },
+        {
+          "@id": "#prop_Object_sentenceTranslation"
+        },
+        {
+          "@id": "#prop_Object_scientificName"
+        },
+        {
+          "@id": "#prop_Object_photographerName"
+        },
+        {
+          "@id": "#prop_Object_callAudio"
+        },
+        {
+          "@id": "#prop_Object_nameAudio"
+        },
+        {
+          "@id": "#prop_Object_sentenceAudio"
+        },
+        {
+          "@id": "#prop_Speaker_name"
+        },
+        {
+          "@id": "#prop_Speaker_description"
+        },
+        {
+          "@id": "#prop_File_isPartOf"
+        },
+        {
+          "@id": "#prop_AboutPage_encodingFormat"
+        },
+        {
+          "@id": "#prop_AboutPage_about"
+        },
+        {
+          "@id": "#propertyValue_MetadataDescriptor_id"
+        },
+        {
+          "@id": "#propertyValue_roCrateVersion"
+        },
+        {
+          "@id": "#propertyValue_Collection_conformsTo"
+        },
+        {
+          "@id": "#propertyValue_licenseUrl"
+        },
+        {
+          "@id": "#propertyValue_markdown"
+        },
+        {
+          "@id": "#itemList_collectionProfiles"
+        }
+      ]
+    },
+    {
+      "@id": "#hasExampleCrate",
+      "@type": "ResourceDescriptor",
+      "name": "Example: the Birds crate",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/example"
+      },
+      "hasArtifact": {
+        "@id": "examples/birds-crate/ro-crate-metadata.json"
+      }
+    },
+    {
+      "@id": "#hasGuidance",
+      "@type": "ResourceDescriptor",
+      "name": "Profile Documentation (Markdown source)",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/guidance"
+      },
+      "hasArtifact": {
+        "@id": "profile-documentation.md"
+      }
+    },
+    {
+      "@id": "#hasEditorMode",
+      "@type": "ResourceDescriptor",
+      "name": "Editor Mode / Build Workflow",
+      "hasRole": {
+        "@id": "https://w3id.org/ro/mode"
+      },
+      "hasArtifact": {
+        "@id": "crate-o-mode.json"
+      }
+    },
+    {
+      "@id": "crate-o-mode.json",
+      "@type": "File",
+      "name": "Resource2Crate config file",
+      "description": "Mini Crate-O mode file for this profile (root dataset types, input groups and long-text inputs — the schema/grammar is provided by the MASP profile crate itself). No `buildOptions` yet.",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+        },
+        "application/json"
+      ]
+    },
+    {
+      "@id": "https://w3id.org/ro/mode",
+      "@type": "DefinedTerm",
+      "name": "Editor Mode",
+      "description": "Role indicating a resource is an editor configuration mode file."
+    },
+    {
+      "@id": "#hasConformanceIndicators",
+      "@type": "ResourceDescriptor",
+      "name": "Conformance Indicators",
+      "hasRole": {
+        "@id": "https://w3id.org/ro/conformance-indicators"
+      },
+      "hasArtifact": {
+        "@id": "#conformanceIndicators"
+      }
+    },
+    {
+      "@id": "profile-documentation.md",
+      "@type": "File",
+      "name": "profile-documentation.md",
+      "description": "Generated documentation for this profile.",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/1149"
+        },
+        "text/markdown"
+      ],
+      "about": {
+        "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
+      },
+      "dateModified": "2026-08-07T17:45:15+10:00"
+    },
+    {
+      "@id": "examples/birds-crate/ro-crate-metadata.json",
+      "@type": "File",
+      "name": "Birds example crate metadata",
+      "description": "A copy of the RO-Crate metadata from the `birds` test collection in the ro-crate-static-site repository. This crate is the source from which this profile was derived, and it validates against it.",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+        },
+        "application/ld+json"
+      ]
+    },
+    {
+      "@id": "#Class_MetadataDescriptor",
+      "@type": "rdfs:Class",
+      "name": "RO-Crate Metadata Descriptor",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/CreativeWork"
+      },
+      "description": "Every crate MUST contain exactly one RO-Crate Metadata Descriptor: the entity that describes the `ro-crate-metadata.json` file itself and points at the Collection.",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_Collection",
+      "@type": "rdfs:Class",
+      "name": "Collection",
+      "prov:specializationOf": [
+        {
+          "@id": "http://schema.org/Dataset"
+        },
+        {
+          "@id": "http://pcdm.org/models#Collection"
+        }
+      ],
+      "description": "The Root Data Entity. A Collection groups the bird entries (Objects) that make up the site. It MUST be typed `[\"Dataset\", \"RepositoryCollection\"]`.",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_Object",
+      "@type": "rdfs:Class",
+      "name": "Object",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#Object"
+      },
+      "description": "A member of the Collection: one bird entry, gathering the name, story, speaker and media files for a single bird. Typed `RepositoryObject`.",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#Class_Speaker",
+      "@type": "rdfs:Class",
+      "name": "Speaker",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Person"
+      },
+      "description": "The person heard in an Object's recordings. `ldac:speaker` also permits an `Organization`; this profile requires a `Person`.",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#Class_File",
+      "@type": "rdfs:Class",
+      "name": "Media File",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/MediaObject"
+      },
+      "description": "An image or audio file in the crate. Media files that belong to a bird entry link back to it with `isPartOf`.",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#Class_AboutPage",
+      "@type": "rdfs:Class",
+      "name": "About Page",
+      "prov:specializationOf": [
+        {
+          "@id": "http://schema.org/MediaObject"
+        },
+        {
+          "@id": "http://schema.org/AboutPage"
+        }
+      ],
+      "description": "An optional Markdown file typed `[\"File\", \"AboutPage\"]` holding prose about the Collection. The static site generator renders it as the site's About page.",
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_MetadataDescriptor_id",
+      "@type": "rdf:Property",
+      "name": "@id",
+      "rdfs:label": "@id",
+      "rdfs:comment": "The metadata descriptor MUST have the identifier `ro-crate-metadata.json`.",
+      "domainIncludes": {
+        "@id": "#Class_MetadataDescriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_MetadataDescriptor_id"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_MetadataDescriptor_about",
+      "@type": "rdf:Property",
+      "name": "about",
+      "rdfs:label": "about",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/about"
+      },
+      "rdfs:comment": "MUST reference the Collection (the Root Data Entity).",
+      "domainIncludes": {
+        "@id": "#Class_MetadataDescriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_MetadataDescriptor_conformsTo",
+      "@type": "rdf:Property",
+      "name": "conformsTo",
+      "rdfs:label": "conformsTo",
+      "rdfs:comment": "MUST declare the RO-Crate version the metadata file conforms to.",
+      "domainIncludes": {
+        "@id": "#Class_MetadataDescriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_roCrateVersion"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Collection_name",
+      "@type": "rdf:Property",
+      "name": "name",
+      "rdfs:label": "name",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/name"
+      },
+      "rdfs:comment": "A short title for the collection; used as the site title.",
+      "domainIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Collection_description",
+      "@type": "rdf:Property",
+      "name": "description",
+      "rdfs:label": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "rdfs:comment": "Prose describing the collection, shown on the landing page.",
+      "domainIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_Collection_hasMember",
+      "@type": "rdf:Property",
+      "name": "pcdm:hasMember",
+      "rdfs:label": "pcdm:hasMember",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#hasMember"
+      },
+      "rdfs:comment": "Links the Collection to each of its bird entries. MUST have at least one member.",
+      "domainIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Object"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_Collection_conformsTo",
+      "@type": "rdf:Property",
+      "name": "conformsTo",
+      "rdfs:label": "conformsTo",
+      "rdfs:comment": "The Collection MUST declare conformance to this profile or to the LDAC Collection profile it specialises.",
+      "domainIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_Collection_conformsTo"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_Object_name",
+      "@type": "rdf:Property",
+      "name": "name",
+      "rdfs:label": "name",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/name"
+      },
+      "rdfs:comment": "The name of the bird in the language of the collection. Used as the entry's heading.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_description",
+      "@type": "rdf:Property",
+      "name": "description",
+      "rdfs:label": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "rdfs:comment": "A description of the entry.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_Object_memberOf",
+      "@type": "rdf:Property",
+      "name": "pcdm:memberOf",
+      "rdfs:label": "pcdm:memberOf",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#memberOf"
+      },
+      "rdfs:comment": "Each entry MUST point back at the Collection it belongs to.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_speaker",
+      "@type": "rdf:Property",
+      "name": "ldac:speaker",
+      "rdfs:label": "ldac:speaker",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#speaker"
+      },
+      "rdfs:comment": "The person heard in this entry's recordings. Uses the LDAC term, so crates MUST bind the `ldac` prefix to `https://w3id.org/ldac/terms#` in their `@context`.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Speaker"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_datePublished",
+      "@type": "rdf:Property",
+      "name": "datePublished",
+      "rdfs:label": "datePublished",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/datePublished"
+      },
+      "rdfs:comment": "When the entry was published. SHOULD be ISO 8601 (the birds crate uses a space rather than `T` between date and time).",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_license",
+      "@type": "rdf:Property",
+      "name": "license",
+      "rdfs:label": "license",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/license"
+      },
+      "rdfs:comment": "Each entry MUST carry a licence, given as a URL. It SHOULD also be described by a contextual entity in the crate.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_licenseUrl"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_image",
+      "@type": "rdf:Property",
+      "name": "image",
+      "rdfs:label": "image",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/image"
+      },
+      "rdfs:comment": "A picture of the bird, as a Media File in the crate.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_translation",
+      "@type": "rdf:Property",
+      "name": "custom:translation",
+      "rdfs:label": "custom:translation",
+      "rdfs:comment": "The translation of the entry's name into the language of description.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_sentence",
+      "@type": "rdf:Property",
+      "name": "custom:sentence",
+      "rdfs:label": "custom:sentence",
+      "rdfs:comment": "A sentence or short story about the bird, in the language of the collection.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_sentenceTranslation",
+      "@type": "rdf:Property",
+      "name": "custom:sentenceTranslation",
+      "rdfs:label": "custom:sentenceTranslation",
+      "rdfs:comment": "The translation of `custom:sentence`. SHOULD be present whenever `custom:sentence` is.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_scientificName",
+      "@type": "rdf:Property",
+      "name": "custom:scientificName",
+      "rdfs:label": "custom:scientificName",
+      "rdfs:comment": "The binomial (Linnaean) name of the bird.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_photographerName",
+      "@type": "rdf:Property",
+      "name": "custom:photographerName",
+      "rdfs:label": "custom:photographerName",
+      "rdfs:comment": "Credit for the image: the name of the photographer. SHOULD be present whenever `image` is.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_callAudio",
+      "@type": "rdf:Property",
+      "name": "custom:callAudio",
+      "rdfs:label": "custom:callAudio",
+      "rdfs:comment": "A recording of the bird's call.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_nameAudio",
+      "@type": "rdf:Property",
+      "name": "custom:nameAudio",
+      "rdfs:label": "custom:nameAudio",
+      "rdfs:comment": "A recording of the bird's name being spoken.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Object_sentenceAudio",
+      "@type": "rdf:Property",
+      "name": "custom:sentenceAudio",
+      "rdfs:label": "custom:sentenceAudio",
+      "rdfs:comment": "A recording of `custom:sentence` being spoken.",
+      "domainIncludes": {
+        "@id": "#Class_Object"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Speaker_name",
+      "@type": "rdf:Property",
+      "name": "name",
+      "rdfs:label": "name",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/name"
+      },
+      "rdfs:comment": "The speaker's name, or a pseudonym.",
+      "domainIncludes": {
+        "@id": "#Class_Speaker"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Speaker_description",
+      "@type": "rdf:Property",
+      "name": "description",
+      "rdfs:label": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "rdfs:comment": "A biographical note about the speaker.",
+      "domainIncludes": {
+        "@id": "#Class_Speaker"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "sh:minCount": 0
+    },
+    {
+      "@id": "#prop_File_isPartOf",
+      "@type": "rdf:Property",
+      "name": "isPartOf",
+      "rdfs:label": "isPartOf",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/isPartOf"
+      },
+      "rdfs:comment": "A Media File that belongs to a bird entry MUST reference that entry, so the static site can group media with its entry.",
+      "domainIncludes": {
+        "@id": "#Class_File"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Object"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_AboutPage_encodingFormat",
+      "@type": "rdf:Property",
+      "name": "encodingFormat",
+      "rdfs:label": "encodingFormat",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/encodingFormat"
+      },
+      "rdfs:comment": "The About page MUST be Markdown.",
+      "domainIncludes": {
+        "@id": "#Class_AboutPage"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_markdown"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_AboutPage_about",
+      "@type": "rdf:Property",
+      "name": "about",
+      "rdfs:label": "about",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/about"
+      },
+      "rdfs:comment": "The About page MUST say what it is about — the Collection.",
+      "domainIncludes": {
+        "@id": "#Class_AboutPage"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#propertyValue_MetadataDescriptor_id",
+      "@type": "PropertyValue",
+      "name": "Metadata Descriptor Identifier Constraint",
+      "description": "The metadata descriptor's identifier must be `ro-crate-metadata.json`.",
+      "value": "ro-crate-metadata.json",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#propertyValue_roCrateVersion",
+      "@type": "PropertyValue",
+      "name": "RO-Crate Version Constraint",
+      "description": "The metadata descriptor must declare conformance to RO-Crate 1.2.",
+      "value": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#propertyValue_Collection_conformsTo",
+      "@type": "PropertyValue",
+      "name": "Collection Profile Constraint",
+      "description": "The Collection must declare conformance to this profile or to the LDAC Collection profile.",
+      "value": [
+        {
+          "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+        },
+        {
+          "@id": "https://w3id.org/ldac/profile#Collection"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#propertyValue_licenseUrl",
+      "@type": "PropertyValue",
+      "name": "Licence URL Constraint",
+      "description": "A licence must be given as an http(s) URL.",
+      "value": "/^https?:\\/\\//",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#propertyValue_markdown",
+      "@type": "PropertyValue",
+      "name": "Markdown Media Type Constraint",
+      "description": "The About page's `encodingFormat` must be `text/markdown`.",
+      "value": "text/markdown",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#itemList_collectionProfiles",
+      "@type": "ItemList",
+      "name": "Collection Profiles",
+      "description": "Profile identifiers that a conforming Collection may declare with `conformsTo`.",
+      "itemListElement": [
+        {
+          "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+        },
+        {
+          "@id": "https://w3id.org/ldac/profile#Collection"
+        }
+      ]
+    },
+    {
+      "@id": "https://w3id.org/ro/conformance-indicators",
+      "@type": "DefinedTerm",
+      "name": "Conformance Indicators",
+      "description": "Role indicating a resource enumerates identifiers that are accepted as conformance indicators for the profile."
+    },
+    {
+      "@id": "#conformanceIndicators",
+      "@type": "ItemList",
+      "name": "Supported conformsTo identifiers",
+      "description": "Canonical identifiers that indicate conformance to this profile.",
+      "itemListElement": [
+        {
+          "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+        }
+      ]
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/1149",
+      "@type": "DigitalFormat",
+      "name": "Markdown"
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817",
+      "@type": "DigitalFormat",
+      "name": "JSON Data Interchange Format"
+    },
+    {
+      "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile",
+      "@type": [
+        "CreativeWork",
+        "Profile"
+      ],
+      "name": "Birds Collection Profile",
+      "url": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
+    },
+    {
+      "@id": "index.html",
+      "@type": "File",
+      "name": "index.html",
+      "description": "",
+      "dateModified": "2026-08-07T17:45:15+10:00",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/471"
+        },
+        "text/html"
+      ]
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/471",
+      "@type": "DigitalFormat",
+      "name": "Hypertext Markup Language"
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": ".",
+      "description": "",
+      "hasPart": [
+        {
+          "@id": "index.html"
+        },
+        {
+          "@id": "profile-documentation.md"
+        },
+        {
+          "@id": "examples"
+        }
+      ]
+    }
+  ]
+}

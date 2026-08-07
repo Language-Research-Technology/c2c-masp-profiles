@@ -21,6 +21,14 @@ crate is checked against it with `MaspValidator.validateCrate()`.
   class `Dataset`. Modelled on
   [corpus-tools-person-centred-collections-docx](https://github.com/Language-Research-Technology/corpus-tools-person-centred-collections-docx)
   / resources2crate's "Structured Word documents" mode.
+- **`birds/`** — a small language/media collection: a `RepositoryCollection` of
+  `RepositoryObject` entries, each one bird with a name, a translation, a
+  sentence, an `ldac:speaker`, an image and three audio recordings, plus an
+  optional Markdown About page. Root class `RepositoryCollection`. Derived from
+  the `test_data/birds` crate in
+  [ro-crate-static-site](https://github.com/Language-Research-Technology/ro-crate-html-lite),
+  which is kept alongside it at `birds/profile-crate/examples/birds-crate/` and
+  validates against it.
 
 Each profile folder is:
 
@@ -62,3 +70,17 @@ validator.setEditorHints(modeJson); // required for getRootDatasetTypes() to wor
 console.log(validator.getRootDatasetTypes()); // e.g. ["Dataset", "RepositoryCollection"]
 console.log(validator.getClassDefinition("RepositoryCollection").inputs);
 ```
+
+To check a whole crate against a profile's rules, `validate-profile.js` wraps
+`MaspValidator.validateCrate()`:
+
+```bash
+npm run validate:birds        # pass/fail
+npm run validate:birds:json   # full report, including per-entity property errors
+```
+
+Note: validating the `birds` profile needs the cyclic-reference fix in
+`MaspValidator.validateEntity()` — `pcdm:hasMember`/`pcdm:memberOf` pairs
+otherwise recurse until the stack overflows. Until that lands in
+`ro-crate-masp` main and the `ro-crate-maps` dependency is reinstalled, these
+scripts will report a stack overflow.
