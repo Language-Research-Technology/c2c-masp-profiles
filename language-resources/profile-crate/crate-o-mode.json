@@ -120,9 +120,9 @@
   "longTextInputs": ["description", "custom:portalDescription"],
   "buildOptions": {
     "inputMode": "generic",
+    "templateRepoFolder": "dyirbal",
     "enableLanguageLookups": true,
     "merge": true,
-    "templateRepoFolder": "dyirbal",
     "enabledOptionKeys": [
       "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
       "enableLanguageLookups", "includeAlternateNames",

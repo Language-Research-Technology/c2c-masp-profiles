@@ -75,6 +75,7 @@
   ],
   "buildOptions": {
     "inputMode": "generic",
+    "templateRepoFolder": "dyirbal",
     "xlsxCrate": true,
     "enabledOptionKeys": [
       "xlsxCrate",
