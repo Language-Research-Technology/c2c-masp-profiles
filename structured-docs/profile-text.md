@@ -14,11 +14,20 @@ rather than holding a DocumentPart of its own. Images and audio found in a
 document are attached to the enclosing Chapter or DocumentPart as `ImageObject`
 and `AudioObject` entities, each pointing at the `File` copied into the crate.
 
+The root dataset has exactly two members: `#derivedContent`, whose `hasPart` is
+one `RepositoryCollection` per top-level folder — the parsed Chapter/DocumentPart
+structure described above — and `#sourceDocuments`, whose `hasPart` is one
+`SourceDocumentGroup` per top-level folder, holding that folder's original .docx
+files verbatim as `File` entities rather than discarding them after parsing. The
+two mirror the same topic grouping; the generated site only ever navigates into
+`#derivedContent`, so `#sourceDocuments` exists for completeness/download and has
+no page of its own.
+
 The Build panel's **Set menu names and order** widget allows each top-level collection folder
 to be given a friendlier navigation label and dragged into the desired display order. The
 resulting label map and collection order are passed to the builder, which processes
-collections in the specified order and stores them in the root `hasPart` array in that order.
-The structured-docs site template reads the `hasPart` order to determine the navigation menu
+collections in the specified order and stores them in `#derivedContent`'s `hasPart` array in
+that order. The structured-docs site template reads that order to determine the navigation menu
 sequence, so dragging rows in the widget directly controls the rendered menu order.
 
 ${rules.all}

@@ -27,8 +27,8 @@
         "Profile"
       ],
       "name": "Structured Document Collections Profile",
-      "description": "Profile for a collection built from structured Word documents (Heading 1/2/3 parsed into Collections, DocumentParts, and Chapters) — e.g. person-centred oral history / community website collections.",
-      "version": "0.2.0",
+      "description": "Profile for a collection built from structured Word documents (Heading 1/2/3 parsed into Collections, DocumentParts, and Chapters) — e.g. person-centred oral history / community website collections. The root dataset holds the original .docx files (#sourceDocuments) alongside the parsed content built from them (#derivedContent).",
+      "version": "0.3.0",
       "isProfileOf": [
         {
           "@id": "https://w3id.org/ro/crate/1.2"
@@ -97,6 +97,33 @@
         },
         {
           "@id": "#prop_Dataset_license"
+        },
+        {
+          "@id": "#Class_DerivedContentCollection"
+        },
+        {
+          "@id": "#prop_DerivedContentCollection_name"
+        },
+        {
+          "@id": "#prop_DerivedContentCollection_hasPart"
+        },
+        {
+          "@id": "#Class_SourceDocumentsCollection"
+        },
+        {
+          "@id": "#prop_SourceDocumentsCollection_name"
+        },
+        {
+          "@id": "#prop_SourceDocumentsCollection_hasPart"
+        },
+        {
+          "@id": "#Class_SourceDocumentGroup"
+        },
+        {
+          "@id": "#prop_SourceDocumentGroup_name"
+        },
+        {
+          "@id": "#prop_SourceDocumentGroup_hasPart"
         },
         {
           "@id": "#Class_Collection"
@@ -391,13 +418,18 @@
       "@type": "rdf:Property",
       "rdfs:label": "hasPart",
       "name": "hasPart",
-      "rdfs:comment": "The Collections in this dataset — one per top-level folder of structured .docx documents.",
+      "rdfs:comment": "The dataset's two members: #sourceDocuments (the original .docx files, grouped by topic) and #derivedContent (the parsed Chapter/DocumentPart structure built from them, also grouped by topic).",
       "domainIncludes": {
         "@id": "#Class_Dataset"
       },
-      "rangeIncludes": {
-        "@id": "#Class_Collection"
-      },
+      "rangeIncludes": [
+        {
+          "@id": "#Class_SourceDocumentsCollection"
+        },
+        {
+          "@id": "#Class_DerivedContentCollection"
+        }
+      ],
       "isPartOf": {
         "@id": "#hasSpecializedSchema"
       },
@@ -437,6 +469,154 @@
       },
       "sh:minCount": 0,
       "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_DerivedContentCollection",
+      "@type": "rdfs:Class",
+      "rdfs:label": "custom:DerivedContentCollection",
+      "name": "custom:DerivedContentCollection",
+      "rdfs:comment": "One of the dataset's two members: wraps the per-topic RepositoryCollections built by parsing the structured .docx documents. Has no page of its own in the generated site — its members are what the site navigates.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "custom:DerivedContentCollection"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_DerivedContentCollection_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Fixed label, \"Derived Content\" — not shown in the generated site.",
+      "domainIncludes": {
+        "@id": "#Class_DerivedContentCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_DerivedContentCollection_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "The per-topic RepositoryCollections — one per top-level folder of structured .docx documents. Same structure this dataset's hasPart carried directly before #sourceDocuments/#derivedContent existed.",
+      "domainIncludes": {
+        "@id": "#Class_DerivedContentCollection"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#Class_SourceDocumentsCollection",
+      "@type": "rdfs:Class",
+      "rdfs:label": "custom:SourceDocumentsCollection",
+      "name": "custom:SourceDocumentsCollection",
+      "rdfs:comment": "One of the dataset's two members: wraps the original .docx files, grouped by the same topic folders as #derivedContent, kept for completeness/download rather than discarded after parsing. Has no page of its own in the generated site.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "custom:SourceDocumentsCollection"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_SourceDocumentsCollection_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Fixed label, \"Source Documents\" — not shown in the generated site.",
+      "domainIncludes": {
+        "@id": "#Class_SourceDocumentsCollection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_SourceDocumentsCollection_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "One SourceDocumentGroup per top-level topic folder that contributed at least one .docx.",
+      "domainIncludes": {
+        "@id": "#Class_SourceDocumentsCollection"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_SourceDocumentGroup"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#Class_SourceDocumentGroup",
+      "@type": "rdfs:Class",
+      "rdfs:label": "custom:SourceDocumentGroup",
+      "name": "custom:SourceDocumentGroup",
+      "rdfs:comment": "The original .docx file(s) for one topic folder, mirroring that topic's RepositoryCollection under #derivedContent.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "custom:SourceDocumentGroup"
+      }
+    },
+    {
+      "@id": "#prop_SourceDocumentGroup_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "The topic label — same value as the matching RepositoryCollection's name under #derivedContent.",
+      "domainIncludes": {
+        "@id": "#Class_SourceDocumentGroup"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_SourceDocumentGroup_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "The original .docx File(s) for this topic, copied into the crate verbatim.",
+      "domainIncludes": {
+        "@id": "#Class_SourceDocumentGroup"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1
     },
     {
       "@id": "#Class_Collection",
@@ -905,7 +1085,7 @@
       "@type": "rdfs:Class",
       "rdfs:label": "File",
       "name": "File",
-      "rdfs:comment": "A media file copied into the crate — the image and audio payloads referenced by the media entities.",
+      "rdfs:comment": "A file copied into the crate — the image and audio payloads referenced by the media entities, and the original .docx documents under #sourceDocuments.",
       "isPartOf": {
         "@id": "#hasSpecializedSchema"
       },
