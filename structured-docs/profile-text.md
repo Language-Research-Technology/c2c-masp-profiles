@@ -14,4 +14,11 @@ rather than holding a DocumentPart of its own. Images and audio found in a
 document are attached to the enclosing Chapter or DocumentPart as `ImageObject`
 and `AudioObject` entities, each pointing at the `File` copied into the crate.
 
+The Build panel's **Set menu names and order** widget allows each top-level collection folder
+to be given a friendlier navigation label and dragged into the desired display order. The
+resulting label map and collection order are passed to the builder, which processes
+collections in the specified order and stores them in the root `hasPart` array in that order.
+The structured-docs site template reads the `hasPart` order to determine the navigation menu
+sequence, so dragging rows in the widget directly controls the rendered menu order.
+
 ${rules.all}
