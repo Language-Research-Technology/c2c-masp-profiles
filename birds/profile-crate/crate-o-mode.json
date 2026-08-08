@@ -75,7 +75,7 @@
   ],
   "buildOptions": {
     "inputMode": "generic",
-    "templateRepoFolder": "dyirbal",
+    "templateRepoFolder": "birds",
     "xlsxCrate": true,
     "enabledOptionKeys": [
       "xlsxCrate",
