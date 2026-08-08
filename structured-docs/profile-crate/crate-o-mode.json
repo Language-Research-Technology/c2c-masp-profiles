@@ -64,7 +64,7 @@
     "inputMode": "docx",
     "templateRepoFolder": "structured-docs",
     "enabledOptionKeys": [
-      "makeHtml", "templateRepoFolder", "collectionLabelsBuilder", "styledPreview", "configFile"
+      "makeHtml", "templateRepoFolder", "homePageId", "domain", "collectionLabelsBuilder", "styledPreview", "configFile"
     ]
   }
 }
