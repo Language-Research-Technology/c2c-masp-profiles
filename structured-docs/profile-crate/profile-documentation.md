@@ -14,6 +14,22 @@ rather than holding a DocumentPart of its own. Images and audio found in a
 document are attached to the enclosing Chapter or DocumentPart as `ImageObject`
 and `AudioObject` entities, each pointing at the `File` copied into the crate.
 
+The root dataset has exactly two members: `#derivedContent`, whose `hasPart` is
+one `RepositoryCollection` per top-level folder — the parsed Chapter/DocumentPart
+structure described above — and `#sourceDocuments`, whose `hasPart` is one
+`SourceDocumentGroup` per top-level folder, holding that folder's original .docx
+files verbatim as `File` entities rather than discarding them after parsing. The
+two mirror the same topic grouping; the generated site only ever navigates into
+`#derivedContent`, so `#sourceDocuments` exists for completeness/download and has
+no page of its own.
+
+The Build panel's **Set menu names and order** widget allows each top-level collection folder
+to be given a friendlier navigation label and dragged into the desired display order. The
+resulting label map and collection order are passed to the builder, which processes
+collections in the specified order and stores them in `#derivedContent`'s `hasPart` array in
+that order. The structured-docs site template reads that order to determine the navigation menu
+sequence, so dragging rows in the widget directly controls the rendered menu order.
+
 ## Types of entities (specializations of Classes) and expected Properties
 
 
@@ -54,10 +70,65 @@ At least 1 instances of this type MUST be present in the crate.
 | @type |  | Yes |  |  | <a href="http://schema.org/Dataset" title="http://schema.org/Dataset" target="_blank" rel="noopener">Dataset</a> |
 | <a href="#prop_Dataset_datePublished" title="#prop_Dataset_datePublished">datePublished</a> |  | Yes | Date published (YYYY-MM-DD). | <a href="http://schema.org/Date" title="http://schema.org/Date" target="_blank" rel="noopener">Date</a> |  |
 | <a href="#prop_Dataset_description" title="#prop_Dataset_description">description</a> |  | Yes | A short summary of the collection. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
-| <a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a> |  | Yes | The Collections in this dataset — one per top-level folder of structured .docx documents. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |  |
+| <a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a> |  | Yes | The dataset's two members: #sourceDocuments (the original .docx files, grouped by topic) and #derivedContent (the parsed Chapter/DocumentPart structure built from them, also grouped by topic). | <a href="#Class_SourceDocumentsCollection" title="#Class_SourceDocumentsCollection">SourceDocumentsCollection</a>, <a href="#Class_DerivedContentCollection" title="#Class_DerivedContentCollection">DerivedContentCollection</a> |  |
 | <a href="#prop_Dataset_name" title="#prop_Dataset_name">name</a> |  | Yes | Collection title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 | <a href="#prop_Dataset_creator" title="#prop_Dataset_creator">creator</a> |  | No | Person(s) who compiled/created this collection. | <a href="#Class_Person" title="#Class_Person">Person</a> |  |
 | <a href="#prop_Dataset_license" title="#prop_Dataset_license">license</a> |  | No | A URL identifying the licence. | <a href="http://schema.org/URL" title="http://schema.org/URL" target="_blank" rel="noopener">URL</a> |  |
+
+
+### <a id="Class_DerivedContentCollection" title="#Class_DerivedContentCollection"></a> Class: custom:DerivedContentCollection
+
+One of the dataset's two members: wraps the per-topic RepositoryCollections built by parsing the structured .docx documents. Has no page of its own in the generated site — its members are what the site navigates.
+
+At least 1 instances of this type MUST be present in the crate.
+
+ A maximum of 1 instances of this type  MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| 1 | 1 |
+
+| Property | Specialization Of | Required | Description | Range | Value |
+| -------- | ----------------- | -------- | ----------- | ----- | ----- |
+| @type |  | Yes |  |  | custom:DerivedContentCollection |
+| <a href="#prop_DerivedContentCollection_hasPart" title="#prop_DerivedContentCollection_hasPart">hasPart</a> |  | Yes | The per-topic RepositoryCollections — one per top-level folder of structured .docx documents. Same structure this dataset's hasPart carried directly before #sourceDocuments/#derivedContent existed. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> |  |
+| <a href="#prop_DerivedContentCollection_name" title="#prop_DerivedContentCollection_name">name</a> |  | Yes | Fixed label, "Derived Content" — not shown in the generated site. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
+
+
+### <a id="Class_SourceDocumentsCollection" title="#Class_SourceDocumentsCollection"></a> Class: custom:SourceDocumentsCollection
+
+One of the dataset's two members: wraps the original .docx files, grouped by the same topic folders as #derivedContent, kept for completeness/download rather than discarded after parsing. Has no page of its own in the generated site.
+
+Instances of this type SHOULD be present in the crate.
+
+ A maximum of 1 instances of this type  MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| 0 | 1 |
+
+| Property | Specialization Of | Required | Description | Range | Value |
+| -------- | ----------------- | -------- | ----------- | ----- | ----- |
+| @type |  | Yes |  |  | custom:SourceDocumentsCollection |
+| <a href="#prop_SourceDocumentsCollection_hasPart" title="#prop_SourceDocumentsCollection_hasPart">hasPart</a> |  | Yes | One SourceDocumentGroup per top-level topic folder that contributed at least one .docx. | <a href="#Class_SourceDocumentGroup" title="#Class_SourceDocumentGroup">SourceDocumentGroup</a> |  |
+| <a href="#prop_SourceDocumentsCollection_name" title="#prop_SourceDocumentsCollection_name">name</a> |  | Yes | Fixed label, "Source Documents" — not shown in the generated site. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
+
+
+### <a id="Class_SourceDocumentGroup" title="#Class_SourceDocumentGroup"></a> Class: custom:SourceDocumentGroup
+
+The original .docx file(s) for one topic folder, mirroring that topic's RepositoryCollection under #derivedContent.
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Specialization Of | Required | Description | Range | Value |
+| -------- | ----------------- | -------- | ----------- | ----- | ----- |
+| @type |  | Yes |  |  | custom:SourceDocumentGroup |
+| <a href="#prop_SourceDocumentGroup_hasPart" title="#prop_SourceDocumentGroup_hasPart">hasPart</a> |  | Yes | The original .docx File(s) for this topic, copied into the crate verbatim. | <a href="#Class_File" title="#Class_File">File</a> |  |
+| <a href="#prop_SourceDocumentGroup_name" title="#prop_SourceDocumentGroup_name">name</a> |  | Yes | The topic label — same value as the matching RepositoryCollection's name under #derivedContent. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> |  |
 
 
 ### <a id="Class_Collection" title="#Class_Collection"></a> Class: RepositoryCollection
@@ -172,7 +243,7 @@ Instances of this type MAY be present in the crate.
 
 ### <a id="Class_File" title="#Class_File"></a> Class: File
 
-A media file copied into the crate — the image and audio payloads referenced by the media entities.
+A file copied into the crate — the image and audio payloads referenced by the media entities, and the original .docx documents under #sourceDocuments.
 
 Instances of this type MAY be present in the crate.
 
@@ -263,7 +334,22 @@ Instances of this type MAY be present in the crate.
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
-| <a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a> |  | The Collections in this dataset — one per top-level folder of structured .docx documents. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_Dataset" title="#Class_Dataset">Dataset</a> |
+| <a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a> |  | The dataset's two members: #sourceDocuments (the original .docx files, grouped by topic) and #derivedContent (the parsed Chapter/DocumentPart structure built from them, also grouped by topic). | <a href="#Class_SourceDocumentsCollection" title="#Class_SourceDocumentsCollection">SourceDocumentsCollection</a>, <a href="#Class_DerivedContentCollection" title="#Class_DerivedContentCollection">DerivedContentCollection</a> | <a href="#Class_Dataset" title="#Class_Dataset">Dataset</a> |
+### <a id="prop_DerivedContentCollection_hasPart" title="#prop_DerivedContentCollection_hasPart"></a> Property: hasPart
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_DerivedContentCollection_hasPart" title="#prop_DerivedContentCollection_hasPart">hasPart</a> |  | The per-topic RepositoryCollections — one per top-level folder of structured .docx documents. Same structure this dataset's hasPart carried directly before #sourceDocuments/#derivedContent existed. | <a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> | <a href="#Class_DerivedContentCollection" title="#Class_DerivedContentCollection">DerivedContentCollection</a> |
+### <a id="prop_SourceDocumentsCollection_hasPart" title="#prop_SourceDocumentsCollection_hasPart"></a> Property: hasPart
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_SourceDocumentsCollection_hasPart" title="#prop_SourceDocumentsCollection_hasPart">hasPart</a> |  | One SourceDocumentGroup per top-level topic folder that contributed at least one .docx. | <a href="#Class_SourceDocumentGroup" title="#Class_SourceDocumentGroup">SourceDocumentGroup</a> | <a href="#Class_SourceDocumentsCollection" title="#Class_SourceDocumentsCollection">SourceDocumentsCollection</a> |
+### <a id="prop_SourceDocumentGroup_hasPart" title="#prop_SourceDocumentGroup_hasPart"></a> Property: hasPart
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_SourceDocumentGroup_hasPart" title="#prop_SourceDocumentGroup_hasPart">hasPart</a> |  | The original .docx File(s) for this topic, copied into the crate verbatim. | <a href="#Class_File" title="#Class_File">File</a> | <a href="#Class_SourceDocumentGroup" title="#Class_SourceDocumentGroup">SourceDocumentGroup</a> |
 ### <a id="prop_Collection_hasPart" title="#prop_Collection_hasPart"></a> Property: hasPart
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
@@ -309,6 +395,21 @@ Instances of this type MAY be present in the crate.
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
 | -------- | ----------------- | ----------- | ----------- | ----------- |
 | <a href="#prop_Dataset_name" title="#prop_Dataset_name">name</a> |  | Collection title. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_Dataset" title="#Class_Dataset">Dataset</a> |
+### <a id="prop_DerivedContentCollection_name" title="#prop_DerivedContentCollection_name"></a> Property: name
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_DerivedContentCollection_name" title="#prop_DerivedContentCollection_name">name</a> |  | Fixed label, "Derived Content" — not shown in the generated site. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_DerivedContentCollection" title="#Class_DerivedContentCollection">DerivedContentCollection</a> |
+### <a id="prop_SourceDocumentsCollection_name" title="#prop_SourceDocumentsCollection_name"></a> Property: name
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_SourceDocumentsCollection_name" title="#prop_SourceDocumentsCollection_name">name</a> |  | Fixed label, "Source Documents" — not shown in the generated site. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_SourceDocumentsCollection" title="#Class_SourceDocumentsCollection">SourceDocumentsCollection</a> |
+### <a id="prop_SourceDocumentGroup_name" title="#prop_SourceDocumentGroup_name"></a> Property: name
+
+| Property | Specialization Of | Description | Range | Occurs in Domain(s) |
+| -------- | ----------------- | ----------- | ----------- | ----------- |
+| <a href="#prop_SourceDocumentGroup_name" title="#prop_SourceDocumentGroup_name">name</a> |  | The topic label — same value as the matching RepositoryCollection's name under #derivedContent. | <a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a> | <a href="#Class_SourceDocumentGroup" title="#Class_SourceDocumentGroup">SourceDocumentGroup</a> |
 ### <a id="prop_Collection_name" title="#prop_Collection_name"></a> Property: name
 
 | Property | Specialization Of | Description | Range | Occurs in Domain(s) |
