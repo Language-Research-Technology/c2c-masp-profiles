@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structured Document Collections Profile</title>
+  <link rel="describedby" href="ro-crate-metadata.json" type="application/ld+json">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { padding: 2rem; }
+    table { width: 100%; margin-bottom: 1rem; }
+    th, td { padding: 0.5rem; border: 1px solid #dee2e6; }
+    th { background-color: #f8f9fa; }
+    pre { background: #f8f9fa; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+    pre.mermaid { background: none; padding: 0; }
+    code { background: #f8f9fa; padding: 0.2em 0.4em; border-radius: 3px; }
+  </style>
+  <style>
+    .entity-filter { margin-bottom: 0.5rem; width: 100%; padding: 0.4rem 0.6rem; font-size: 0.95rem; border: 1px solid #ced4da; border-radius: 4px; }
+    .entity-list { height: 420px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 4px; padding: 0.5rem 1rem; background: #fff; list-style: none; margin: 0; }
+    .entity-list li { padding: 0.15rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    .entity-list li:last-child { border-bottom: none; }
+    .entity-list li.hidden { display: none; }
+    .col-panel h3 { margin-top: 0; }
+    .col-panel { padding: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <p>
+      <a href="ro-crate-metadata.json">⬇️ Download profile metadata (JSON-LD)</a> &nbsp;|&nbsp;
+      <a href="ro-crate-metadata.xlsx">⬇️ Download profile metadata (Excel)</a>
+    </p>
+    <h1>Structured Docs</h1>
+<p>The profile specifies metadata and workflows used in creating person-centred collections.</p>
+<p>Includes a mode file for specifying configuration for the Resources2Crate tool (defined in crate-o-mode.json). Using this config, Resources2Crate will parse document contents and package those contents in <a href="http://purl.org/ontology/bibo/DocumentPart">bibo:DocumentPart</a>.</p>
+<p>Headings in the source documents become a nesting structure: Heading 1 becomes a
+<a href="http://purl.org/ontology/bibo/DocumentPart">bibo:DocumentPart</a> and Heading 2/3
+become <a href="http://purl.org/ontology/bibo/Chapter">bibo:Chapter</a> entities beneath it.
+Containment runs downward through <code>hasPart</code> — a RepositoryCollection holds DocumentParts, a
+DocumentPart holds Chapters, and Chapters may nest within one another. A Chapter
+is always <em>part of</em> the document above it, so it links back up with <code>isPartOf</code>
+rather than holding a DocumentPart of its own. Images and audio found in a
+document are attached to the enclosing Chapter or DocumentPart as <code>ImageObject</code>
+and <code>AudioObject</code> entities, each pointing at the <code>File</code> copied into the crate.</p>
+<p><strong>10</strong> classes &middot; <strong>32</strong> properties</p>
+<div class="row">
+  <div class="col-md-6 col-panel">
+    <h3>Classes</h3>
+    <input class="entity-filter" type="search" placeholder="Filter classes…" data-target="class-list">
+    <ul id="class-list" class="entity-list">
+<li><a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a> — An audio recording placed in a document. Typed `["CreativeWork", "AudioObject"]` in built crates. <small style="color:#aaa">#Class_AudioObject</small></li>
+<li><a href="#Class_Chapter" title="#Class_Chapter">bibo:Chapter</a> — A section within a document, parsed from a Heading 2 or Heading 3. Chapters may nest. <small style="color:#aaa">#Class_Chapter</small></li>
+<li><a href="#Class_DocumentPart" title="#Class_DocumentPart">bibo:DocumentPart</a> — One structured .docx document within a Collection (a Heading 1 section). <small style="color:#aaa">#Class_DocumentPart</small></li>
+<li><a href="#Class_TableRow" title="#Class_TableRow">custom:TableRow</a> — One row of a table inside a Chapter. A content block rather than a document — it carries text and media but has no heading, so it is not a bibo:DocumentPart. <small style="color:#aaa">#Class_TableRow</small></li>
+<li><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a> — The root dataset: a collection of structured-document collections. <small style="color:#aaa">#Class_Dataset</small></li>
+<li><a href="#Class_File" title="#Class_File">File</a> — A media file copied into the crate — the image and audio payloads referenced by the media entities. <small style="color:#aaa">#Class_File</small></li>
+<li><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a> — An image placed in a document, with its caption and photo credit. Typed `["CreativeWork", "ImageObject"]` in built crates. <small style="color:#aaa">#Class_ImageObject</small></li>
+<li><a href="#Class_Person" title="#Class_Person">Person</a> — A contributor or subject of the collection. <small style="color:#aaa">#Class_Person</small></li>
+<li><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a> — One top-level folder of structured .docx documents (shown as a menu entry in the generated site). MUST be typed `RepositoryCollection`. <small style="color:#aaa">#Class_Collection</small></li>
+<li><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a> <small style="color:#aaa">#Class_MetadataDescriptor</small></li>
+    </ul>
+  </div>
+  <div class="col-md-6 col-panel">
+    <h3>Properties</h3>
+    <input class="entity-filter" type="search" placeholder="Filter properties…" data-target="prop-list">
+    <ul id="prop-list" class="entity-list">
+<li><a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a> — The metadata descriptor MUST have the identifier `ro-crate-metadata.json`. <small style="color:#aaa">#prop_MetadataDescriptor_id</small></li>
+<li><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a> — MUST reference the root Dataset (the Root Data Entity). <small style="color:#aaa">#prop_MetadataDescriptor_about</small></li>
+<li><a href="#prop_AudioObject_audio" title="#prop_AudioObject_audio">audio</a> — The audio File this entity plays. <small style="color:#aaa">#prop_AudioObject_audio</small></li>
+<li><a href="#prop_ImageObject_caption" title="#prop_ImageObject_caption">caption</a> — Caption text shown beneath the image. <small style="color:#aaa">#prop_ImageObject_caption</small></li>
+<li><a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a> — MUST declare the RO-Crate version the metadata file conforms to. <small style="color:#aaa">#prop_MetadataDescriptor_conformsTo</small></li>
+<li><a href="#prop_Dataset_creator" title="#prop_Dataset_creator">creator</a> — Person(s) who compiled/created this collection. <small style="color:#aaa">#prop_Dataset_creator</small></li>
+<li><a href="#prop_ImageObject_creditText" title="#prop_ImageObject_creditText">creditText</a> — Photo credit shown beneath the caption. <small style="color:#aaa">#prop_ImageObject_creditText</small></li>
+<li><a href="#prop_ImageObject_imageReference" title="#prop_ImageObject_imageReference">custom:imageReference</a> — The image filename as written in the source document, kept when the referenced file could not be resolved to a File entity. <small style="color:#aaa">#prop_ImageObject_imageReference</small></li>
+<li><a href="#prop_Dataset_datePublished" title="#prop_Dataset_datePublished">datePublished</a> — Date published (YYYY-MM-DD). <small style="color:#aaa">#prop_Dataset_datePublished</small></li>
+<li><a href="#prop_Dataset_description" title="#prop_Dataset_description">description</a> — A short summary of the collection. <small style="color:#aaa">#prop_Dataset_description</small></li>
+<li><a href="#prop_File_encodingFormat" title="#prop_File_encodingFormat">encodingFormat</a> — The file's media type, e.g. `image/jpeg`. <small style="color:#aaa">#prop_File_encodingFormat</small></li>
+<li><a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a> — The Collections in this dataset — one per top-level folder of structured .docx documents. <small style="color:#aaa">#prop_Dataset_hasPart</small></li>
+<li><a href="#prop_Collection_hasPart" title="#prop_Collection_hasPart">hasPart</a> — The documents in this collection — one per structured .docx file. <small style="color:#aaa">#prop_Collection_hasPart</small></li>
+<li><a href="#prop_DocumentPart_hasPart" title="#prop_DocumentPart_hasPart">hasPart</a> — The Chapters and media entities nested inside this document. <small style="color:#aaa">#prop_DocumentPart_hasPart</small></li>
+<li><a href="#prop_Chapter_hasPart" title="#prop_Chapter_hasPart">hasPart</a> — Nested Chapters, table rows and media entities belonging to this chapter. <small style="color:#aaa">#prop_Chapter_hasPart</small></li>
+<li><a href="#prop_TableRow_hasPart" title="#prop_TableRow_hasPart">hasPart</a> — Media entities appearing in this row. <small style="color:#aaa">#prop_TableRow_hasPart</small></li>
+<li><a href="#prop_ImageObject_hasPart" title="#prop_ImageObject_hasPart">hasPart</a> — The image File, linked structurally as well as through `image`. <small style="color:#aaa">#prop_ImageObject_hasPart</small></li>
+<li><a href="#prop_ImageObject_image" title="#prop_ImageObject_image">image</a> — The image File this entity displays. <small style="color:#aaa">#prop_ImageObject_image</small></li>
+<li><a href="#prop_Chapter_isPartOf" title="#prop_Chapter_isPartOf">isPartOf</a> — The DocumentPart, or enclosing Chapter, that this chapter belongs to. Containment runs downward through `hasPart`; this is the inverse link back up. <small style="color:#aaa">#prop_Chapter_isPartOf</small></li>
+<li><a href="#prop_Dataset_license" title="#prop_Dataset_license">license</a> — A URL identifying the licence. <small style="color:#aaa">#prop_Dataset_license</small></li>
+<li><a href="#prop_Dataset_name" title="#prop_Dataset_name">name</a> — Collection title. <small style="color:#aaa">#prop_Dataset_name</small></li>
+<li><a href="#prop_Collection_name" title="#prop_Collection_name">name</a> — Menu label — see the collection-name mapping builder. <small style="color:#aaa">#prop_Collection_name</small></li>
+<li><a href="#prop_DocumentPart_name" title="#prop_DocumentPart_name">name</a> — Document title, taken from the Heading 1 text. <small style="color:#aaa">#prop_DocumentPart_name</small></li>
+<li><a href="#prop_Chapter_name" title="#prop_Chapter_name">name</a> — Chapter title, taken from the heading text. <small style="color:#aaa">#prop_Chapter_name</small></li>
+<li><a href="#prop_File_name" title="#prop_File_name">name</a> — The file's name on disk. <small style="color:#aaa">#prop_File_name</small></li>
+<li><a href="#prop_Person_name" title="#prop_Person_name">name</a> — The person's name. <small style="color:#aaa">#prop_Person_name</small></li>
+<li><a href="#prop_DocumentPart_position" title="#prop_DocumentPart_position">position</a> — Ordering of this document within its Collection, as it appeared in the source. <small style="color:#aaa">#prop_DocumentPart_position</small></li>
+<li><a href="#prop_Chapter_position" title="#prop_Chapter_position">position</a> — Ordering of this chapter within its parent, as it appeared in the source. <small style="color:#aaa">#prop_Chapter_position</small></li>
+<li><a href="#prop_TableRow_position" title="#prop_TableRow_position">position</a> — Ordering of this row within its table. <small style="color:#aaa">#prop_TableRow_position</small></li>
+<li><a href="#prop_DocumentPart_text" title="#prop_DocumentPart_text">text</a> — The document's parsed body content, as HTML. <small style="color:#aaa">#prop_DocumentPart_text</small></li>
+<li><a href="#prop_Chapter_text" title="#prop_Chapter_text">text</a> — The chapter's parsed body content, as HTML. <small style="color:#aaa">#prop_Chapter_text</small></li>
+<li><a href="#prop_TableRow_text" title="#prop_TableRow_text">text</a> — The row's content, as HTML. <small style="color:#aaa">#prop_TableRow_text</small></li>
+    </ul>
+  </div>
+</div>
+<h2>Types of entities (specializations of Classes) and expected Properties</h2>
+<h3><a id="Class_MetadataDescriptor" title="#Class_MetadataDescriptor"></a> Class: RO-Crate Metadata Descriptor</h3>
+<p>Every crate MUST contain exactly one RO-Crate Metadata Descriptor: the entity that describes the <code>ro-crate-metadata.json</code> file itself and points at the root Dataset.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/CreativeWork" title="http://schema.org/CreativeWork" target="_blank" rel="noopener">CreativeWork</a></td>
+</tr>
+<tr>
+<td><a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a></td>
+<td></td>
+<td>Yes</td>
+<td>The metadata descriptor MUST have the identifier <code>ro-crate-metadata.json</code>.</td>
+<td><a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a></td>
+<td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
+<td>Yes</td>
+<td>MUST reference the root Dataset (the Root Data Entity).</td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a></td>
+<td></td>
+<td>Yes</td>
+<td>MUST declare the RO-Crate version the metadata file conforms to.</td>
+<td><a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Dataset" title="#Class_Dataset"></a> Class: Dataset</h3>
+<p>The root dataset: a collection of structured-document collections.</p>
+<p>At least 1 instances of this type MUST be present in the crate.</p>
+<p>A maximum of 1 instances of this type  MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/Dataset" title="http://schema.org/Dataset" target="_blank" rel="noopener">Dataset</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Dataset_datePublished" title="#prop_Dataset_datePublished">datePublished</a></td>
+<td></td>
+<td>Yes</td>
+<td>Date published (YYYY-MM-DD).</td>
+<td><a href="http://schema.org/Date" title="http://schema.org/Date" target="_blank" rel="noopener">Date</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Dataset_description" title="#prop_Dataset_description">description</a></td>
+<td></td>
+<td>Yes</td>
+<td>A short summary of the collection.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a></td>
+<td></td>
+<td>Yes</td>
+<td>The Collections in this dataset — one per top-level folder of structured .docx documents.</td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Dataset_name" title="#prop_Dataset_name">name</a></td>
+<td></td>
+<td>Yes</td>
+<td>Collection title.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Dataset_creator" title="#prop_Dataset_creator">creator</a></td>
+<td></td>
+<td>No</td>
+<td>Person(s) who compiled/created this collection.</td>
+<td><a href="#Class_Person" title="#Class_Person">Person</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Dataset_license" title="#prop_Dataset_license">license</a></td>
+<td></td>
+<td>No</td>
+<td>A URL identifying the licence.</td>
+<td><a href="http://schema.org/URL" title="http://schema.org/URL" target="_blank" rel="noopener">URL</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Collection" title="#Class_Collection"></a> Class: RepositoryCollection</h3>
+<p>One top-level folder of structured .docx documents (shown as a menu entry in the generated site). MUST be typed <code>RepositoryCollection</code>.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://pcdm.org/models#Collection" title="http://pcdm.org/models#Collection" target="_blank" rel="noopener">Collection</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Collection_hasPart" title="#prop_Collection_hasPart">hasPart</a></td>
+<td></td>
+<td>Yes</td>
+<td>The documents in this collection — one per structured .docx file.</td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Collection_name" title="#prop_Collection_name">name</a></td>
+<td></td>
+<td>Yes</td>
+<td>Menu label — see the collection-name mapping builder.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_DocumentPart" title="#Class_DocumentPart"></a> Class: bibo:DocumentPart</h3>
+<p>One structured .docx document within a Collection (a Heading 1 section).</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://purl.org/ontology/bibo/DocumentPart" title="http://purl.org/ontology/bibo/DocumentPart" target="_blank" rel="noopener">DocumentPart</a></td>
+</tr>
+<tr>
+<td><a href="#prop_DocumentPart_name" title="#prop_DocumentPart_name">name</a></td>
+<td></td>
+<td>Yes</td>
+<td>Document title, taken from the Heading 1 text.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_DocumentPart_hasPart" title="#prop_DocumentPart_hasPart">hasPart</a></td>
+<td></td>
+<td>No</td>
+<td>The Chapters and media entities nested inside this document.</td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a>, <a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a>, <a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_DocumentPart_position" title="#prop_DocumentPart_position">position</a></td>
+<td></td>
+<td>No</td>
+<td>Ordering of this document within its Collection, as it appeared in the source.</td>
+<td><a href="http://schema.org/Integer" title="http://schema.org/Integer" target="_blank" rel="noopener">Integer</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_DocumentPart_text" title="#prop_DocumentPart_text">text</a></td>
+<td></td>
+<td>No</td>
+<td>The document's parsed body content, as HTML.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Chapter" title="#Class_Chapter"></a> Class: bibo:Chapter</h3>
+<p>A section within a document, parsed from a Heading 2 or Heading 3. Chapters may nest.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://purl.org/ontology/bibo/Chapter" title="http://purl.org/ontology/bibo/Chapter" target="_blank" rel="noopener">Chapter</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Chapter_name" title="#prop_Chapter_name">name</a></td>
+<td></td>
+<td>Yes</td>
+<td>Chapter title, taken from the heading text.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Chapter_hasPart" title="#prop_Chapter_hasPart">hasPart</a></td>
+<td></td>
+<td>No</td>
+<td>Nested Chapters, table rows and media entities belonging to this chapter.</td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a>, <a href="#Class_TableRow" title="#Class_TableRow">TableRow</a>, <a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a>, <a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Chapter_isPartOf" title="#prop_Chapter_isPartOf">isPartOf</a></td>
+<td></td>
+<td>No</td>
+<td>The DocumentPart, or enclosing Chapter, that this chapter belongs to. Containment runs downward through <code>hasPart</code>; this is the inverse link back up.</td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a>, <a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Chapter_position" title="#prop_Chapter_position">position</a></td>
+<td></td>
+<td>No</td>
+<td>Ordering of this chapter within its parent, as it appeared in the source.</td>
+<td><a href="http://schema.org/Integer" title="http://schema.org/Integer" target="_blank" rel="noopener">Integer</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_Chapter_text" title="#prop_Chapter_text">text</a></td>
+<td></td>
+<td>No</td>
+<td>The chapter's parsed body content, as HTML.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_TableRow" title="#Class_TableRow"></a> Class: custom:TableRow</h3>
+<p>One row of a table inside a Chapter. A content block rather than a document — it carries text and media but has no heading, so it is not a bibo:DocumentPart.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td>custom:TableRow</td>
+</tr>
+<tr>
+<td><a href="#prop_TableRow_hasPart" title="#prop_TableRow_hasPart">hasPart</a></td>
+<td></td>
+<td>No</td>
+<td>Media entities appearing in this row.</td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a>, <a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_TableRow_position" title="#prop_TableRow_position">position</a></td>
+<td></td>
+<td>No</td>
+<td>Ordering of this row within its table.</td>
+<td><a href="http://schema.org/Integer" title="http://schema.org/Integer" target="_blank" rel="noopener">Integer</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_TableRow_text" title="#prop_TableRow_text">text</a></td>
+<td></td>
+<td>No</td>
+<td>The row's content, as HTML.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_ImageObject" title="#Class_ImageObject"></a> Class: ImageObject</h3>
+<p>An image placed in a document, with its caption and photo credit. Typed <code>[&quot;CreativeWork&quot;, &quot;ImageObject&quot;]</code> in built crates.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/ImageObject" title="http://schema.org/ImageObject" target="_blank" rel="noopener">ImageObject</a></td>
+</tr>
+<tr>
+<td><a href="#prop_ImageObject_caption" title="#prop_ImageObject_caption">caption</a></td>
+<td></td>
+<td>No</td>
+<td>Caption text shown beneath the image.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_ImageObject_creditText" title="#prop_ImageObject_creditText">creditText</a></td>
+<td></td>
+<td>No</td>
+<td>Photo credit shown beneath the caption.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_ImageObject_imageReference" title="#prop_ImageObject_imageReference">custom:imageReference</a></td>
+<td></td>
+<td>No</td>
+<td>The image filename as written in the source document, kept when the referenced file could not be resolved to a File entity.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_ImageObject_hasPart" title="#prop_ImageObject_hasPart">hasPart</a></td>
+<td></td>
+<td>No</td>
+<td>The image File, linked structurally as well as through <code>image</code>.</td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_ImageObject_image" title="#prop_ImageObject_image">image</a></td>
+<td></td>
+<td>No</td>
+<td>The image File this entity displays.</td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_AudioObject" title="#Class_AudioObject"></a> Class: AudioObject</h3>
+<p>An audio recording placed in a document. Typed <code>[&quot;CreativeWork&quot;, &quot;AudioObject&quot;]</code> in built crates.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/AudioObject" title="http://schema.org/AudioObject" target="_blank" rel="noopener">AudioObject</a></td>
+</tr>
+<tr>
+<td><a href="#prop_AudioObject_audio" title="#prop_AudioObject_audio">audio</a></td>
+<td></td>
+<td>No</td>
+<td>The audio File this entity plays.</td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_File" title="#Class_File"></a> Class: File</h3>
+<p>A media file copied into the crate — the image and audio payloads referenced by the media entities.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/MediaObject" title="http://schema.org/MediaObject" target="_blank" rel="noopener">MediaObject</a></td>
+</tr>
+<tr>
+<td><a href="#prop_File_name" title="#prop_File_name">name</a></td>
+<td></td>
+<td>Yes</td>
+<td>The file's name on disk.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#prop_File_encodingFormat" title="#prop_File_encodingFormat">encodingFormat</a></td>
+<td></td>
+<td>No</td>
+<td>The file's media type, e.g. <code>image/jpeg</code>.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="Class_Person" title="#Class_Person"></a> Class: Person</h3>
+<p>A contributor or subject of the collection.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="http://schema.org/Person" title="http://schema.org/Person" target="_blank" rel="noopener">Person</a></td>
+</tr>
+<tr>
+<td><a href="#prop_Person_name" title="#prop_Person_name">name</a></td>
+<td></td>
+<td>Yes</td>
+<td>The person's name.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>All Properties</h2>
+<h3><a id="prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id"></a> Property: @id</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_MetadataDescriptor_id" title="#prop_MetadataDescriptor_id">@id</a></td>
+<td></td>
+<td>The metadata descriptor MUST have the identifier <code>ro-crate-metadata.json</code>.</td>
+<td><a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a></td>
+<td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about"></a> Property: about</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_MetadataDescriptor_about" title="#prop_MetadataDescriptor_about">about</a></td>
+<td><a href="http://schema.org/about" target="_blank" rel="noopener">http://schema.org/about</a></td>
+<td>MUST reference the root Dataset (the Root Data Entity).</td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+<td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_AudioObject_audio" title="#prop_AudioObject_audio"></a> Property: audio</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_AudioObject_audio" title="#prop_AudioObject_audio">audio</a></td>
+<td></td>
+<td>The audio File this entity plays.</td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_ImageObject_caption" title="#prop_ImageObject_caption"></a> Property: caption</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_ImageObject_caption" title="#prop_ImageObject_caption">caption</a></td>
+<td></td>
+<td>Caption text shown beneath the image.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo"></a> Property: conformsTo</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_MetadataDescriptor_conformsTo" title="#prop_MetadataDescriptor_conformsTo">conformsTo</a></td>
+<td></td>
+<td>MUST declare the RO-Crate version the metadata file conforms to.</td>
+<td><a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a></td>
+<td><a href="#Class_MetadataDescriptor" title="#Class_MetadataDescriptor">RO-Crate Metadata Descriptor</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Dataset_creator" title="#prop_Dataset_creator"></a> Property: creator</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Dataset_creator" title="#prop_Dataset_creator">creator</a></td>
+<td></td>
+<td>Person(s) who compiled/created this collection.</td>
+<td><a href="#Class_Person" title="#Class_Person">Person</a></td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_ImageObject_creditText" title="#prop_ImageObject_creditText"></a> Property: creditText</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_ImageObject_creditText" title="#prop_ImageObject_creditText">creditText</a></td>
+<td></td>
+<td>Photo credit shown beneath the caption.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_ImageObject_imageReference" title="#prop_ImageObject_imageReference"></a> Property: custom:imageReference</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_ImageObject_imageReference" title="#prop_ImageObject_imageReference">custom:imageReference</a></td>
+<td></td>
+<td>The image filename as written in the source document, kept when the referenced file could not be resolved to a File entity.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Dataset_datePublished" title="#prop_Dataset_datePublished"></a> Property: datePublished</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Dataset_datePublished" title="#prop_Dataset_datePublished">datePublished</a></td>
+<td></td>
+<td>Date published (YYYY-MM-DD).</td>
+<td><a href="http://schema.org/Date" title="http://schema.org/Date" target="_blank" rel="noopener">Date</a></td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Dataset_description" title="#prop_Dataset_description"></a> Property: description</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Dataset_description" title="#prop_Dataset_description">description</a></td>
+<td></td>
+<td>A short summary of the collection.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_File_encodingFormat" title="#prop_File_encodingFormat"></a> Property: encodingFormat</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_File_encodingFormat" title="#prop_File_encodingFormat">encodingFormat</a></td>
+<td></td>
+<td>The file's media type, e.g. <code>image/jpeg</code>.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Dataset_hasPart" title="#prop_Dataset_hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Dataset_hasPart" title="#prop_Dataset_hasPart">hasPart</a></td>
+<td></td>
+<td>The Collections in this dataset — one per top-level folder of structured .docx documents.</td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Collection_hasPart" title="#prop_Collection_hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Collection_hasPart" title="#prop_Collection_hasPart">hasPart</a></td>
+<td></td>
+<td>The documents in this collection — one per structured .docx file.</td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_DocumentPart_hasPart" title="#prop_DocumentPart_hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_DocumentPart_hasPart" title="#prop_DocumentPart_hasPart">hasPart</a></td>
+<td></td>
+<td>The Chapters and media entities nested inside this document.</td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a>, <a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a>, <a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Chapter_hasPart" title="#prop_Chapter_hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Chapter_hasPart" title="#prop_Chapter_hasPart">hasPart</a></td>
+<td></td>
+<td>Nested Chapters, table rows and media entities belonging to this chapter.</td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a>, <a href="#Class_TableRow" title="#Class_TableRow">TableRow</a>, <a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a>, <a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_TableRow_hasPart" title="#prop_TableRow_hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_TableRow_hasPart" title="#prop_TableRow_hasPart">hasPart</a></td>
+<td></td>
+<td>Media entities appearing in this row.</td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a>, <a href="#Class_AudioObject" title="#Class_AudioObject">AudioObject</a></td>
+<td><a href="#Class_TableRow" title="#Class_TableRow">TableRow</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_ImageObject_hasPart" title="#prop_ImageObject_hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_ImageObject_hasPart" title="#prop_ImageObject_hasPart">hasPart</a></td>
+<td></td>
+<td>The image File, linked structurally as well as through <code>image</code>.</td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_ImageObject_image" title="#prop_ImageObject_image"></a> Property: image</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_ImageObject_image" title="#prop_ImageObject_image">image</a></td>
+<td></td>
+<td>The image File this entity displays.</td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+<td><a href="#Class_ImageObject" title="#Class_ImageObject">ImageObject</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Chapter_isPartOf" title="#prop_Chapter_isPartOf"></a> Property: isPartOf</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Chapter_isPartOf" title="#prop_Chapter_isPartOf">isPartOf</a></td>
+<td></td>
+<td>The DocumentPart, or enclosing Chapter, that this chapter belongs to. Containment runs downward through <code>hasPart</code>; this is the inverse link back up.</td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a>, <a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Dataset_license" title="#prop_Dataset_license"></a> Property: license</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Dataset_license" title="#prop_Dataset_license">license</a></td>
+<td></td>
+<td>A URL identifying the licence.</td>
+<td><a href="http://schema.org/URL" title="http://schema.org/URL" target="_blank" rel="noopener">URL</a></td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Dataset_name" title="#prop_Dataset_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Dataset_name" title="#prop_Dataset_name">name</a></td>
+<td></td>
+<td>Collection title.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Dataset" title="#Class_Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Collection_name" title="#prop_Collection_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Collection_name" title="#prop_Collection_name">name</a></td>
+<td></td>
+<td>Menu label — see the collection-name mapping builder.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Collection" title="#Class_Collection">RepositoryCollection</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_DocumentPart_name" title="#prop_DocumentPart_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_DocumentPart_name" title="#prop_DocumentPart_name">name</a></td>
+<td></td>
+<td>Document title, taken from the Heading 1 text.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Chapter_name" title="#prop_Chapter_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Chapter_name" title="#prop_Chapter_name">name</a></td>
+<td></td>
+<td>Chapter title, taken from the heading text.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_File_name" title="#prop_File_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_File_name" title="#prop_File_name">name</a></td>
+<td></td>
+<td>The file's name on disk.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_File" title="#Class_File">File</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Person_name" title="#prop_Person_name"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Person_name" title="#prop_Person_name">name</a></td>
+<td></td>
+<td>The person's name.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Person" title="#Class_Person">Person</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_DocumentPart_position" title="#prop_DocumentPart_position"></a> Property: position</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_DocumentPart_position" title="#prop_DocumentPart_position">position</a></td>
+<td></td>
+<td>Ordering of this document within its Collection, as it appeared in the source.</td>
+<td><a href="http://schema.org/Integer" title="http://schema.org/Integer" target="_blank" rel="noopener">Integer</a></td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Chapter_position" title="#prop_Chapter_position"></a> Property: position</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Chapter_position" title="#prop_Chapter_position">position</a></td>
+<td></td>
+<td>Ordering of this chapter within its parent, as it appeared in the source.</td>
+<td><a href="http://schema.org/Integer" title="http://schema.org/Integer" target="_blank" rel="noopener">Integer</a></td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_TableRow_position" title="#prop_TableRow_position"></a> Property: position</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_TableRow_position" title="#prop_TableRow_position">position</a></td>
+<td></td>
+<td>Ordering of this row within its table.</td>
+<td><a href="http://schema.org/Integer" title="http://schema.org/Integer" target="_blank" rel="noopener">Integer</a></td>
+<td><a href="#Class_TableRow" title="#Class_TableRow">TableRow</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_DocumentPart_text" title="#prop_DocumentPart_text"></a> Property: text</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_DocumentPart_text" title="#prop_DocumentPart_text">text</a></td>
+<td></td>
+<td>The document's parsed body content, as HTML.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_DocumentPart" title="#Class_DocumentPart">DocumentPart</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_Chapter_text" title="#prop_Chapter_text"></a> Property: text</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_Chapter_text" title="#prop_Chapter_text">text</a></td>
+<td></td>
+<td>The chapter's parsed body content, as HTML.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_Chapter" title="#Class_Chapter">Chapter</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="prop_TableRow_text" title="#prop_TableRow_text"></a> Property: text</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#prop_TableRow_text" title="#prop_TableRow_text">text</a></td>
+<td></td>
+<td>The row's content, as HTML.</td>
+<td><a href="http://schema.org/Text" title="http://schema.org/Text" target="_blank" rel="noopener">Text</a></td>
+<td><a href="#Class_TableRow" title="#Class_TableRow">TableRow</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Property Values</h2>
+<h3><a id="propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id"></a> Property Value: Metadata Descriptor Identifier Constraint</h3>
+<p>ID: #propertyValue_MetadataDescriptor_id</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_MetadataDescriptor_id" title="#propertyValue_MetadataDescriptor_id">Metadata Descriptor Identifier Constraint</a></td><td>The metadata descriptor's identifier must be `ro-crate-metadata.json`.</td><td><div><strong>Literal String</strong><pre><code>ro-crate-metadata.json</code></pre></div></td><td>1</td><td>1</td></tr>
+</tbody></table>
+<h3><a id="propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion"></a> Property Value: RO-Crate Version Constraint</h3>
+<p>ID: #propertyValue_roCrateVersion</p>
+<table>
+<thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
+<tbody>
+<tr><td><a href="#propertyValue_roCrateVersion" title="#propertyValue_roCrateVersion">RO-Crate Version Constraint</a></td><td>The RO-Crate version this crate conforms to.</td><td><div><strong>Literal String</strong><pre><code>https://w3id.org/ro/crate/1.2</code></pre></div></td><td>1</td><td>1</td></tr>
+</tbody></table>
+
+  </div>
+  <script>
+    document.querySelectorAll('.entity-filter').forEach(function(input) {
+      input.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        var list = document.getElementById(this.dataset.target);
+        list.querySelectorAll('li').forEach(function(li) {
+          li.classList.toggle('hidden', q.length > 0 && !li.textContent.toLowerCase().includes(q));
+        });
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

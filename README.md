@@ -15,7 +15,7 @@ crate is checked against it with `MaspValidator.validateCrate()`.
   locations. Root class `RepositoryCollection`. Modelled on
   [corpus-tools-dyirbal](https://github.com/Language-Research-Technology/corpus-tools-dyirbal)
   / resources2crate's generic folder mode.
-- **`structured-doc-data/`** — a collection built from structured Word
+- **`structured-docs/`** — a collection built from structured Word
   documents (Heading 1/2/3 parsed into Collections/DocumentParts/Chapters),
   e.g. person-centred oral-history or community-website collections. Root
   class `Dataset`. Modelled on

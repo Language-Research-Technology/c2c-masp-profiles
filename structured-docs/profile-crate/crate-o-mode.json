@@ -32,6 +32,7 @@
       "name": "Structure",
       "inputs": [
         "hasPart",
+        "isPartOf",
         "position"
       ]
     },
@@ -54,15 +55,14 @@
     {
       "name": "Files",
       "inputs": [
-        "encodingFormat",
-        "sameAs"
+        "encodingFormat"
       ]
     }
   ],
-  "longTextInputs": ["description"],
+  "longTextInputs": ["description", "text"],
   "buildOptions": {
     "inputMode": "docx",
-    "templateRepoFolder": "person-centred",
+    "templateRepoFolder": "structured-docs",
     "enabledOptionKeys": [
       "makeHtml", "templateRepoFolder", "collectionLabelsBuilder", "styledPreview", "configFile"
     ]
