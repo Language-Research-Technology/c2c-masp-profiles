@@ -1,0 +1,984 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "@vocab": "http://schema.org/",
+      "ldac": "https://w3id.org/ldac/terms#",
+      "bibo": "http://purl.org/ontology/bibo/",
+      "custom": "arcp://name,custom/terms#"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "https://benfoley.github.io/masp-profiles/structured-docs/profile-crate/"
+      }
+    },
+    {
+      "@id": "https://benfoley.github.io/masp-profiles/structured-docs/profile-crate/",
+      "@type": [
+        "Dataset",
+        "Profile"
+      ],
+      "name": "Structured Document Collections Profile",
+      "description": "Profile for a collection built from structured Word documents (Heading 1/2/3 parsed into Collections, DocumentParts, and Chapters) — e.g. person-centred oral history / community website collections.",
+      "version": "0.2.0",
+      "isProfileOf": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        }
+      ],
+      "author": {
+        "@id": "#author"
+      },
+      "hasResource": [
+        {
+          "@id": "#hasSpecializedSchema"
+        },
+        {
+          "@id": "#hasEditorMode"
+        }
+      ]
+    },
+    {
+      "@id": "#author",
+      "@type": "Person",
+      "name": "Ben Foley"
+    },
+    {
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/schema"
+      },
+      "hasPart": [
+        {
+          "@id": "#Class_MetadataDescriptor"
+        },
+        {
+          "@id": "#prop_MetadataDescriptor_id"
+        },
+        {
+          "@id": "#prop_MetadataDescriptor_about"
+        },
+        {
+          "@id": "#prop_MetadataDescriptor_conformsTo"
+        },
+        {
+          "@id": "#propertyValue_MetadataDescriptor_id"
+        },
+        {
+          "@id": "#propertyValue_roCrateVersion"
+        },
+        {
+          "@id": "#Class_Dataset"
+        },
+        {
+          "@id": "#prop_Dataset_name"
+        },
+        {
+          "@id": "#prop_Dataset_description"
+        },
+        {
+          "@id": "#prop_Dataset_datePublished"
+        },
+        {
+          "@id": "#prop_Dataset_hasPart"
+        },
+        {
+          "@id": "#prop_Dataset_creator"
+        },
+        {
+          "@id": "#prop_Dataset_license"
+        },
+        {
+          "@id": "#Class_Collection"
+        },
+        {
+          "@id": "#prop_Collection_name"
+        },
+        {
+          "@id": "#prop_Collection_hasPart"
+        },
+        {
+          "@id": "#Class_DocumentPart"
+        },
+        {
+          "@id": "#prop_DocumentPart_name"
+        },
+        {
+          "@id": "#prop_DocumentPart_text"
+        },
+        {
+          "@id": "#prop_DocumentPart_position"
+        },
+        {
+          "@id": "#prop_DocumentPart_hasPart"
+        },
+        {
+          "@id": "#Class_Chapter"
+        },
+        {
+          "@id": "#prop_Chapter_name"
+        },
+        {
+          "@id": "#prop_Chapter_text"
+        },
+        {
+          "@id": "#prop_Chapter_position"
+        },
+        {
+          "@id": "#prop_Chapter_hasPart"
+        },
+        {
+          "@id": "#prop_Chapter_isPartOf"
+        },
+        {
+          "@id": "#Class_TableRow"
+        },
+        {
+          "@id": "#prop_TableRow_text"
+        },
+        {
+          "@id": "#prop_TableRow_position"
+        },
+        {
+          "@id": "#prop_TableRow_hasPart"
+        },
+        {
+          "@id": "#Class_ImageObject"
+        },
+        {
+          "@id": "#prop_ImageObject_image"
+        },
+        {
+          "@id": "#prop_ImageObject_caption"
+        },
+        {
+          "@id": "#prop_ImageObject_creditText"
+        },
+        {
+          "@id": "#prop_ImageObject_imageReference"
+        },
+        {
+          "@id": "#prop_ImageObject_hasPart"
+        },
+        {
+          "@id": "#Class_AudioObject"
+        },
+        {
+          "@id": "#prop_AudioObject_audio"
+        },
+        {
+          "@id": "#Class_File"
+        },
+        {
+          "@id": "#prop_File_name"
+        },
+        {
+          "@id": "#prop_File_encodingFormat"
+        },
+        {
+          "@id": "#Class_Person"
+        },
+        {
+          "@id": "#prop_Person_name"
+        }
+      ]
+    },
+    {
+      "@id": "#hasEditorMode",
+      "@type": "ResourceDescriptor",
+      "name": "Editor Mode / Build Workflow",
+      "hasRole": {
+        "@id": "https://w3id.org/ro/mode"
+      },
+      "hasArtifact": {
+        "@id": "crate-o-mode.json"
+      }
+    },
+    {
+      "@id": "https://w3id.org/ro/mode",
+      "@type": "DefinedTerm",
+      "name": "Editor Mode",
+      "description": "Role indicating a resource is an editor configuration mode file."
+    },
+    {
+      "@id": "crate-o-mode.json",
+      "@type": "File",
+      "name": "Resource2Crate config file",
+      "encodingFormat": [
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+        },
+        "application/json"
+      ],
+      "description": "Mini Crate-O mode file for this profile (metadata, input groups, lookup and enabled classes — the schema/grammar is provided by the MASP profile crate itself)."
+    },
+    {
+      "@id": "#Class_MetadataDescriptor",
+      "@type": "rdfs:Class",
+      "name": "RO-Crate Metadata Descriptor",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/CreativeWork"
+      },
+      "description": "Every crate MUST contain exactly one RO-Crate Metadata Descriptor: the entity that describes the `ro-crate-metadata.json` file itself and points at the root Dataset.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_MetadataDescriptor_id",
+      "@type": "rdf:Property",
+      "name": "@id",
+      "rdfs:label": "@id",
+      "rdfs:comment": "The metadata descriptor MUST have the identifier `ro-crate-metadata.json`.",
+      "domainIncludes": {
+        "@id": "#Class_MetadataDescriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_MetadataDescriptor_id"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_MetadataDescriptor_about",
+      "@type": "rdf:Property",
+      "name": "about",
+      "rdfs:label": "about",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/about"
+      },
+      "rdfs:comment": "MUST reference the root Dataset (the Root Data Entity).",
+      "domainIncludes": {
+        "@id": "#Class_MetadataDescriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_MetadataDescriptor_conformsTo",
+      "@type": "rdf:Property",
+      "name": "conformsTo",
+      "rdfs:label": "conformsTo",
+      "rdfs:comment": "MUST declare the RO-Crate version the metadata file conforms to.",
+      "domainIncludes": {
+        "@id": "#Class_MetadataDescriptor"
+      },
+      "rangeIncludes": {
+        "@id": "#propertyValue_roCrateVersion"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#propertyValue_MetadataDescriptor_id",
+      "@type": "PropertyValue",
+      "name": "Metadata Descriptor Identifier Constraint",
+      "description": "The metadata descriptor's identifier must be `ro-crate-metadata.json`.",
+      "value": "ro-crate-metadata.json",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#propertyValue_roCrateVersion",
+      "@type": "PropertyValue",
+      "name": "RO-Crate Version Constraint",
+      "description": "The RO-Crate version this crate conforms to.",
+      "value": "https://w3id.org/ro/crate/1.2",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_Dataset",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Dataset",
+      "name": "Dataset",
+      "rdfs:comment": "The root dataset: a collection of structured-document collections.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Dataset"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Dataset_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Collection title.",
+      "domainIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Dataset_description",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "rdfs:comment": "A short summary of the collection.",
+      "domainIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Dataset_datePublished",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "rdfs:comment": "Date published (YYYY-MM-DD).",
+      "domainIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Date"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Dataset_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "The Collections in this dataset — one per top-level folder of structured .docx documents.",
+      "domainIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_Dataset_creator",
+      "@type": "rdf:Property",
+      "rdfs:label": "creator",
+      "name": "creator",
+      "rdfs:comment": "Person(s) who compiled/created this collection.",
+      "domainIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_Person"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0
+    },
+    {
+      "@id": "#prop_Dataset_license",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "rdfs:comment": "A URL identifying the licence.",
+      "domainIncludes": {
+        "@id": "#Class_Dataset"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/URL"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_Collection",
+      "@type": "rdfs:Class",
+      "rdfs:label": "RepositoryCollection",
+      "name": "RepositoryCollection",
+      "rdfs:comment": "One top-level folder of structured .docx documents (shown as a menu entry in the generated site). MUST be typed `RepositoryCollection`.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#Collection"
+      }
+    },
+    {
+      "@id": "#prop_Collection_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Menu label — see the collection-name mapping builder.",
+      "domainIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Collection_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "The documents in this collection — one per structured .docx file.",
+      "domainIncludes": {
+        "@id": "#Class_Collection"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_DocumentPart"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#Class_DocumentPart",
+      "@type": "rdfs:Class",
+      "rdfs:label": "bibo:DocumentPart",
+      "name": "bibo:DocumentPart",
+      "rdfs:comment": "One structured .docx document within a Collection (a Heading 1 section).",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://purl.org/ontology/bibo/DocumentPart"
+      }
+    },
+    {
+      "@id": "#prop_DocumentPart_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Document title, taken from the Heading 1 text.",
+      "domainIncludes": {
+        "@id": "#Class_DocumentPart"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_DocumentPart_text",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "The document's parsed body content, as HTML.",
+      "domainIncludes": {
+        "@id": "#Class_DocumentPart"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_DocumentPart_position",
+      "@type": "rdf:Property",
+      "rdfs:label": "position",
+      "name": "position",
+      "rdfs:comment": "Ordering of this document within its Collection, as it appeared in the source.",
+      "domainIncludes": {
+        "@id": "#Class_DocumentPart"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Integer"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_DocumentPart_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "The Chapters and media entities nested inside this document.",
+      "domainIncludes": {
+        "@id": "#Class_DocumentPart"
+      },
+      "rangeIncludes": [
+        {
+          "@id": "#Class_Chapter"
+        },
+        {
+          "@id": "#Class_ImageObject"
+        },
+        {
+          "@id": "#Class_AudioObject"
+        }
+      ],
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0
+    },
+    {
+      "@id": "#Class_Chapter",
+      "@type": "rdfs:Class",
+      "rdfs:label": "bibo:Chapter",
+      "name": "bibo:Chapter",
+      "rdfs:comment": "A section within a document, parsed from a Heading 2 or Heading 3. Chapters may nest.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://purl.org/ontology/bibo/Chapter"
+      }
+    },
+    {
+      "@id": "#prop_Chapter_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "Chapter title, taken from the heading text.",
+      "domainIncludes": {
+        "@id": "#Class_Chapter"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Chapter_text",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "The chapter's parsed body content, as HTML.",
+      "domainIncludes": {
+        "@id": "#Class_Chapter"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Chapter_position",
+      "@type": "rdf:Property",
+      "rdfs:label": "position",
+      "name": "position",
+      "rdfs:comment": "Ordering of this chapter within its parent, as it appeared in the source.",
+      "domainIncludes": {
+        "@id": "#Class_Chapter"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Integer"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_Chapter_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "Nested Chapters, table rows and media entities belonging to this chapter.",
+      "domainIncludes": {
+        "@id": "#Class_Chapter"
+      },
+      "rangeIncludes": [
+        {
+          "@id": "#Class_Chapter"
+        },
+        {
+          "@id": "#Class_TableRow"
+        },
+        {
+          "@id": "#Class_ImageObject"
+        },
+        {
+          "@id": "#Class_AudioObject"
+        }
+      ],
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0
+    },
+    {
+      "@id": "#Class_TableRow",
+      "@type": "rdfs:Class",
+      "rdfs:label": "custom:TableRow",
+      "name": "custom:TableRow",
+      "rdfs:comment": "One row of a table inside a Chapter. A content block rather than a document — it carries text and media but has no heading, so it is not a bibo:DocumentPart.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "custom:TableRow"
+      }
+    },
+    {
+      "@id": "#prop_TableRow_text",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "The row's content, as HTML.",
+      "domainIncludes": {
+        "@id": "#Class_TableRow"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_TableRow_position",
+      "@type": "rdf:Property",
+      "rdfs:label": "position",
+      "name": "position",
+      "rdfs:comment": "Ordering of this row within its table.",
+      "domainIncludes": {
+        "@id": "#Class_TableRow"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Integer"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_TableRow_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "Media entities appearing in this row.",
+      "domainIncludes": {
+        "@id": "#Class_TableRow"
+      },
+      "rangeIncludes": [
+        {
+          "@id": "#Class_ImageObject"
+        },
+        {
+          "@id": "#Class_AudioObject"
+        }
+      ],
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0
+    },
+    {
+      "@id": "#prop_Chapter_isPartOf",
+      "@type": "rdf:Property",
+      "rdfs:label": "isPartOf",
+      "name": "isPartOf",
+      "rdfs:comment": "The DocumentPart, or enclosing Chapter, that this chapter belongs to. Containment runs downward through `hasPart`; this is the inverse link back up.",
+      "domainIncludes": {
+        "@id": "#Class_Chapter"
+      },
+      "rangeIncludes": [
+        {
+          "@id": "#Class_DocumentPart"
+        },
+        {
+          "@id": "#Class_Chapter"
+        }
+      ],
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_ImageObject",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ImageObject",
+      "name": "ImageObject",
+      "rdfs:comment": "An image placed in a document, with its caption and photo credit. Typed `[\"CreativeWork\", \"ImageObject\"]` in built crates.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/ImageObject"
+      }
+    },
+    {
+      "@id": "#prop_ImageObject_image",
+      "@type": "rdf:Property",
+      "rdfs:label": "image",
+      "name": "image",
+      "rdfs:comment": "The image File this entity displays.",
+      "domainIncludes": {
+        "@id": "#Class_ImageObject"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_ImageObject_caption",
+      "@type": "rdf:Property",
+      "rdfs:label": "caption",
+      "name": "caption",
+      "rdfs:comment": "Caption text shown beneath the image.",
+      "domainIncludes": {
+        "@id": "#Class_ImageObject"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_ImageObject_creditText",
+      "@type": "rdf:Property",
+      "rdfs:label": "creditText",
+      "name": "creditText",
+      "rdfs:comment": "Photo credit shown beneath the caption.",
+      "domainIncludes": {
+        "@id": "#Class_ImageObject"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_ImageObject_imageReference",
+      "@type": "rdf:Property",
+      "rdfs:label": "custom:imageReference",
+      "name": "custom:imageReference",
+      "rdfs:comment": "The image filename as written in the source document, kept when the referenced file could not be resolved to a File entity.",
+      "domainIncludes": {
+        "@id": "#Class_ImageObject"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_ImageObject_hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "The image File, linked structurally as well as through `image`.",
+      "domainIncludes": {
+        "@id": "#Class_ImageObject"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0
+    },
+    {
+      "@id": "#Class_AudioObject",
+      "@type": "rdfs:Class",
+      "rdfs:label": "AudioObject",
+      "name": "AudioObject",
+      "rdfs:comment": "An audio recording placed in a document. Typed `[\"CreativeWork\", \"AudioObject\"]` in built crates.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/AudioObject"
+      }
+    },
+    {
+      "@id": "#prop_AudioObject_audio",
+      "@type": "rdf:Property",
+      "rdfs:label": "audio",
+      "name": "audio",
+      "rdfs:comment": "The audio File this entity plays.",
+      "domainIncludes": {
+        "@id": "#Class_AudioObject"
+      },
+      "rangeIncludes": {
+        "@id": "#Class_File"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_File",
+      "@type": "rdfs:Class",
+      "rdfs:label": "File",
+      "name": "File",
+      "rdfs:comment": "A media file copied into the crate — the image and audio payloads referenced by the media entities.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/MediaObject"
+      }
+    },
+    {
+      "@id": "#prop_File_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "The file's name on disk.",
+      "domainIncludes": {
+        "@id": "#Class_File"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_File_encodingFormat",
+      "@type": "rdf:Property",
+      "rdfs:label": "encodingFormat",
+      "name": "encodingFormat",
+      "rdfs:comment": "The file's media type, e.g. `image/jpeg`.",
+      "domainIncludes": {
+        "@id": "#Class_File"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Class_Person",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Person",
+      "name": "Person",
+      "rdfs:comment": "A contributor or subject of the collection.",
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Person"
+      }
+    },
+    {
+      "@id": "#prop_Person_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "The person's name.",
+      "domainIncludes": {
+        "@id": "#Class_Person"
+      },
+      "rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    }
+  ]
+}
