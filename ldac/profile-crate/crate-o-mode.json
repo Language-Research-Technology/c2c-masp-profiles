@@ -225,6 +225,7 @@
     "templateRepoFolder": "ldac",
     "enableLanguageLookups": true,
     "merge": true,
+    "processTranscriptDocuments": true,
     "enabledOptionKeys": [
       "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
       "enableLanguageLookups", "includeAlternateNames",
