@@ -19,7 +19,7 @@
       "RepositoryCollection"
     ]
   },
-  "inputGroups": [
+  "propertyGroups": [
     {
       "name": "About",
       "help": "The core metadata for this RO-Crate and its subject matter.",
