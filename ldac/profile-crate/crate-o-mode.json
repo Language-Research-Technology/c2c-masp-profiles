@@ -221,14 +221,15 @@
     "File"
   ],
   "buildOptions": {
-    "inputMode": "ca-data-prep",
+    "inputMode": "generic",
     "templateRepoFolder": "ldac",
     "enableLanguageLookups": true,
     "merge": true,
     "enabledOptionKeys": [
       "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
       "enableLanguageLookups", "includeAlternateNames",
-      "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"
+      "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups",
+      "processTranscriptDocuments"
     ]
   }
 }
