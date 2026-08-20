@@ -48,7 +48,9 @@
       "version": "0.0.1",
       "buildOptions": {
         "enabledOptionKeys": [
-          "makeHtml"
+          "makeHtml",
+          "fixStDirective",
+          "reviewSetlistMatches"
         ],
         "inputMode": "chordpro",
         "makeHtml": true
