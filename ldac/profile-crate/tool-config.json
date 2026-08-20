@@ -230,11 +230,12 @@
         "enableLanguageLookups": true,
         "merge": true,
         "processTranscriptDocuments": true,
+        "generateChatFiles": true,
         "enabledOptionKeys": [
           "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
           "enableLanguageLookups", "includeAlternateNames",
           "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups",
-          "processTranscriptDocuments"
+          "processTranscriptDocuments", "generateChatFiles"
         ]
       }
     }
