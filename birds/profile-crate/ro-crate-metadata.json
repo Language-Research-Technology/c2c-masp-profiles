@@ -67,7 +67,7 @@
           "@id": "profile-documentation.md"
         },
         {
-          "@id": "crate-o-mode.json"
+          "@id": "tool-config.json"
         },
         {
           "@id": "examples/birds-crate/ro-crate-metadata.json"
@@ -284,7 +284,7 @@
         "@id": "https://w3id.org/ro/mode"
       },
       "hasArtifact": {
-        "@id": "crate-o-mode.json"
+        "@id": "tool-config.json"
       }
     },
     {
@@ -315,7 +315,7 @@
       "dateModified": "2026-08-07T18:46:58+10:00"
     },
     {
-      "@id": "crate-o-mode.json",
+      "@id": "tool-config.json",
       "@type": "File",
       "name": "Resource2Crate config file",
       "description": "Mini Crate-O mode file for this profile (root dataset types, input groups and long-text inputs — the schema/grammar is provided by the MASP profile crate itself). No `buildOptions` yet.",
@@ -1160,7 +1160,7 @@
           "@id": "examples"
         },
         {
-          "@id": "crate-o-mode.json"
+          "@id": "tool-config.json"
         }
       ]
     }

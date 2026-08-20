@@ -37,7 +37,7 @@ Each profile folder is:
   profile-text.md             # human-authored profile narrative/source text
   profile-crate/
     ro-crate-metadata.json   # the MASP itself — classes, properties, cardinality
-    crate-o-mode.json        # editor hints (rootDataset.type, propertyGroups) —
+    tool-config.json         # editor hints (rootDataset.type, propertyGroups) —
                               # required for MaspValidator.getRootDatasetTypes()
                               # to resolve correctly — plus a resources2crate-
                               # specific "buildOptions" key (ignored by Crate-O)
@@ -48,7 +48,7 @@ Each profile folder is:
 
 This follows MASP's own extension pattern: rules that don't belong in the core
 schema (property grouping, which classes to show) go in the existing
-`crate-o-mode.json` companion file, referenced via the `#hasEditorMode`
+`tool-config.json` companion file, referenced via the `#hasEditorMode`
 `ResourceDescriptor` role — same mechanism the
 [LDAC profile](https://github.com/Language-Research-Technology/ro-crate-masp/tree/main/profiles/ldac)
 uses. `buildOptions` is the one addition specific to this repo's consumer.
@@ -60,7 +60,7 @@ const { MaspValidator } = require("ro-crate-masp/lib/masp-validator.js");
 const { ROCrate } = require("ro-crate");
 
 const profileJson = require("./language-resources/profile-crate/ro-crate-metadata.json");
-const modeJson = require("./language-resources/profile-crate/crate-o-mode.json");
+const modeJson = require("./language-resources/profile-crate/tool-config.json");
 
 const crate = new ROCrate(profileJson, { array: true, link: true });
 await crate.resolveContext(); // required — see resources2crate's notes on this

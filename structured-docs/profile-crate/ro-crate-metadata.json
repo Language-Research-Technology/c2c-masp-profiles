@@ -228,7 +228,7 @@
         "@id": "https://w3id.org/ro/mode"
       },
       "hasArtifact": {
-        "@id": "crate-o-mode.json"
+        "@id": "tool-config.json"
       }
     },
     {
@@ -238,7 +238,7 @@
       "description": "Role indicating a resource is an editor configuration mode file."
     },
     {
-      "@id": "crate-o-mode.json",
+      "@id": "tool-config.json",
       "@type": "File",
       "name": "Resource2Crate config file",
       "encodingFormat": [

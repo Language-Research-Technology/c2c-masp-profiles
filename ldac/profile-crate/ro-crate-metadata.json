@@ -676,7 +676,7 @@
         "@id": "https://purl.org/ro/mode"
       },
       "hasArtifact": {
-        "@id": "crate-o-mode.json"
+        "@id": "tool-config.json"
       }
     },
     {
@@ -4168,7 +4168,7 @@
       "description": "Role indicating a resource is an editor configuration mode file."
     },
     {
-      "@id": "crate-o-mode.json",
+      "@id": "tool-config.json",
       "@type": "File",
       "name": "Crate-O Editor Mode File",
       "encodingFormat": "application/json",

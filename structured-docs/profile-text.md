@@ -2,7 +2,7 @@
 
 The profile specifies metadata and workflows used in creating person-centred collections.
 
-Includes a mode file for specifying configuration for the Resources2Crate tool (defined in crate-o-mode.json). Using this config, Resources2Crate will parse document contents and package those contents in [bibo:DocumentPart](http://purl.org/ontology/bibo/DocumentPart).
+Includes a mode file for specifying configuration for the Resources2Crate tool (defined in tool-config.json). Using this config, Resources2Crate will parse document contents and package those contents in [bibo:DocumentPart](http://purl.org/ontology/bibo/DocumentPart).
 
 Headings in the source documents become a nesting structure: Heading 1 becomes a
 [bibo:DocumentPart](http://purl.org/ontology/bibo/DocumentPart) and Heading 2/3
