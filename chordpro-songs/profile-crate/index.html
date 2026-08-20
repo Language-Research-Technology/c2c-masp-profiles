@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChordPro Songs & Setlists Profile</title>
+  <link rel="describedby" href="ro-crate-metadata.json" type="application/ld+json">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { padding: 2rem; }
+    table { width: 100%; margin-bottom: 1rem; }
+    th, td { padding: 0.5rem; border: 1px solid #dee2e6; }
+    th { background-color: #f8f9fa; }
+    pre { background: #f8f9fa; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+    pre.mermaid { background: none; padding: 0; }
+    code { background: #f8f9fa; padding: 0.2em 0.4em; border-radius: 3px; }
+  </style>
+  <style>
+    .entity-filter { margin-bottom: 0.5rem; width: 100%; padding: 0.4rem 0.6rem; font-size: 0.95rem; border: 1px solid #ced4da; border-radius: 4px; }
+    .entity-list { height: 420px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 4px; padding: 0.5rem 1rem; background: #fff; list-style: none; margin: 0; }
+    .entity-list li { padding: 0.15rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    .entity-list li:last-child { border-bottom: none; }
+    .entity-list li.hidden { display: none; }
+    .col-panel h3 { margin-top: 0; }
+    .col-panel { padding: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <p>
+      <a href="ro-crate-metadata.json">⬇️ Download profile metadata (JSON-LD)</a> &nbsp;|&nbsp;
+      <a href="ro-crate-metadata.xlsx">⬇️ Download profile metadata (Excel)</a>
+    </p>
+    <h1>ChordPro Songs &amp; Setlists</h1>
+<p>The profile specifies metadata for a songbook harvested from a folder of ChordPro song
+charts (<code>.cho</code>/<code>.pro</code>) and Markdown setlists (<code>.setlist.md</code>).</p>
+<p>A song file is described as a <code>MusicComposition</code> with a copy of its ChordPro source in a <code>text</code> property.</p>
+<p>Setlists are described using <code>MusicPlaylist</code>, to list the songs for a particular event, optionally divided in sets, via a nested <code>MusicPlaylist</code>. MusicPlaylist enties may also have parts that are <code>MusicComposition</code> entries which are specializations of a song, referenced via <code>specializationOf</code>, which may have their own key and capo information</p>
+<p><strong>10</strong> classes &middot; <strong>16</strong> properties</p>
+<div class="row">
+  <div class="col-md-6 col-panel">
+    <h3>Classes</h3>
+    <input class="entity-filter" type="search" placeholder="Filter classes…" data-target="class-list">
+    <ul id="class-list" class="entity-list">
+<li><a href="#https%3A%2F%2Fschema.org%2FCreativeWork" title="https://schema.org/CreativeWork">CreativeWork</a> — The most generic kind of creative work, including books, movies, photographs, software programs, etc.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset">Dataset</a> — A body of structured information describing some topic(s) of interest.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FDate" title="https://schema.org/Date">Date</a> — A date value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FMusicComposition" title="https://schema.org/MusicComposition">MusicComposition</a> — A musical composition.</li>
+<li><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a> — A canonical song, harvested from one ChordPro chart file — chordpro-input's own specialization of MusicComposition, never carrying specializationOf. <small style="color:#aaa">#MusicCompositionSong</small></li>
+<li><a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a> — One setlist entry — a lightweight performance-slot proxy, not a second copy of the song — chordpro-input's own specialization of MusicComposition, linked to the song it performs via specializationOf. <small style="color:#aaa">#MusicCompositionSongProxy</small></li>
+<li><a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a> — A collection of music tracks in playlist form.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a> — Data type: Text.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FThing" title="https://schema.org/Thing">Thing</a> — The most generic type of item.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FURL" title="https://schema.org/URL">URL</a> — Data type: URL.</li>
+    </ul>
+  </div>
+  <div class="col-md-6 col-panel">
+    <h3>Properties</h3>
+    <input class="entity-filter" type="search" placeholder="Filter properties…" data-target="prop-list">
+    <ul id="prop-list" class="entity-list">
+<li><a href="#https%3A%2F%2Fschema.org%2Fcomposer" title="https://schema.org/composer">composer</a> — The person or organization who wrote a composition, or who is the composer of a work performed at some event.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FdatePublished" title="https://schema.org/datePublished">datePublished</a> — Date of first publication or broadcast. For example the date a [[CreativeWork]] was broadcast or a [[Certification]] was issued.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2Fdescription" title="https://schema.org/description">description</a> — A description of the item.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FhasPart" title="https://schema.org/hasPart">hasPart</a> — Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).</li>
+<li><a href="#https%3A%2F%2Fschema.org%2Flicense" title="https://schema.org/license">license</a> — A license document that applies to this content, typically indicated by URL.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2FmusicalKey" title="https://schema.org/musicalKey">musicalKey</a> — The key, mode, or scale this composition uses.</li>
+<li><a href="#name-Dataset" title="#name-Dataset">name</a> — The songbook's own title. <small style="color:#aaa">#name-Dataset</small></li>
+<li><a href="#name-MusicPlaylist" title="#name-MusicPlaylist">name</a> — A top-level setlist's own title (e.g. "Friday Gig"), or — on a nested "#" set — that set's own heading text (e.g. "Set 1"); MusicPlaylist covers both (SPEC.md §6). <small style="color:#aaa">#name-MusicPlaylist</small></li>
+<li><a href="#name-MusicCompositionSong" title="#name-MusicCompositionSong">name</a> — A canonical song's own title. <small style="color:#aaa">#name-MusicCompositionSong</small></li>
+<li><a href="#name-MusicCompositionSongProxy" title="#name-MusicCompositionSongProxy">name</a> — The raw heading text for this setlist entry, taken verbatim from the setlist file — may be a fuzzy or approximate match to the song it specializes, not necessarily identical to that song's own name. <small style="color:#aaa">#name-MusicCompositionSongProxy</small></li>
+<li><a href="#https%3A%2F%2Fschema.org%2Fperformer" title="https://schema.org/performer">performer</a> — A performer at the event&#x2014;for example, a presenter, musician, musical group or actor.</li>
+<li><a href="#specializationOf" title="http://www.w3.org/ns/prov#specializationOf">specializationOf</a> — chordpro-input's own use: links a setlist-entry MusicCompositionSongProxy to the canonical MusicCompositionSong it performs.</li>
+<li><a href="#https%3A%2F%2Fschema.org%2Fsubtitle" title="https://schema.org/subtitle">subtitle</a> — A secondary title for the item — chordpro-input's own use: a song's {subtitle}/{st} ChordPro directive.</li>
+<li><a href="#text-MusicCompositionSong" title="#text-MusicCompositionSong">text</a> — The song's own verbatim ChordPro source (directives and all) — the one place its full text lives; every setlist entry that performs it points back here rather than carrying its own copy. <small style="color:#aaa">#text-MusicCompositionSong</small></li>
+<li><a href="#text-MusicCompositionSongProxy" title="#text-MusicCompositionSongProxy">text</a> — This entry's own short performance note, written as Markdown and rendered as such — optional; absent on most entries. Never the song's own text, which lives on the MusicCompositionSong it specializes instead. <small style="color:#aaa">#text-MusicCompositionSongProxy</small></li>
+<li><a href="#text-MusicPlaylist" title="#text-MusicPlaylist">text</a> — A setlist's or a "#" set's own freeform note, written as Markdown and rendered as such — optional; the freeform text found between a "#" heading and its first entry, or authored anywhere for a top-level setlist. <small style="color:#aaa">#text-MusicPlaylist</small></li>
+    </ul>
+  </div>
+</div>
+<h2>Types of entities (specializations of Classes) and expected Properties</h2>
+<h3><a id="https%3A%2F%2Fschema.org%2FThing" title="https://schema.org/Thing"></a> Class: Thing</h3>
+<p>The most generic type of item.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>No properties defined for this class</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FCreativeWork" title="https://schema.org/CreativeWork"></a> Class: CreativeWork</h3>
+<p>The most generic kind of creative work, including books, movies, photographs, software programs, etc.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>No properties defined for this class</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset"></a> Class: Dataset</h3>
+<p>A body of structured information describing some topic(s) of interest.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FdatePublished" title="https://schema.org/datePublished">datePublished</a></td>
+<td></td>
+<td>No</td>
+<td>Date of first publication or broadcast. For example the date a [[CreativeWork]] was broadcast or a [[Certification]] was issued.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDate" title="https://schema.org/Date">Date</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fdescription" title="https://schema.org/description">description</a></td>
+<td></td>
+<td>No</td>
+<td>A description of the item.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FhasPart" title="https://schema.org/hasPart">hasPart</a></td>
+<td></td>
+<td>No</td>
+<td>Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a>, <a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a>, <a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Flicense" title="https://schema.org/license">license</a></td>
+<td></td>
+<td>No</td>
+<td>A license document that applies to this content, typically indicated by URL.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FURL" title="https://schema.org/URL">URL</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#name-Dataset" title="#name-Dataset">name</a></td>
+<td></td>
+<td>No</td>
+<td>The songbook's own title.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FMusicComposition" title="https://schema.org/MusicComposition"></a> Class: MusicComposition</h3>
+<p>A musical composition.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>No properties defined for this class</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist"></a> Class: MusicPlaylist</h3>
+<p>A collection of music tracks in playlist form.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FhasPart" title="https://schema.org/hasPart">hasPart</a></td>
+<td></td>
+<td>No</td>
+<td>Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a>, <a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a>, <a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#name-MusicPlaylist" title="#name-MusicPlaylist">name</a></td>
+<td></td>
+<td>No</td>
+<td>A top-level setlist's own title (e.g. &quot;Friday Gig&quot;), or — on a nested &quot;#&quot; set — that set's own heading text (e.g. &quot;Set 1&quot;); MusicPlaylist covers both (SPEC.md §6).</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#text-MusicPlaylist" title="#text-MusicPlaylist">text</a></td>
+<td></td>
+<td>No</td>
+<td>A setlist's or a &quot;#&quot; set's own freeform note, written as Markdown and rendered as such — optional; the freeform text found between a &quot;#&quot; heading and its first entry, or authored anywhere for a top-level setlist.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text"></a> Class: Text</h3>
+<p>Data type: Text.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>No properties defined for this class</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FURL" title="https://schema.org/URL"></a> Class: URL</h3>
+<p>Data type: URL.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>No properties defined for this class</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FDate" title="https://schema.org/Date"></a> Class: Date</h3>
+<p>A date value in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>No properties defined for this class</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="MusicCompositionSong" title="#MusicCompositionSong"></a> Class: MusicCompositionSong</h3>
+<p>A canonical song, harvested from one ChordPro chart file — chordpro-input's own specialization of MusicComposition, never carrying specializationOf.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicComposition" title="https://schema.org/MusicComposition">MusicComposition</a></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fcomposer" title="https://schema.org/composer">composer</a></td>
+<td></td>
+<td>No</td>
+<td>The person or organization who wrote a composition, or who is the composer of a work performed at some event.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FmusicalKey" title="https://schema.org/musicalKey">musicalKey</a></td>
+<td></td>
+<td>No</td>
+<td>The key, mode, or scale this composition uses.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#name-MusicCompositionSong" title="#name-MusicCompositionSong">name</a></td>
+<td></td>
+<td>No</td>
+<td>A canonical song's own title.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fperformer" title="https://schema.org/performer">performer</a></td>
+<td></td>
+<td>No</td>
+<td>A performer at the event—for example, a presenter, musician, musical group or actor.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fsubtitle" title="https://schema.org/subtitle">subtitle</a></td>
+<td></td>
+<td>No</td>
+<td>A secondary title for the item — chordpro-input's own use: a song's {subtitle}/{st} ChordPro directive.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#text-MusicCompositionSong" title="#text-MusicCompositionSong">text</a></td>
+<td></td>
+<td>No</td>
+<td>The song's own verbatim ChordPro source (directives and all) — the one place its full text lives; every setlist entry that performs it points back here rather than carrying its own copy.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="MusicCompositionSongProxy" title="#MusicCompositionSongProxy"></a> Class: MusicCompositionSongProxy</h3>
+<p>One setlist entry — a lightweight performance-slot proxy, not a second copy of the song — chordpro-input's own specialization of MusicComposition, linked to the song it performs via specializationOf.</p>
+<p>Instances of this type MAY be present in the crate.</p>
+<table>
+<thead>
+<tr>
+<th>Min Count</th>
+<th>Max Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Required</th>
+<th>Description</th>
+<th>Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@type</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicComposition" title="https://schema.org/MusicComposition">MusicComposition</a></td>
+</tr>
+<tr>
+<td><a href="#name-MusicCompositionSongProxy" title="#name-MusicCompositionSongProxy">name</a></td>
+<td></td>
+<td>No</td>
+<td>The raw heading text for this setlist entry, taken verbatim from the setlist file — may be a fuzzy or approximate match to the song it specializes, not necessarily identical to that song's own name.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#specializationOf" title="http://www.w3.org/ns/prov#specializationOf">specializationOf</a></td>
+<td></td>
+<td>No</td>
+<td>chordpro-input's own use: links a setlist-entry MusicCompositionSongProxy to the canonical MusicCompositionSong it performs.</td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#text-MusicCompositionSongProxy" title="#text-MusicCompositionSongProxy">text</a></td>
+<td></td>
+<td>No</td>
+<td>This entry's own short performance note, written as Markdown and rendered as such — optional; absent on most entries. Never the song's own text, which lives on the MusicCompositionSong it specializes instead.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>All Properties</h2>
+<h3><a id="https%3A%2F%2Fschema.org%2Fcomposer" title="https://schema.org/composer"></a> Property: composer</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fcomposer" title="https://schema.org/composer">composer</a></td>
+<td></td>
+<td>The person or organization who wrote a composition, or who is the composer of a work performed at some event.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FdatePublished" title="https://schema.org/datePublished"></a> Property: datePublished</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FdatePublished" title="https://schema.org/datePublished">datePublished</a></td>
+<td></td>
+<td>Date of first publication or broadcast. For example the date a [[CreativeWork]] was broadcast or a [[Certification]] was issued.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDate" title="https://schema.org/Date">Date</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2Fdescription" title="https://schema.org/description"></a> Property: description</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fdescription" title="https://schema.org/description">description</a></td>
+<td></td>
+<td>A description of the item.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FhasPart" title="https://schema.org/hasPart"></a> Property: hasPart</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FhasPart" title="https://schema.org/hasPart">hasPart</a></td>
+<td></td>
+<td>Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a>, <a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a>, <a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset">Dataset</a>, <a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2Flicense" title="https://schema.org/license"></a> Property: license</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Flicense" title="https://schema.org/license">license</a></td>
+<td></td>
+<td>A license document that applies to this content, typically indicated by URL.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FURL" title="https://schema.org/URL">URL</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2FmusicalKey" title="https://schema.org/musicalKey"></a> Property: musicalKey</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2FmusicalKey" title="https://schema.org/musicalKey">musicalKey</a></td>
+<td></td>
+<td>The key, mode, or scale this composition uses.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="name-Dataset" title="#name-Dataset"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#name-Dataset" title="#name-Dataset">name</a></td>
+<td></td>
+<td>The songbook's own title.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FDataset" title="https://schema.org/Dataset">Dataset</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="name-MusicPlaylist" title="#name-MusicPlaylist"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#name-MusicPlaylist" title="#name-MusicPlaylist">name</a></td>
+<td></td>
+<td>A top-level setlist's own title (e.g. &quot;Friday Gig&quot;), or — on a nested &quot;#&quot; set — that set's own heading text (e.g. &quot;Set 1&quot;); MusicPlaylist covers both (SPEC.md §6).</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="name-MusicCompositionSong" title="#name-MusicCompositionSong"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#name-MusicCompositionSong" title="#name-MusicCompositionSong">name</a></td>
+<td></td>
+<td>A canonical song's own title.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="name-MusicCompositionSongProxy" title="#name-MusicCompositionSongProxy"></a> Property: name</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#name-MusicCompositionSongProxy" title="#name-MusicCompositionSongProxy">name</a></td>
+<td></td>
+<td>The raw heading text for this setlist entry, taken verbatim from the setlist file — may be a fuzzy or approximate match to the song it specializes, not necessarily identical to that song's own name.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2Fperformer" title="https://schema.org/performer"></a> Property: performer</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fperformer" title="https://schema.org/performer">performer</a></td>
+<td></td>
+<td>A performer at the event—for example, a presenter, musician, musical group or actor.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="specializationOf" title="http://www.w3.org/ns/prov#specializationOf"></a> Property: specializationOf</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#specializationOf" title="http://www.w3.org/ns/prov#specializationOf">specializationOf</a></td>
+<td></td>
+<td>chordpro-input's own use: links a setlist-entry MusicCompositionSongProxy to the canonical MusicCompositionSong it performs.</td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+<td><a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="https%3A%2F%2Fschema.org%2Fsubtitle" title="https://schema.org/subtitle"></a> Property: subtitle</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#https%3A%2F%2Fschema.org%2Fsubtitle" title="https://schema.org/subtitle">subtitle</a></td>
+<td></td>
+<td>A secondary title for the item — chordpro-input's own use: a song's {subtitle}/{st} ChordPro directive.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="text-MusicCompositionSong" title="#text-MusicCompositionSong"></a> Property: text</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#text-MusicCompositionSong" title="#text-MusicCompositionSong">text</a></td>
+<td></td>
+<td>The song's own verbatim ChordPro source (directives and all) — the one place its full text lives; every setlist entry that performs it points back here rather than carrying its own copy.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSong" title="#MusicCompositionSong">MusicCompositionSong</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="text-MusicCompositionSongProxy" title="#text-MusicCompositionSongProxy"></a> Property: text</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#text-MusicCompositionSongProxy" title="#text-MusicCompositionSongProxy">text</a></td>
+<td></td>
+<td>This entry's own short performance note, written as Markdown and rendered as such — optional; absent on most entries. Never the song's own text, which lives on the MusicCompositionSong it specializes instead.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#MusicCompositionSongProxy" title="#MusicCompositionSongProxy">MusicCompositionSongProxy</a></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="text-MusicPlaylist" title="#text-MusicPlaylist"></a> Property: text</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Specialization Of</th>
+<th>Description</th>
+<th>Range</th>
+<th>Occurs in Domain(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#text-MusicPlaylist" title="#text-MusicPlaylist">text</a></td>
+<td></td>
+<td>A setlist's or a &quot;#&quot; set's own freeform note, written as Markdown and rendered as such — optional; the freeform text found between a &quot;#&quot; heading and its first entry, or authored anywhere for a top-level setlist.</td>
+<td><a href="#https%3A%2F%2Fschema.org%2FText" title="https://schema.org/Text">Text</a></td>
+<td><a href="#https%3A%2F%2Fschema.org%2FMusicPlaylist" title="https://schema.org/MusicPlaylist">MusicPlaylist</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Property Values</h2>
+<p>No PropertyValue entities are defined.</p>
+
+  </div>
+  <script>
+    document.querySelectorAll('.entity-filter').forEach(function(input) {
+      input.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        var list = document.getElementById(this.dataset.target);
+        list.querySelectorAll('li').forEach(function(li) {
+          li.classList.toggle('hidden', q.length > 0 && !li.textContent.toLowerCase().includes(q));
+        });
+      });
+    });
+  </script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

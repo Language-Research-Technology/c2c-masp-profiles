@@ -29,6 +29,20 @@ crate is checked against it with `MaspValidator.validateCrate()`.
   [ro-crate-static-site](https://github.com/Language-Research-Technology/ro-crate-html-lite),
   which is kept alongside it at `birds/profile-crate/examples/birds-crate/` and
   validates against it.
+- **`chordpro-songs/`** — a songbook harvested from ChordPro song charts
+  (`.cho`/`.pro`) and Markdown setlists (`.setlist.md`): each song is a
+  `MusicComposition` carrying its own verbatim source plus `musicalKey`/
+  `composer`/`performer`/`subtitle`; each setlist (and each `#`-delineated set
+  within one) is a `MusicPlaylist`; each setlist entry is its own lightweight
+  `MusicComposition` linked to the song it performs via `specializationOf`.
+  Root class `Dataset`. Trimmed from `ro-crate-masp`'s own bundled
+  schema.org profile down to only the classes/properties resources2crate's
+  `chordpro-input` plugin actually writes (see that plugin's own `SPEC.md`,
+  §5–§7, for the full model) — kept alongside a real, built example at
+  `chordpro-songs/profile-crate/examples/chordpro-crate/` and validates
+  against it, including a richer example with ambiguous/unresolved setlist
+  entries and nested sets at
+  `chordpro-songs/profile-crate/examples/chordpro-crate-large/`.
 
 Each profile folder is:
 

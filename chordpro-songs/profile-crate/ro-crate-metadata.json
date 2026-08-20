@@ -1,0 +1,570 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "@vocab": "http://schema.org/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": [
+        "Dataset",
+        "Profile"
+      ],
+      "name": "ChordPro Songs & Setlists Profile",
+      "description": "A minimal RO-Crate profile for songbooks harvested from ChordPro song charts and Markdown setlists (resources2crate's chordpro-input plugin).",
+      "version": "0.1.0",
+      "isProfileOf": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.2"
+        },
+        {
+          "@id": "https://schema.org/"
+        }
+      ],
+      "author": {
+        "@id": "#author"
+      },
+      "license": "GPL-3.0",
+      "conformsTo": [
+        {
+          "@id": "https://language-research-technology.github.io/ro-crate-masp/profiles/ro-crate-masp/profile-crate/#profile"
+        }
+      ],
+      "hasResource": [
+        {
+          "@id": "#hasSpecializedSchema"
+        },
+        {
+          "@id": "#hasSpecification"
+        },
+        {
+          "@id": "#hasGuidance"
+        },
+        {
+          "@id": "#hasEditorMode"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/Thing",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Thing",
+      "name": "Thing",
+      "rdfs:comment": "The most generic type of item."
+    },
+    {
+      "@id": "https://schema.org/CreativeWork",
+      "@type": "rdfs:Class",
+      "rdfs:label": "CreativeWork",
+      "name": "CreativeWork",
+      "rdfs:comment": "The most generic kind of creative work, including books, movies, photographs, software programs, etc.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/Thing"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/Dataset",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Dataset",
+      "name": "Dataset",
+      "rdfs:comment": "A body of structured information describing some topic(s) of interest.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/MusicComposition",
+      "@type": "rdfs:Class",
+      "rdfs:label": "MusicComposition",
+      "name": "MusicComposition",
+      "rdfs:comment": "A musical composition.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/MusicPlaylist",
+      "@type": "rdfs:Class",
+      "rdfs:label": "MusicPlaylist",
+      "name": "MusicPlaylist",
+      "rdfs:comment": "A collection of music tracks in playlist form.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/Text",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Text",
+      "name": "Text",
+      "rdfs:comment": "Data type: Text."
+    },
+    {
+      "@id": "https://schema.org/URL",
+      "@type": "rdfs:Class",
+      "rdfs:label": "URL",
+      "name": "URL",
+      "rdfs:comment": "Data type: URL.",
+      "rdfs:subClassOf": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/Date",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Date",
+      "name": "Date",
+      "rdfs:comment": "A date value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)."
+    },
+    {
+      "@id": "https://schema.org/description",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "rdfs:comment": "A description of the item.",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/Dataset"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/datePublished",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "rdfs:comment": "Date of first publication or broadcast. For example the date a [[CreativeWork]] was broadcast or a [[Certification]] was issued.",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/Dataset"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Date"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/license",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/Dataset"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/URL"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/hasPart",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "rdfs:comment": "Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/Dataset"
+        },
+        {
+          "@id": "https://schema.org/MusicPlaylist"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/MusicPlaylist"
+        },
+        {
+          "@id": "#MusicCompositionSong"
+        },
+        {
+          "@id": "#MusicCompositionSongProxy"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/musicalKey",
+      "@type": "rdf:Property",
+      "rdfs:label": "musicalKey",
+      "name": "musicalKey",
+      "rdfs:comment": "The key, mode, or scale this composition uses.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/composer",
+      "@type": "rdf:Property",
+      "rdfs:label": "composer",
+      "name": "composer",
+      "rdfs:comment": "The person or organization who wrote a composition, or who is the composer of a work performed at some event.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/performer",
+      "@type": "rdf:Property",
+      "rdfs:label": "performer",
+      "name": "performer",
+      "rdfs:comment": "A performer at the event&#x2014;for example, a presenter, musician, musical group or actor.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#MusicCompositionSong",
+      "@type": "rdfs:Class",
+      "rdfs:label": "MusicCompositionSong",
+      "name": "MusicCompositionSong",
+      "rdfs:comment": "A canonical song, harvested from one ChordPro chart file — chordpro-input's own specialization of MusicComposition, never carrying specializationOf.",
+      "prov:specializationOf": {
+        "@id": "https://schema.org/MusicComposition"
+      }
+    },
+    {
+      "@id": "#MusicCompositionSongProxy",
+      "@type": "rdfs:Class",
+      "rdfs:label": "MusicCompositionSongProxy",
+      "name": "MusicCompositionSongProxy",
+      "rdfs:comment": "One setlist entry — a lightweight performance-slot proxy, not a second copy of the song — chordpro-input's own specialization of MusicComposition, linked to the song it performs via specializationOf.",
+      "prov:specializationOf": {
+        "@id": "https://schema.org/MusicComposition"
+      }
+    },
+    {
+      "@id": "#name-Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "The songbook's own title.",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/Dataset"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#name-MusicPlaylist",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "A top-level setlist's own title (e.g. \"Friday Gig\"), or — on a nested \"#\" set — that set's own heading text (e.g. \"Set 1\"); MusicPlaylist covers both (SPEC.md §6).",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/MusicPlaylist"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#name-MusicCompositionSong",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "A canonical song's own title.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#name-MusicCompositionSongProxy",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "rdfs:comment": "The raw heading text for this setlist entry, taken verbatim from the setlist file — may be a fuzzy or approximate match to the song it specializes, not necessarily identical to that song's own name.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSongProxy"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#text-MusicCompositionSong",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "The song's own verbatim ChordPro source (directives and all) — the one place its full text lives; every setlist entry that performs it points back here rather than carrying its own copy.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#text-MusicCompositionSongProxy",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "This entry's own short performance note, written as Markdown and rendered as such — optional; absent on most entries. Never the song's own text, which lives on the MusicCompositionSong it specializes instead.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSongProxy"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "#text-MusicPlaylist",
+      "@type": "rdf:Property",
+      "rdfs:label": "text",
+      "name": "text",
+      "rdfs:comment": "A setlist's or a \"#\" set's own freeform note, written as Markdown and rendered as such — optional; the freeform text found between a \"#\" heading and its first entry, or authored anywhere for a top-level setlist.",
+      "domainIncludes": [
+        {
+          "@id": "https://schema.org/MusicPlaylist"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "https://schema.org/subtitle",
+      "@type": "rdf:Property",
+      "rdfs:label": "subtitle",
+      "name": "subtitle",
+      "rdfs:comment": "A secondary title for the item — chordpro-input's own use: a song's {subtitle}/{st} ChordPro directive.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "https://schema.org/Text"
+        }
+      ]
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#specializationOf",
+      "@type": "rdf:Property",
+      "rdfs:label": "specializationOf",
+      "name": "specializationOf",
+      "rdfs:comment": "chordpro-input's own use: links a setlist-entry MusicCompositionSongProxy to the canonical MusicCompositionSong it performs.",
+      "domainIncludes": [
+        {
+          "@id": "#MusicCompositionSongProxy"
+        }
+      ],
+      "rangeIncludes": [
+        {
+          "@id": "#MusicCompositionSong"
+        }
+      ]
+    },
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "#author",
+      "@type": "Organization",
+      "name": "University of Queensland"
+    },
+    {
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/schema"
+      },
+      "hasPart": [
+        {
+          "@id": "https://schema.org/Thing"
+        },
+        {
+          "@id": "https://schema.org/CreativeWork"
+        },
+        {
+          "@id": "https://schema.org/Dataset"
+        },
+        {
+          "@id": "https://schema.org/MusicComposition"
+        },
+        {
+          "@id": "https://schema.org/MusicPlaylist"
+        },
+        {
+          "@id": "https://schema.org/Text"
+        },
+        {
+          "@id": "https://schema.org/URL"
+        },
+        {
+          "@id": "https://schema.org/Date"
+        },
+        {
+          "@id": "https://schema.org/description"
+        },
+        {
+          "@id": "https://schema.org/datePublished"
+        },
+        {
+          "@id": "https://schema.org/license"
+        },
+        {
+          "@id": "https://schema.org/hasPart"
+        },
+        {
+          "@id": "https://schema.org/musicalKey"
+        },
+        {
+          "@id": "https://schema.org/composer"
+        },
+        {
+          "@id": "https://schema.org/performer"
+        },
+        {
+          "@id": "#MusicCompositionSong"
+        },
+        {
+          "@id": "#MusicCompositionSongProxy"
+        },
+        {
+          "@id": "#name-Dataset"
+        },
+        {
+          "@id": "#name-MusicPlaylist"
+        },
+        {
+          "@id": "#name-MusicCompositionSong"
+        },
+        {
+          "@id": "#name-MusicCompositionSongProxy"
+        },
+        {
+          "@id": "#text-MusicCompositionSong"
+        },
+        {
+          "@id": "#text-MusicCompositionSongProxy"
+        },
+        {
+          "@id": "#text-MusicPlaylist"
+        },
+        {
+          "@id": "https://schema.org/subtitle"
+        },
+        {
+          "@id": "http://www.w3.org/ns/prov#specializationOf"
+        }
+      ]
+    },
+    {
+      "@id": "#hasSpecification",
+      "@type": "ResourceDescriptor",
+      "name": "Profile Description",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/specification"
+      },
+      "hasArtifact": {
+        "@id": "index.html"
+      }
+    },
+    {
+      "@id": "#hasGuidance",
+      "@type": "ResourceDescriptor",
+      "name": "Profile Documentation (Markdown source)",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/guidance"
+      },
+      "hasArtifact": {
+        "@id": "profile-documentation.md"
+      }
+    },
+    {
+      "@id": "#hasEditorMode",
+      "@type": "ResourceDescriptor",
+      "name": "Crate-O Editor Mode",
+      "hasRole": {
+        "@id": "https://w3id.org/ro/mode"
+      },
+      "hasArtifact": {
+        "@id": "crate-o-mode.json"
+      }
+    }
+  ]
+}
