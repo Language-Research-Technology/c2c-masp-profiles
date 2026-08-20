@@ -3,7 +3,7 @@ title: Birds Collection Profile -- EXPERIMENTAL RO-Crate MASP Profile
 ---
 <!--  https://signposting.org/FAIR/  markup --->
 
-<link href="https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile" rel="cite-as" />
+<link href="https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile" rel="cite-as" />
 
 <link href="https://www.researchobject.org/ro-crate/1.2-DRAFT/profiles" rel="type"  />
 <link href="http://purl.org/dc/terms/Standard" rel="type"  />
@@ -16,7 +16,7 @@ title: Birds Collection Profile -- EXPERIMENTAL RO-Crate MASP Profile
 
 * Title: Birds Collection Profile
 * Version: 0.1.0
-* Permalink: <https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile>
+* Permalink: <https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile>
 * [Profile Crate `ro-crate-metadata.json`](ro-crate-metadata.json)
 * [Example RO-Crate `ro-crate-metadata.json`](examples/birds-crate/ro-crate-metadata.json)
 
@@ -440,13 +440,13 @@ ID: #propertyValue_Collection_conformsTo
 <thead><tr><th>Property Value</th><th>Description</th><th>Value</th><th>Min Count</th><th>Max Count</th></tr></thead>
 <tbody>
 <tr><td><a href="#propertyValue_Collection_conformsTo" title="#propertyValue_Collection_conformsTo">Collection Profile Constraint</a></td><td>The Collection must declare conformance to this profile or to the LDAC Collection profile.</td><td><pre><code>{
-  &quot;@id&quot;: &quot;https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile&quot;,
+  &quot;@id&quot;: &quot;https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile&quot;,
   &quot;@type&quot;: [
     &quot;CreativeWork&quot;,
     &quot;Profile&quot;
   ],
   &quot;name&quot;: &quot;Birds Collection Profile&quot;,
-  &quot;url&quot;: &quot;https://language-research-technology.github.io/masp-profiles/birds/profile-crate/&quot;
+  &quot;url&quot;: &quot;https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/&quot;
 }</code></pre><hr /><pre><code>{
   &quot;@id&quot;: &quot;https://w3id.org/ldac/profile#Collection&quot;,
   &quot;@type&quot;: [
@@ -511,14 +511,14 @@ Profile identifiers that a conforming Collection may declare with `conformsTo`.
 <table>
 <thead><tr><th>Name</th><th>@id</th><th>Entity</th></tr></thead>
 <tbody>
-<tr><td>Birds Collection Profile</td><td><a id="profile" href="https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile" target="_blank" rel="noopener">https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile</a></td><td><pre><code>{
-  &quot;@id&quot;: &quot;https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile&quot;,
+<tr><td>Birds Collection Profile</td><td><a id="profile" href="https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile" target="_blank" rel="noopener">https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile</a></td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile&quot;,
   &quot;@type&quot;: [
     &quot;CreativeWork&quot;,
     &quot;Profile&quot;
   ],
   &quot;name&quot;: &quot;Birds Collection Profile&quot;,
-  &quot;url&quot;: &quot;https://language-research-technology.github.io/masp-profiles/birds/profile-crate/&quot;
+  &quot;url&quot;: &quot;https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/&quot;
 }</code></pre></td></tr>
 <tr><td>LDAC Collection Profile</td><td><a id="Collection" href="https://w3id.org/ldac/profile#Collection" target="_blank" rel="noopener">https://w3id.org/ldac/profile#Collection</a></td><td><pre><code>{
   &quot;@id&quot;: &quot;https://w3id.org/ldac/profile#Collection&quot;,
@@ -538,14 +538,14 @@ Canonical identifiers that indicate conformance to this profile.
 <table>
 <thead><tr><th>Name</th><th>@id</th><th>Entity</th></tr></thead>
 <tbody>
-<tr><td>Birds Collection Profile</td><td><a id="profile" href="https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile" target="_blank" rel="noopener">https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile</a></td><td><pre><code>{
-  &quot;@id&quot;: &quot;https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile&quot;,
+<tr><td>Birds Collection Profile</td><td><a id="profile" href="https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile" target="_blank" rel="noopener">https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile</a></td><td><pre><code>{
+  &quot;@id&quot;: &quot;https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile&quot;,
   &quot;@type&quot;: [
     &quot;CreativeWork&quot;,
     &quot;Profile&quot;
   ],
   &quot;name&quot;: &quot;Birds Collection Profile&quot;,
-  &quot;url&quot;: &quot;https://language-research-technology.github.io/masp-profiles/birds/profile-crate/&quot;
+  &quot;url&quot;: &quot;https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/&quot;
 }</code></pre></td></tr>
 </tbody></table>
 
@@ -577,4 +577,4 @@ Canonical identifiers that indicate conformance to this profile.
 
 ## Provenance
 
-This document was compiled using [generate-masp-docs.js](https://github.com/Language-Research-Technology/masp-profiles/blob/main/generate-masp-docs.js), based on [../../birds/profile-text.md](https://github.com/Language-Research-Technology/masp-profiles/blob/main/../../birds/profile-text.md) using a MASP Schema defined in [../../birds/profile-crate/ro-crate-metadata.json](https://github.com/Language-Research-Technology/masp-profiles/blob/main/../../birds/profile-crate/ro-crate-metadata.json).
+This document was compiled using [generate-masp-docs.js](https://github.com/Language-Research-Technology/c2c-masp-profiles/blob/main/generate-masp-docs.js), based on [../../birds/profile-text.md](https://github.com/Language-Research-Technology/c2c-masp-profiles/blob/main/../../birds/profile-text.md) using a MASP Schema defined in [../../birds/profile-crate/ro-crate-metadata.json](https://github.com/Language-Research-Technology/c2c-masp-profiles/blob/main/../../birds/profile-crate/ro-crate-metadata.json).

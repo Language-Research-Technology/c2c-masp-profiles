@@ -3,7 +3,7 @@ title: Birds Collection Profile -- EXPERIMENTAL RO-Crate MASP Profile
 ---
 <!--  https://signposting.org/FAIR/  markup --->
 
-<link href="https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile" rel="cite-as" />
+<link href="https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile" rel="cite-as" />
 
 <link href="https://www.researchobject.org/ro-crate/1.2-DRAFT/profiles" rel="type"  />
 <link href="http://purl.org/dc/terms/Standard" rel="type"  />
@@ -16,7 +16,7 @@ title: Birds Collection Profile -- EXPERIMENTAL RO-Crate MASP Profile
 
 * Title: Birds Collection Profile
 * Version: 0.1.0
-* Permalink: <https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile>
+* Permalink: <https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile>
 * [Profile Crate `ro-crate-metadata.json`](ro-crate-metadata.json)
 * [Example RO-Crate `ro-crate-metadata.json`](examples/birds-crate/ro-crate-metadata.json)
 

@@ -4,7 +4,7 @@
       "Dataset",
       "RepositoryCollection"
     ],
-    "conformsTo": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile"
+    "conformsTo": "https://language-research-technology.github.io/c2c-masp-profiles/birds/profile-crate/#profile"
   },
   "propertyGroups": [
     {

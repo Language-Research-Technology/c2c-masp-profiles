@@ -17,11 +17,11 @@
         "@id": "https://w3id.org/ro/crate/1.2"
       },
       "about": {
-        "@id": "https://language-research-technology.github.io/masp-profiles/structured-docs/profile-crate/"
+        "@id": "https://language-research-technology.github.io/c2c-masp-profiles/structured-docs/profile-crate/"
       }
     },
     {
-      "@id": "https://language-research-technology.github.io/masp-profiles/structured-docs/profile-crate/",
+      "@id": "https://language-research-technology.github.io/c2c-masp-profiles/structured-docs/profile-crate/",
       "@type": [
         "Dataset",
         "Profile"
