@@ -42,11 +42,17 @@
   ],
   "lookup": {},
   "enabledClasses": [],
-  "buildOptions": {
-    "enabledOptionKeys": [
-      "makeHtml"
-    ],
-    "inputMode": "chordpro",
-    "makeHtml": true
+  "tools": {
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "enabledOptionKeys": [
+          "makeHtml"
+        ],
+        "inputMode": "chordpro",
+        "makeHtml": true
+      }
+    }
   }
 }

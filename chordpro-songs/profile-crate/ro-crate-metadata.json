@@ -563,7 +563,7 @@
         "@id": "https://w3id.org/ro/mode"
       },
       "hasArtifact": {
-        "@id": "crate-o-mode.json"
+        "@id": "tool-config.json"
       }
     }
   ]
