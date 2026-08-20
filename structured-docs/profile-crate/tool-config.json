@@ -60,11 +60,17 @@
     }
   ],
   "longTextInputs": ["description", "text"],
-  "buildOptions": {
-    "inputMode": "docx",
-    "templateRepoFolder": "structured-docs",
-    "enabledOptionKeys": [
-      "makeHtml", "templateRepoFolder", "homePageId", "domain", "collectionLabelsBuilder", "styledPreview", "configFile"
-    ]
+  "tools": {
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "docx",
+        "templateRepoFolder": "structured-docs",
+        "enabledOptionKeys": [
+          "makeHtml", "templateRepoFolder", "homePageId", "domain", "collectionLabelsBuilder", "styledPreview", "configFile"
+        ]
+      }
+    }
   }
 }
