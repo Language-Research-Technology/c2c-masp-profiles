@@ -17,7 +17,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "validate:birds": "node validate-profile.js birds/profile-crate/examples/birds-crate/ro-crate-metadata.json birds/profile-crate/ro-crate-metadata.json",
-    "validate:birds:json": "node validate-profile.js --json birds/profile-crate/examples/birds-crate/ro-crate-metadata.json birds/profile-crate/ro-crate-metadata.json"
+    "validate:birds:json": "node validate-profile.js --json birds/profile-crate/examples/birds-crate/ro-crate-metadata.json birds/profile-crate/ro-crate-metadata.json",
+    "validate:chordpro-songs": "node validate-profile.js chordpro-songs/profile-crate/examples/chordpro-crate/ro-crate-metadata.json chordpro-songs/profile-crate/ro-crate-metadata.json",
+    "validate:chordpro-songs:json": "node validate-profile.js --json chordpro-songs/profile-crate/examples/chordpro-crate/ro-crate-metadata.json chordpro-songs/profile-crate/ro-crate-metadata.json",
+    "validate:chordpro-songs-large": "node validate-profile.js chordpro-songs/profile-crate/examples/chordpro-crate-large/ro-crate-metadata.json chordpro-songs/profile-crate/ro-crate-metadata.json",
+    "validate:chordpro-songs-large:json": "node validate-profile.js --json chordpro-songs/profile-crate/examples/chordpro-crate-large/ro-crate-metadata.json chordpro-songs/profile-crate/ro-crate-metadata.json"
   },
   "dependencies": {
     "ro-crate-maps": "github:Language-Research-Technology/ro-crate-masp"
