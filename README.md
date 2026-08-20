@@ -2,7 +2,7 @@
 
 [MASP](https://github.com/Language-Research-Technology/ro-crate-masp) (Machine
 Actionable Schema/Profile) crates used by
-[resources2crate](https://github.com/benfoley/resources2crate) to drive its
+[resources2crate](https://github.com/Language-Research-Technology/chaos2crate) to drive its
 folder → RO-Crate build workflow: the profile you pick determines which fields
 the Describe step asks for and which Build options are shown, and the finished
 crate is checked against it with `MaspValidator.validateCrate()`.

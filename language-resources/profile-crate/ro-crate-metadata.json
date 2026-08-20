@@ -17,11 +17,11 @@
         "@id": "https://w3id.org/ro/crate/1.2"
       },
       "about": {
-        "@id": "https://benfoley.github.io/masp-profiles/language-resources/profile-crate/"
+        "@id": "https://language-research-technology.github.io/masp-profiles/language-resources/profile-crate/"
       }
     },
     {
-      "@id": "https://benfoley.github.io/masp-profiles/language-resources/profile-crate/",
+      "@id": "https://language-research-technology.github.io/masp-profiles/language-resources/profile-crate/",
       "@type": [
         "Dataset",
         "Profile"

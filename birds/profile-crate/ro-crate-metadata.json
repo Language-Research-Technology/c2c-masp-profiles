@@ -16,11 +16,11 @@
         "@id": "https://w3id.org/ro/crate/1.2"
       },
       "about": {
-        "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
+        "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/"
       }
     },
     {
-      "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/",
+      "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/",
       "@type": [
         "Dataset",
         "Profile"
@@ -310,7 +310,7 @@
         "text/markdown"
       ],
       "about": {
-        "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
+        "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/"
       },
       "dateModified": "2026-08-07T18:46:58+10:00"
     },
@@ -1044,7 +1044,7 @@
       "description": "The Collection must declare conformance to this profile or to the LDAC Collection profile.",
       "value": [
         {
-          "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+          "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile"
         },
         {
           "@id": "https://w3id.org/ldac/profile#Collection"
@@ -1077,7 +1077,7 @@
       "description": "Profile identifiers that a conforming Collection may declare with `conformsTo`.",
       "itemListElement": [
         {
-          "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+          "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile"
         },
         {
           "@id": "https://w3id.org/ldac/profile#Collection"
@@ -1103,7 +1103,7 @@
       "description": "Canonical identifiers that indicate conformance to this profile.",
       "itemListElement": [
         {
-          "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile"
+          "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile"
         }
       ]
     },
@@ -1118,13 +1118,13 @@
       "name": "JSON Data Interchange Format"
     },
     {
-      "@id": "https://benfoley.github.io/masp-profiles/birds/profile-crate/#profile",
+      "@id": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/#profile",
       "@type": [
         "CreativeWork",
         "Profile"
       ],
       "name": "Birds Collection Profile",
-      "url": "https://benfoley.github.io/masp-profiles/birds/profile-crate/"
+      "url": "https://language-research-technology.github.io/masp-profiles/birds/profile-crate/"
     },
     {
       "@id": "index.html",
