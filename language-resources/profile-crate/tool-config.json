@@ -118,15 +118,21 @@
     }
   ],
   "longTextInputs": ["description", "custom:portalDescription"],
-  "buildOptions": {
-    "inputMode": "generic",
-    "templateRepoFolder": "language-resources",
-    "enableLanguageLookups": true,
-    "merge": true,
-    "enabledOptionKeys": [
-      "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
-      "enableLanguageLookups", "includeAlternateNames",
-      "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"
-    ]
+  "tools": {
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "generic",
+        "templateRepoFolder": "language-resources",
+        "enableLanguageLookups": true,
+        "merge": true,
+        "enabledOptionKeys": [
+          "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
+          "enableLanguageLookups", "includeAlternateNames",
+          "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"
+        ]
+      }
+    }
   }
 }

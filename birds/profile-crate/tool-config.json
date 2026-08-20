@@ -73,26 +73,25 @@
     "custom:sentence",
     "custom:sentenceTranslation"
   ],
-  "tools": {"chaos2crate": {
-    "url": "",
-    "version": "0.0.1",
-    "buildOptions": {
-      "inputMode": "generic",
-      "templateRepoFolder": "birds",
-      "xlsxCrate": true,
-      "enabledOptionKeys": [
-        "xlsxCrate",
-        "xlsxCrateFile",
-        "makeHtml",
-        "makeXlsx",
-        "styledPreview",
-        "templateRepoFolder",
-        "configFile",
-        "overwrite"
-      ]
+  "tools": {
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "generic",
+        "templateRepoFolder": "birds",
+        "xlsxCrate": true,
+        "enabledOptionKeys": [
+          "xlsxCrate",
+          "xlsxCrateFile",
+          "makeHtml",
+          "makeXlsx",
+          "styledPreview",
+          "templateRepoFolder",
+          "configFile",
+          "overwrite"
+        ]
+      }
     }
   }
-  }
 }
-
-

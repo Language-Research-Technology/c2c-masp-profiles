@@ -39,9 +39,10 @@ Each profile folder is:
     ro-crate-metadata.json   # the MASP itself — classes, properties, cardinality
     tool-config.json         # editor hints (rootDataset.type, propertyGroups) —
                               # required for MaspValidator.getRootDatasetTypes()
-                              # to resolve correctly — plus a resources2crate-
-                              # specific "buildOptions" key (ignored by Crate-O)
-                              # listing which build options this profile enables.
+                              # to resolve correctly — plus a "tools" block keyed
+                              # by consumer, e.g. "tools.chaos2crate.buildOptions"
+                              # (ignored by Crate-O), listing which build options
+                              # this profile enables for that tool.
     index.html               # generated profile documentation site
     profile-documentation.md # generated profile documentation markdown
 ```
@@ -51,7 +52,9 @@ schema (property grouping, which classes to show) go in the existing
 `tool-config.json` companion file, referenced via the `#hasEditorMode`
 `ResourceDescriptor` role — same mechanism the
 [LDAC profile](https://github.com/Language-Research-Technology/ro-crate-masp/tree/main/profiles/ldac)
-uses. `buildOptions` is the one addition specific to this repo's consumer.
+uses. `tools.chaos2crate.buildOptions` is the one addition specific to this
+repo's consumer, namespaced under `tools` so other consumers of the same
+file can carry their own config alongside it without colliding.
 
 ## Verifying a profile
 

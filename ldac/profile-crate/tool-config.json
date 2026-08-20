@@ -220,17 +220,23 @@
     "ldac:DataReuseLicense",
     "File"
   ],
-  "buildOptions": {
-    "inputMode": "generic",
-    "templateRepoFolder": "ldac",
-    "enableLanguageLookups": true,
-    "merge": true,
-    "processTranscriptDocuments": true,
-    "enabledOptionKeys": [
-      "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
-      "enableLanguageLookups", "includeAlternateNames",
-      "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups",
-      "processTranscriptDocuments"
-    ]
+  "tools": {
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "generic",
+        "templateRepoFolder": "ldac",
+        "enableLanguageLookups": true,
+        "merge": true,
+        "processTranscriptDocuments": true,
+        "enabledOptionKeys": [
+          "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
+          "enableLanguageLookups", "includeAlternateNames",
+          "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups",
+          "processTranscriptDocuments"
+        ]
+      }
+    }
   }
 }
