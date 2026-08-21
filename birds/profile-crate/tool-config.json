@@ -80,7 +80,7 @@
       "buildOptions": {
         "inputMode": "generic",
         "templateRepoFolder": "birds",
-        "xlsxCrate": true,
+        "plugins": ["xlsxCrate"],
         "enabledOptionKeys": [
           "xlsxCrate",
           "xlsxCrateFile",

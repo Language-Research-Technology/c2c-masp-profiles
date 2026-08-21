@@ -125,8 +125,7 @@
       "buildOptions": {
         "inputMode": "generic",
         "templateRepoFolder": "language-resources",
-        "enableLanguageLookups": true,
-        "merge": true,
+        "plugins": ["enableLanguageLookups", "merge"],
         "enabledOptionKeys": [
           "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
           "enableLanguageLookups", "includeAlternateNames",
