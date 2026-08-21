@@ -227,10 +227,7 @@
       "buildOptions": {
         "inputMode": "generic",
         "templateRepoFolder": "ldac",
-        "enableLanguageLookups": true,
-        "merge": true,
-        "processTranscriptDocuments": true,
-        "generateChatFiles": true,
+        "plugins": ["enableLanguageLookups", "merge", "processTranscriptDocuments", "generateChatFiles"],
         "enabledOptionKeys": [
           "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
           "enableLanguageLookups", "includeAlternateNames",
