@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "ChordPro Songs & Setlists Profile",
-    "description": "A minimal RO-Crate profile for songbooks harvested from ChordPro song charts and Markdown setlists — resources2crate's chordpro-input plugin.",
+    "description": "A minimal RO-Crate profile for songbooks harvested from ChordPro song charts and Markdown setlists — chaos2crate's chordpro-input plugin.",
     "version": "0.1.0",
     "author": "Peter Sefton",
     "license": "GPL-3.0"
