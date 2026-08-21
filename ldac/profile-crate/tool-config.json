@@ -227,12 +227,12 @@
       "buildOptions": {
         "inputMode": "generic",
         "templateRepoFolder": "ldac",
-        "plugins": ["enableLanguageLookups", "merge", "processTranscriptDocuments", "generateChatFiles"],
-        "enabledOptionKeys": [
-          "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
-          "enableLanguageLookups", "includeAlternateNames",
-          "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups",
-          "processTranscriptDocuments", "generateChatFiles"
+        "plugins": [
+          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "templateRepoFolder", "styledPreview", "configFile"] },
+          { "name": "enableLanguageLookups", "enabled": true, "enabledOptions": ["enableLanguageLookups", "includeAlternateNames"] },
+          { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] },
+          { "name": "processTranscriptDocuments", "enabled": true, "enabledOptions": ["processTranscriptDocuments"] },
+          { "name": "generateChatFiles", "enabled": true, "enabledOptions": ["generateChatFiles"] }
         ]
       }
     }
