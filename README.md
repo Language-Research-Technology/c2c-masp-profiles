@@ -14,13 +14,13 @@ crate is checked against it with `MaspValidator.validateCrate()`.
   AUSTLANG-style language metadata, contributing people, and content
   locations. Root class `RepositoryCollection`. Modelled on
   [corpus-tools-dyirbal](https://github.com/Language-Research-Technology/corpus-tools-dyirbal)
-  / resources2crate's generic folder mode.
+  / chaos2crate's generic folder mode.
 - **`structured-docs/`** — a collection built from structured Word
   documents (Heading 1/2/3 parsed into Collections/DocumentParts/Chapters),
   e.g. person-centred oral-history or community-website collections. Root
   class `Dataset`. Modelled on
   [corpus-tools-person-centred-collections-docx](https://github.com/Language-Research-Technology/corpus-tools-person-centred-collections-docx)
-  / resources2crate's "Structured Word documents" mode.
+  / chaos2crate's "Structured Word documents" mode.
 - **`birds/`** — a small language/media collection: a `RepositoryCollection` of
   `RepositoryObject` entries, each one bird with a name, a translation, a
   sentence, an `ldac:speaker`, an image and three audio recordings, plus an
@@ -36,7 +36,7 @@ crate is checked against it with `MaspValidator.validateCrate()`.
   within one) is a `MusicPlaylist`; each setlist entry is its own lightweight
   `MusicComposition` linked to the song it performs via `specializationOf`.
   Root class `Dataset`. Trimmed from `ro-crate-masp`'s own bundled
-  schema.org profile down to only the classes/properties resources2crate's
+  schema.org profile down to only the classes/properties chaos2crate's
   `chordpro-input` plugin actually writes (see that plugin's own `SPEC.md`,
   §5–§7, for the full model) — kept alongside a real, built example at
   `chordpro-songs/profile-crate/examples/chordpro-crate/` and validates
@@ -80,7 +80,7 @@ const profileJson = require("./language-resources/profile-crate/ro-crate-metadat
 const modeJson = require("./language-resources/profile-crate/tool-config.json");
 
 const crate = new ROCrate(profileJson, { array: true, link: true });
-await crate.resolveContext(); // required — see resources2crate's notes on this
+await crate.resolveContext(); // required — see chaos2crate's notes on this
 const validator = new MaspValidator(crate);
 validator.setEditorHints(modeJson); // required for getRootDatasetTypes() to work
 
