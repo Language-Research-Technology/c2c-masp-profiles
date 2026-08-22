@@ -125,11 +125,10 @@
       "buildOptions": {
         "inputMode": "generic",
         "templateRepoFolder": "language-resources",
-        "plugins": ["enableLanguageLookups", "merge"],
-        "enabledOptionKeys": [
-          "makeHtml", "templateRepoFolder", "styledPreview", "configFile",
-          "enableLanguageLookups", "includeAlternateNames",
-          "merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"
+        "plugins": [
+          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "templateRepoFolder", "styledPreview", "configFile"] },
+          { "name": "enableLanguageLookups", "enabled": true, "enabledOptions": ["enableLanguageLookups", "includeAlternateNames"] },
+          { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] }
         ]
       }
     }

@@ -80,16 +80,9 @@
       "buildOptions": {
         "inputMode": "generic",
         "templateRepoFolder": "birds",
-        "plugins": ["xlsxCrate"],
-        "enabledOptionKeys": [
-          "xlsxCrate",
-          "xlsxCrateFile",
-          "makeHtml",
-          "makeXlsx",
-          "styledPreview",
-          "templateRepoFolder",
-          "configFile",
-          "overwrite"
+        "plugins": [
+          { "name": "xlsxCrate", "enabled": true, "enabledOptions": ["xlsxCrate", "xlsxCrateFile"] },
+          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "styledPreview", "templateRepoFolder", "configFile"] }
         ]
       }
     }
