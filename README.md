@@ -15,6 +15,17 @@ crate is checked against it with `MaspValidator.validateCrate()`.
   locations. Root class `RepositoryCollection`. Modelled on
   [corpus-tools-dyirbal](https://github.com/Language-Research-Technology/corpus-tools-dyirbal)
   / chaos2crate's generic folder mode.
+- **`ldac/`** — the full Language Data Commons (LDAC) profile: the
+  comprehensive LDaCA vocabulary (About, Access, Related People/Orgs/Works,
+  Structure, Provenance, Language, Space & Time, Software & Hardware property
+  groups) rather than a subset tailored to one workflow — see
+  `ldac/profile-text.md` for the specification this implements. Root class
+  `RepositoryCollection`. Shares `language-resources`' `conformsTo`
+  (`https://w3id.org/ldac/profile#Collection`) since both genuinely implement
+  that same external profile: this is the reference/complete implementation,
+  `language-resources` the version pared down to what chaos2crate's generic
+  folder mode actually writes (plus its own AUSTLANG/contributor/content-location
+  additions).
 - **`structured-docs/`** — a collection built from structured Word
   documents (Heading 1/2/3 parsed into Collections/DocumentParts/Chapters),
   e.g. person-centred oral-history or community-website collections. Root
