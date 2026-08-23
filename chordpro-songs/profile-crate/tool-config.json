@@ -9,7 +9,8 @@
   "rootDataset": {
     "type": [
       "Dataset"
-    ]
+    ],
+    "conformsTo": "https://language-research-technology.github.io/c2c-masp-profiles/chordpro-songs/profile-crate/#profile"
   },
   "propertyGroups": [
     {

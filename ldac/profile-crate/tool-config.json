@@ -17,7 +17,8 @@
     "type": [
       "Dataset",
       "RepositoryCollection"
-    ]
+    ],
+    "conformsTo": "https://w3id.org/ldac/profile#Collection"
   },
   "propertyGroups": [
     {
