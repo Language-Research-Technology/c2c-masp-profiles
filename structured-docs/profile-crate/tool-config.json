@@ -2,7 +2,8 @@
   "rootDataset": {
     "type": [
       "Dataset"
-    ]
+    ],
+    "conformsTo": "https://language-research-technology.github.io/c2c-masp-profiles/structured-docs/profile-crate/#profile"
   },
   "metadataLicence": {
     "@id": "https://creativecommons.org/licenses/by/4.0/",
