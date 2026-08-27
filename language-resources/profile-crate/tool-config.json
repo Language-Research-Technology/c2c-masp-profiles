@@ -41,6 +41,15 @@
         "name": "Possible Duplicate",
         "description": "Filename of a possible duplicate."
       }
+    },
+    {
+      "key": "custom:formatPuid",
+      "definition": {
+        "@id": "arcp://name,custom/terms#formatPuid",
+        "@type": "rdf:Property",
+        "name": "PRONOM Format",
+        "description": "The PRONOM persistent format identifier (PUID) matched from the file's content."
+      }
     }
   ],
   "propertyGroups": [
@@ -106,7 +115,8 @@
         "ldac:subjectLanguage",
         "ldac:hasDerivation",
         "ldac:derivationOf",
-        "ldac:materialType"
+        "ldac:materialType",
+        "custom:formatPuid"
       ]
     },
     {
@@ -128,7 +138,8 @@
         "plugins": [
           { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "templateRepoFolder", "styledPreview", "configFile"] },
           { "name": "enableLanguageLookups", "enabled": true, "enabledOptions": ["enableLanguageLookups", "includeAlternateNames"] },
-          { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] }
+          { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] },
+          { "name": "identifyFileFormats", "enabled": true, "enabledOptions": ["identifyFileFormats"] }
         ]
       }
     }
