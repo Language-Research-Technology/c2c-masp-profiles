@@ -233,7 +233,8 @@
           { "name": "enableLanguageLookups", "enabled": true, "enabledOptions": ["enableLanguageLookups", "includeAlternateNames"] },
           { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] },
           { "name": "processTranscriptDocuments", "enabled": true, "enabledOptions": ["processTranscriptDocuments"] },
-          { "name": "generateChatFiles", "enabled": true, "enabledOptions": ["generateChatFiles"] }
+          { "name": "generateChatFiles", "enabled": true, "enabledOptions": ["generateChatFiles"] },
+          { "name": "enableCrate2Tables", "enabled": false, "enabledOptions": ["enableCrate2Tables", "crate2tablesConfigUpload"] }
         ]
       }
     }
