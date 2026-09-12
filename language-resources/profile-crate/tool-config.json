@@ -129,18 +129,30 @@
   ],
   "longTextInputs": ["description", "custom:portalDescription"],
   "tools": {
-    "chaos2crate": {
+    "collection2crate": {
       "url": "",
       "version": "0.0.1",
       "buildOptions": {
-        "inputMode": "generic",
-        "templateRepoFolder": "language-resources",
+        "enabledOptionKeys": [
+          "makeHtml",
+          "templateRepoFolder",
+          "styledPreview",
+          "configFile",
+          "enableLanguageLookups",
+          "includeAlternateNames",
+          "merge",
+          "mergeFile",
+          "mergeMappingBuilder",
+          "doPlaceLookups",
+          "identifyFileFormats"
+        ],
         "plugins": [
-          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "templateRepoFolder", "styledPreview", "configFile"] },
-          { "name": "enableLanguageLookups", "enabled": true, "enabledOptions": ["enableLanguageLookups", "includeAlternateNames"] },
-          { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] },
-          { "name": "identifyFileFormats", "enabled": true, "enabledOptions": ["identifyFileFormats"] }
-        ]
+          "enableLanguageLookups",
+          "merge",
+          "identifyFileFormats"
+        ],
+        "inputMode": "generic",
+        "templateRepoFolder": "language-resources"
       }
     }
   }

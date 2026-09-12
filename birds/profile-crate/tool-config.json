@@ -74,16 +74,23 @@
     "custom:sentenceTranslation"
   ],
   "tools": {
-    "chaos2crate": {
+    "collection2crate": {
       "url": "",
       "version": "0.0.1",
       "buildOptions": {
-        "inputMode": "generic",
-        "templateRepoFolder": "birds",
+        "enabledOptionKeys": [
+          "xlsxCrate",
+          "xlsxCrateFile",
+          "makeHtml",
+          "styledPreview",
+          "templateRepoFolder",
+          "configFile"
+        ],
         "plugins": [
-          { "name": "xlsxCrate", "enabled": true, "enabledOptions": ["xlsxCrate", "xlsxCrateFile"] },
-          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "styledPreview", "templateRepoFolder", "configFile"] }
-        ]
+          "xlsxCrate"
+        ],
+        "inputMode": "generic",
+        "templateRepoFolder": "birds"
       }
     }
   }

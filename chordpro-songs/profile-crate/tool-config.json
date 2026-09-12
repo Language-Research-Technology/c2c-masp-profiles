@@ -44,7 +44,7 @@
   "lookup": {},
   "enabledClasses": [],
   "tools": {
-    "chaos2crate": {
+    "collection2crate": {
       "url": "",
       "version": "0.0.1",
       "buildOptions": {
@@ -55,8 +55,10 @@
           "reviewKeyGuesses",
           "normalizeCapoKey"
         ],
-        "inputMode": "chordpro",
-        "makeHtml": true
+        "plugins": [
+          "makeHtml"
+        ],
+        "inputMode": "chordpro"
       }
     }
   }

@@ -62,15 +62,22 @@
   ],
   "longTextInputs": ["description", "text"],
   "tools": {
-    "chaos2crate": {
+    "collection2crate": {
       "url": "",
       "version": "0.0.1",
       "buildOptions": {
+        "enabledOptionKeys": [
+          "makeHtml",
+          "templateRepoFolder",
+          "homePageId",
+          "domain",
+          "collectionLabelsBuilder",
+          "styledPreview",
+          "configFile"
+        ],
+        "plugins": [],
         "inputMode": "docx",
-        "templateRepoFolder": "structured-docs",
-        "plugins": [
-          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "templateRepoFolder", "homePageId", "domain", "collectionLabelsBuilder", "styledPreview", "configFile"] }
-        ]
+        "templateRepoFolder": "structured-docs"
       }
     }
   }
