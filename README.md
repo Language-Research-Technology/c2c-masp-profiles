@@ -65,9 +65,10 @@ Each profile folder is:
     tool-config.json         # editor hints (rootDataset.type, propertyGroups) —
                               # required for MaspValidator.getRootDatasetTypes()
                               # to resolve correctly — plus a "tools" block keyed
-                              # by consumer, e.g. "tools.chaos2crate.buildOptions"
-                              # (ignored by Crate-O), listing which build options
-                              # this profile enables for that tool.
+                              # by consumer (ignored by Crate-O) listing which
+                              # build options this profile enables for that tool.
+                              # Two consumers are carried: collection2crate and
+                              # chaos2crate, the same app under its former name.
     index.html               # generated profile documentation site
     profile-documentation.md # generated profile documentation markdown
 ```
@@ -77,9 +78,35 @@ schema (property grouping, which classes to show) go in the existing
 `tool-config.json` companion file, referenced via the `#hasEditorMode`
 `ResourceDescriptor` role — same mechanism the
 [LDAC profile](https://github.com/Language-Research-Technology/ro-crate-masp/tree/main/profiles/ldac)
-uses. `tools.chaos2crate.buildOptions` is the one addition specific to this
-repo's consumer, namespaced under `tools` so other consumers of the same
-file can carry their own config alongside it without colliding.
+uses. `buildOptions` is the one addition specific to this repo's consumers,
+namespaced under `tools` so other consumers of the same file can carry their own
+config alongside it without colliding.
+
+### Two consumers, two shapes
+
+The app was renamed from **chaos2crate** to **collection2crate**, and the two
+read the same information in different shapes, neither understanding the other.
+So each profile states its build options twice:
+
+| Block | Read by | Shape |
+|---|---|---|
+| `tools.collection2crate.buildOptions` | collection2crate | `enabledOptionKeys` (the allow-list) + `plugins` (the subset that starts switched on), with scalar pre-fills such as `inputMode` alongside |
+| `tools.chaos2crate.buildOptions` | chaos2crate, where still deployed | one `{ name, enabled, enabledOptions }` entry per plugin, with the same pre-fills |
+
+In both, an option is **hidden unless the profile names it, and hidden means
+off** — so a block that omits an option is not neutral about it, it switches the
+plugin behind it off.
+
+Two statements of one fact drift, so keep them in step and let `npm test` prove
+it:
+
+```bash
+npm test   # check-tool-config.mjs — flattens both blocks and compares them
+```
+
+It fails, naming the profile and the difference, if the blocks stop agreeing on
+which options are allowed, which start on, or what is pre-filled. Drop the
+`chaos2crate` block (and its half of the check) once nothing reads it.
 
 ## Verifying a profile
 

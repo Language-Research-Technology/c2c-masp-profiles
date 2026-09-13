@@ -79,6 +79,29 @@
         "inputMode": "docx",
         "templateRepoFolder": "structured-docs"
       }
+    },
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "docx",
+        "templateRepoFolder": "structured-docs",
+        "plugins": [
+          {
+            "name": "makeHtml",
+            "enabled": false,
+            "enabledOptions": [
+              "makeHtml",
+              "templateRepoFolder",
+              "homePageId",
+              "domain",
+              "collectionLabelsBuilder",
+              "styledPreview",
+              "configFile"
+            ]
+          }
+        ]
+      }
     }
   }
 }

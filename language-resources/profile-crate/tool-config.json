@@ -154,6 +154,51 @@
         "inputMode": "generic",
         "templateRepoFolder": "language-resources"
       }
+    },
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "generic",
+        "templateRepoFolder": "language-resources",
+        "plugins": [
+          {
+            "name": "makeHtml",
+            "enabled": false,
+            "enabledOptions": [
+              "makeHtml",
+              "templateRepoFolder",
+              "styledPreview",
+              "configFile"
+            ]
+          },
+          {
+            "name": "enableLanguageLookups",
+            "enabled": true,
+            "enabledOptions": [
+              "enableLanguageLookups",
+              "includeAlternateNames"
+            ]
+          },
+          {
+            "name": "merge",
+            "enabled": true,
+            "enabledOptions": [
+              "merge",
+              "mergeFile",
+              "mergeMappingBuilder",
+              "doPlaceLookups"
+            ]
+          },
+          {
+            "name": "identifyFileFormats",
+            "enabled": true,
+            "enabledOptions": [
+              "identifyFileFormats"
+            ]
+          }
+        ]
+      }
     }
   }
 }

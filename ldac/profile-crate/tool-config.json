@@ -252,6 +252,67 @@
         "inputMode": "generic",
         "templateRepoFolder": "ldac"
       }
+    },
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "generic",
+        "templateRepoFolder": "ldac",
+        "plugins": [
+          {
+            "name": "makeHtml",
+            "enabled": false,
+            "enabledOptions": [
+              "makeHtml",
+              "templateRepoFolder",
+              "styledPreview",
+              "configFile"
+            ]
+          },
+          {
+            "name": "enableLanguageLookups",
+            "enabled": true,
+            "enabledOptions": [
+              "enableLanguageLookups",
+              "includeAlternateNames"
+            ]
+          },
+          {
+            "name": "merge",
+            "enabled": true,
+            "enabledOptions": [
+              "merge",
+              "mergeFile",
+              "mergeMappingBuilder",
+              "doPlaceLookups"
+            ]
+          },
+          {
+            "name": "processTranscriptDocuments",
+            "enabled": true,
+            "enabledOptions": [
+              "processTranscriptDocuments"
+            ]
+          },
+          {
+            "name": "generateChatFiles",
+            "enabled": true,
+            "enabledOptions": [
+              "generateChatFiles"
+            ]
+          },
+          {
+            "name": "enableRoctable",
+            "enabled": false,
+            "enabledOptions": [
+              "enableRoctable",
+              "roctableConfigure",
+              "roctableConfigUpload"
+            ]
+          }
+        ]
+      }
     }
   }
 }

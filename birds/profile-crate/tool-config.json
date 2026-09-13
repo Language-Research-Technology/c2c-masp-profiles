@@ -92,6 +92,34 @@
         "inputMode": "generic",
         "templateRepoFolder": "birds"
       }
+    },
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "inputMode": "generic",
+        "templateRepoFolder": "birds",
+        "plugins": [
+          {
+            "name": "xlsxCrate",
+            "enabled": true,
+            "enabledOptions": [
+              "xlsxCrate",
+              "xlsxCrateFile"
+            ]
+          },
+          {
+            "name": "makeHtml",
+            "enabled": false,
+            "enabledOptions": [
+              "makeHtml",
+              "styledPreview",
+              "templateRepoFolder",
+              "configFile"
+            ]
+          }
+        ]
+      }
     }
   }
 }

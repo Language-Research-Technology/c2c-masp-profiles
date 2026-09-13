@@ -60,6 +60,21 @@
         ],
         "inputMode": "chordpro"
       }
+    },
+    "chaos2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "enabledOptionKeys": [
+          "makeHtml",
+          "fixStDirective",
+          "reviewSetlistMatches",
+          "reviewKeyGuesses",
+          "normalizeCapoKey"
+        ],
+        "inputMode": "chordpro",
+        "makeHtml": true
+      }
     }
   }
 }
