@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node check-tool-config.mjs",
     "validate:birds": "node validate-profile.js birds/profile-crate/examples/birds-crate/ro-crate-metadata.json birds/profile-crate/ro-crate-metadata.json",
     "validate:birds:json": "node validate-profile.js --json birds/profile-crate/examples/birds-crate/ro-crate-metadata.json birds/profile-crate/ro-crate-metadata.json",
     "validate:chordpro-songs": "node validate-profile.js chordpro-songs/profile-crate/examples/chordpro-crate/ro-crate-metadata.json chordpro-songs/profile-crate/ro-crate-metadata.json",

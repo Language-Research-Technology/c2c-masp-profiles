@@ -129,6 +129,32 @@
   ],
   "longTextInputs": ["description", "custom:portalDescription"],
   "tools": {
+    "collection2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "enabledOptionKeys": [
+          "makeHtml",
+          "templateRepoFolder",
+          "styledPreview",
+          "configFile",
+          "enableLanguageLookups",
+          "includeAlternateNames",
+          "merge",
+          "mergeFile",
+          "mergeMappingBuilder",
+          "doPlaceLookups",
+          "identifyFileFormats"
+        ],
+        "plugins": [
+          "enableLanguageLookups",
+          "merge",
+          "identifyFileFormats"
+        ],
+        "inputMode": "generic",
+        "templateRepoFolder": "language-resources"
+      }
+    },
     "chaos2crate": {
       "url": "",
       "version": "0.0.1",
@@ -136,10 +162,41 @@
         "inputMode": "generic",
         "templateRepoFolder": "language-resources",
         "plugins": [
-          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "templateRepoFolder", "styledPreview", "configFile"] },
-          { "name": "enableLanguageLookups", "enabled": true, "enabledOptions": ["enableLanguageLookups", "includeAlternateNames"] },
-          { "name": "merge", "enabled": true, "enabledOptions": ["merge", "mergeFile", "mergeMappingBuilder", "doPlaceLookups"] },
-          { "name": "identifyFileFormats", "enabled": true, "enabledOptions": ["identifyFileFormats"] }
+          {
+            "name": "makeHtml",
+            "enabled": false,
+            "enabledOptions": [
+              "makeHtml",
+              "templateRepoFolder",
+              "styledPreview",
+              "configFile"
+            ]
+          },
+          {
+            "name": "enableLanguageLookups",
+            "enabled": true,
+            "enabledOptions": [
+              "enableLanguageLookups",
+              "includeAlternateNames"
+            ]
+          },
+          {
+            "name": "merge",
+            "enabled": true,
+            "enabledOptions": [
+              "merge",
+              "mergeFile",
+              "mergeMappingBuilder",
+              "doPlaceLookups"
+            ]
+          },
+          {
+            "name": "identifyFileFormats",
+            "enabled": true,
+            "enabledOptions": [
+              "identifyFileFormats"
+            ]
+          }
         ]
       }
     }

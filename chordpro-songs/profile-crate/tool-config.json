@@ -44,6 +44,23 @@
   "lookup": {},
   "enabledClasses": [],
   "tools": {
+    "collection2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "enabledOptionKeys": [
+          "makeHtml",
+          "fixStDirective",
+          "reviewSetlistMatches",
+          "reviewKeyGuesses",
+          "normalizeCapoKey"
+        ],
+        "plugins": [
+          "makeHtml"
+        ],
+        "inputMode": "chordpro"
+      }
+    },
     "chaos2crate": {
       "url": "",
       "version": "0.0.1",

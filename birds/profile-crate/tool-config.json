@@ -74,6 +74,25 @@
     "custom:sentenceTranslation"
   ],
   "tools": {
+    "collection2crate": {
+      "url": "",
+      "version": "0.0.1",
+      "buildOptions": {
+        "enabledOptionKeys": [
+          "xlsxCrate",
+          "xlsxCrateFile",
+          "makeHtml",
+          "styledPreview",
+          "templateRepoFolder",
+          "configFile"
+        ],
+        "plugins": [
+          "xlsxCrate"
+        ],
+        "inputMode": "generic",
+        "templateRepoFolder": "birds"
+      }
+    },
     "chaos2crate": {
       "url": "",
       "version": "0.0.1",
@@ -81,8 +100,24 @@
         "inputMode": "generic",
         "templateRepoFolder": "birds",
         "plugins": [
-          { "name": "xlsxCrate", "enabled": true, "enabledOptions": ["xlsxCrate", "xlsxCrateFile"] },
-          { "name": "makeHtml", "enabled": false, "enabledOptions": ["makeHtml", "styledPreview", "templateRepoFolder", "configFile"] }
+          {
+            "name": "xlsxCrate",
+            "enabled": true,
+            "enabledOptions": [
+              "xlsxCrate",
+              "xlsxCrateFile"
+            ]
+          },
+          {
+            "name": "makeHtml",
+            "enabled": false,
+            "enabledOptions": [
+              "makeHtml",
+              "styledPreview",
+              "templateRepoFolder",
+              "configFile"
+            ]
+          }
         ]
       }
     }
