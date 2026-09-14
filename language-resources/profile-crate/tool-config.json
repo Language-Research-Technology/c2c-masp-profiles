@@ -151,7 +151,6 @@
           "merge",
           "identifyFileFormats"
         ],
-        "inputMode": "generic",
         "templateRepoFolder": "language-resources"
       }
     },

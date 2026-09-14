@@ -73,10 +73,12 @@
           "domain",
           "collectionLabelsBuilder",
           "styledPreview",
-          "configFile"
+          "configFile",
+          "docxInput"
         ],
-        "plugins": [],
-        "inputMode": "docx",
+        "plugins": [
+          "docxInput"
+        ],
         "templateRepoFolder": "structured-docs"
       }
     },

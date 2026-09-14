@@ -16,6 +16,10 @@
  * it with the flat one, so a change made to only one of them fails here instead
  * of quietly changing what a build does for half the users.
  *
+ * DIVERGED below is the exception: keys the two consumers deliberately no
+ * longer agree on. They are reported as notes and left out of the comparison,
+ * so the rest of the block is still held to the rule.
+ *
  * Usage: node check-tool-config.mjs   (also `npm test`)
  */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -67,7 +71,25 @@ function meaning(buildOptions) {
   return { enabledOptionKeys, plugins, prefills };
 }
 
+// Keys the two consumers no longer share, on purpose. collection2crate
+// dissolved input modes into ordinary plugin options: it does not read
+// inputMode at all any more, and it has a docxInput option chaos2crate has
+// never heard of. Removing either from the block that still uses it would
+// change what that tool does, so they are excluded from the comparison rather
+// than reconciled — everything else still has to match.
+const DIVERGED = {
+  inputMode: "chaos2crate only — collection2crate picks a builder by option",
+  docxInput: "collection2crate only — the option that replaced inputMode: docx",
+};
+
+const withoutDiverged = (m) => ({
+  enabledOptionKeys: m.enabledOptionKeys.filter((key) => !(key in DIVERGED)),
+  plugins: m.plugins.filter((key) => !(key in DIVERGED)),
+  prefills: Object.fromEntries(Object.entries(m.prefills).filter(([key]) => !(key in DIVERGED))),
+});
+
 const sorted = (list) => [...list].sort();
+const notes = [];
 const problems = [];
 const profiles = readdirSync(ROOT, { withFileTypes: true })
   .filter((e) => e.isDirectory() && e.name !== "node_modules" && !e.name.startsWith("."))
@@ -83,8 +105,16 @@ for (const name of profiles) {
   if (!modern) { problems.push(`${name}: no tools.collection2crate.buildOptions`); continue; }
   if (!legacy) { problems.push(`${name}: no tools.chaos2crate.buildOptions`); continue; }
 
-  const a = meaning(modern);
-  const b = meaning(legacy);
+  const full = { a: meaning(modern), b: meaning(legacy) };
+  for (const [key, why] of Object.entries(DIVERGED)) {
+    const inModern = key in full.a.prefills || full.a.enabledOptionKeys.includes(key);
+    const inLegacy = key in full.b.prefills || full.b.enabledOptionKeys.includes(key);
+    if (inModern !== inLegacy) notes.push(`${name}: "${key}" — ${why}`);
+    else if (inModern) notes.push(`${name}: "${key}" is in both blocks — ${why}`);
+  }
+
+  const a = withoutDiverged(full.a);
+  const b = withoutDiverged(full.b);
 
   // Order is not meaningful in either block, so compare as sets.
   if (JSON.stringify(sorted(a.enabledOptionKeys)) !== JSON.stringify(sorted(b.enabledOptionKeys))) {
@@ -109,8 +139,8 @@ for (const name of profiles) {
     );
   }
   // An option switched on but not allowed can never appear.
-  for (const key of a.plugins) {
-    if (!a.enabledOptionKeys.includes(key)) {
+  for (const key of full.a.plugins) {
+    if (!full.a.enabledOptionKeys.includes(key)) {
       problems.push(`${name}: "${key}" is switched on but is not in enabledOptionKeys, so it can never be shown`);
     }
   }
@@ -124,6 +154,11 @@ if (problems.length) {
   console.error(`check-tool-config: ${problems.length} problem(s)\n`);
   for (const problem of problems) console.error(`  ${problem}`);
   process.exit(1);
+}
+if (notes.length) {
+  console.log(`check-tool-config: ${notes.length} deliberate difference(s), not compared:\n`);
+  for (const note of notes) console.log(`  ${note}`);
+  console.log("");
 }
 console.log(
   `check-tool-config: ${profiles.length} profile(s) consistent across both consumers ` +

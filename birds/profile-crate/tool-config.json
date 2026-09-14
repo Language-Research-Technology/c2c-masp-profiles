@@ -89,7 +89,6 @@
         "plugins": [
           "xlsxCrate"
         ],
-        "inputMode": "generic",
         "templateRepoFolder": "birds"
       }
     },
