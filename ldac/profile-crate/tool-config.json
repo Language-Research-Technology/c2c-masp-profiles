@@ -249,7 +249,6 @@
           "processTranscriptDocuments",
           "generateChatFiles"
         ],
-        "inputMode": "generic",
         "templateRepoFolder": "ldac"
       }
     },
