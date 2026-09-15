@@ -80,6 +80,11 @@ function meaning(buildOptions) {
 const DIVERGED = {
   inputMode: "chaos2crate only — collection2crate picks a builder by option",
   docxInput: "collection2crate only — the option that replaced inputMode: docx",
+  // The transcript-grammar plugin and ca-data-prep's grammar choice exist only
+  // in collection2crate; chaos2crate would ignore the keys anyway.
+  transcriptGrammar: "collection2crate only — parse transcripts with a saved grammar",
+  transcriptGrammarEdit: "collection2crate only — the transcript grammar editor",
+  transcriptGrammarTest: "collection2crate only — the transcript grammar tester",
 };
 
 const withoutDiverged = (m) => ({
