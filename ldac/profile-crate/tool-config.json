@@ -250,7 +250,9 @@
         ],
         "plugins": [
           "processTranscriptDocuments",
-          "generateChatFiles"
+          "transcriptOutputsInCrate",
+          "generateChatFiles",
+          "chatOutputsInCrate"
         ],
         "templateRepoFolder": "ldac"
       }
