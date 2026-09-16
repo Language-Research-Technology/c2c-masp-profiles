@@ -85,6 +85,10 @@ const DIVERGED = {
   transcriptGrammar: "collection2crate only — parse transcripts with a saved grammar",
   transcriptGrammarEdit: "collection2crate only — the transcript grammar editor",
   transcriptGrammarTest: "collection2crate only — the transcript grammar tester",
+  // Whether ca-data-prep's CSVs and chat-export's CHAT files are described in
+  // the crate; chaos2crate always includes them.
+  transcriptOutputsInCrate: "collection2crate only — include or leave out the transcript CSVs",
+  chatOutputsInCrate: "collection2crate only — include or leave out the CHAT files",
 };
 
 const withoutDiverged = (m) => ({

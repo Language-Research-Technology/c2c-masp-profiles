@@ -241,7 +241,9 @@
           "transcriptGrammar",
           "transcriptGrammarEdit",
           "transcriptGrammarTest",
+          "transcriptOutputsInCrate",
           "generateChatFiles",
+          "chatOutputsInCrate",
           "enableRoctable",
           "roctableConfigure",
           "roctableConfigUpload"
