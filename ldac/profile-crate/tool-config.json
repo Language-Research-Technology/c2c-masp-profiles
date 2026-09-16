@@ -247,8 +247,6 @@
           "roctableConfigUpload"
         ],
         "plugins": [
-          "enableLanguageLookups",
-          "merge",
           "processTranscriptDocuments",
           "generateChatFiles"
         ],
@@ -274,7 +272,7 @@
           },
           {
             "name": "enableLanguageLookups",
-            "enabled": true,
+            "enabled": false,
             "enabledOptions": [
               "enableLanguageLookups",
               "includeAlternateNames"
@@ -282,7 +280,7 @@
           },
           {
             "name": "merge",
-            "enabled": true,
+            "enabled": false,
             "enabledOptions": [
               "merge",
               "mergeFile",
