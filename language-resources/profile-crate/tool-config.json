@@ -139,6 +139,8 @@
           "publishOnly",
           "styledPreview",
           "configFile",
+          "xlsxCrate",
+          "xlsxCrateFile",
           "enableLanguageLookups",
           "includeAlternateNames",
           "merge",
@@ -171,6 +173,14 @@
               "publishOnly",
               "styledPreview",
               "configFile"
+            ]
+          },
+          {
+            "name": "xlsxCrate",
+            "enabled": false,
+            "enabledOptions": [
+              "xlsxCrate",
+              "xlsxCrateFile"
             ]
           },
           {
