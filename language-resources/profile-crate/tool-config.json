@@ -136,6 +136,7 @@
         "enabledOptionKeys": [
           "makeHtml",
           "templateRepoFolder",
+          "publishOnly",
           "styledPreview",
           "configFile",
           "enableLanguageLookups",
@@ -167,6 +168,7 @@
             "enabledOptions": [
               "makeHtml",
               "templateRepoFolder",
+              "publishOnly",
               "styledPreview",
               "configFile"
             ]
