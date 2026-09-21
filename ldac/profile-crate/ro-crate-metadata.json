@@ -252,6 +252,9 @@
           "@id": "#prop_holdingArchive_RepositoryCollection"
         },
         {
+          "@id": "#prop_identifier_RepositoryCollection"
+        },
+        {
           "@id": "#prop_identifier_RepositoryObject"
         },
         {
@@ -1727,6 +1730,33 @@
         "@id": "#hasSpecializedSchema"
       },
       "sh:maxCount": "1"
+    },
+    {
+      "@id": "#prop_identifier_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "identifier",
+      "name": "Identifier",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/identifier"
+      },
+      "domainIncludes": {
+        "@id": "#class_RepositoryCollection"
+      },
+      "rdfs:comment": "The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.\n        ",
+      "rangeIncludes": [
+        {
+          "@id": "http://schema.org/PropertyValue"
+        },
+        {
+          "@id": "http://schema.org/Text"
+        },
+        {
+          "@id": "http://schema.org/URL"
+        }
+      ],
+      "isPartOf": {
+        "@id": "#hasSpecializedSchema"
+      }
     },
     {
       "@id": "#prop_identifier_RepositoryObject",
