@@ -123,7 +123,8 @@
       "name": "Location",
       "inputs": [
         "geo",
-        "asWKT"
+        "asWKT",
+        "custom:place"
       ]
     }
   ],
@@ -143,14 +144,19 @@
           "xlsxCrateFile",
           "enableLanguageLookups",
           "includeAlternateNames",
+          "enableNameLookups",
+          "nameLookupGazetteer",
+          "nameLookupExactOnly",
           "merge",
           "mergeFile",
           "mergeMappingBuilder",
           "doPlaceLookups",
+          "placeExactOnly",
           "identifyFileFormats"
         ],
         "plugins": [
           "enableLanguageLookups",
+          "enableNameLookups",
           "merge",
           "identifyFileFormats"
         ],
@@ -192,6 +198,15 @@
             ]
           },
           {
+            "name": "enableNameLookups",
+            "enabled": true,
+            "enabledOptions": [
+              "enableNameLookups",
+              "nameLookupGazetteer",
+              "nameLookupExactOnly"
+            ]
+          },
+          {
             "name": "identifyFileFormats",
             "enabled": true,
             "enabledOptions": [
@@ -205,7 +220,8 @@
               "merge",
               "mergeFile",
               "mergeMappingBuilder",
-              "doPlaceLookups"
+              "doPlaceLookups",
+              "placeExactOnly"
             ]
           }
         ]
