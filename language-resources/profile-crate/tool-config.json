@@ -146,10 +146,12 @@
           "includeAlternateNames",
           "enableNameLookups",
           "nameLookupGazetteer",
+          "nameLookupExactOnly",
           "merge",
           "mergeFile",
           "mergeMappingBuilder",
           "doPlaceLookups",
+          "placeExactOnly",
           "identifyFileFormats"
         ],
         "plugins": [
@@ -200,7 +202,8 @@
             "enabled": true,
             "enabledOptions": [
               "enableNameLookups",
-              "nameLookupGazetteer"
+              "nameLookupGazetteer",
+              "nameLookupExactOnly"
             ]
           },
           {
@@ -217,7 +220,8 @@
               "merge",
               "mergeFile",
               "mergeMappingBuilder",
-              "doPlaceLookups"
+              "doPlaceLookups",
+              "placeExactOnly"
             ]
           }
         ]
