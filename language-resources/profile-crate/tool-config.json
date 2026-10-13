@@ -145,6 +145,7 @@
           "enableLanguageLookups",
           "includeAlternateNames",
           "enableNameLookups",
+          "nameLookupGazetteer",
           "merge",
           "mergeFile",
           "mergeMappingBuilder",
@@ -198,7 +199,8 @@
             "name": "enableNameLookups",
             "enabled": true,
             "enabledOptions": [
-              "enableNameLookups"
+              "enableNameLookups",
+              "nameLookupGazetteer"
             ]
           },
           {
