@@ -192,20 +192,20 @@
             ]
           },
           {
-            "name": "merge",
+            "name": "identifyFileFormats",
             "enabled": true,
+            "enabledOptions": [
+              "identifyFileFormats"
+            ]
+          },
+          {
+            "name": "merge",
+            "enabled": false,
             "enabledOptions": [
               "merge",
               "mergeFile",
               "mergeMappingBuilder",
               "doPlaceLookups"
-            ]
-          },
-          {
-            "name": "identifyFileFormats",
-            "enabled": true,
-            "enabledOptions": [
-              "identifyFileFormats"
             ]
           }
         ]
