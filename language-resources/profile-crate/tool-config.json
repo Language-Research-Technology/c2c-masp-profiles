@@ -157,7 +157,9 @@
         "plugins": [
           "enableLanguageLookups",
           "enableNameLookups",
+          "nameLookupGazetteer",
           "merge",
+          "doPlaceLookups",
           "identifyFileFormats"
         ],
         "templateRepoFolder": "language-resources"
@@ -207,6 +209,13 @@
             ]
           },
           {
+            "name": "nameLookupGazetteer",
+            "enabled": true,
+            "enabledOptions": [
+              "nameLookupGazetteer"
+            ]
+          },
+          {
             "name": "identifyFileFormats",
             "enabled": true,
             "enabledOptions": [
@@ -222,6 +231,13 @@
               "mergeMappingBuilder",
               "doPlaceLookups",
               "placeExactOnly"
+            ]
+          },
+          {
+            "name": "doPlaceLookups",
+            "enabled": true,
+            "enabledOptions": [
+              "doPlaceLookups"
             ]
           }
         ]
