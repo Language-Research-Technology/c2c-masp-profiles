@@ -147,6 +147,7 @@
           "enableNameLookups",
           "nameLookupGazetteer",
           "nameLookupExactOnly",
+          "nameLookupGhap",
           "merge",
           "mergeFile",
           "mergeMappingBuilder",
@@ -158,6 +159,7 @@
           "enableLanguageLookups",
           "enableNameLookups",
           "nameLookupGazetteer",
+          "nameLookupExactOnly",
           "doPlaceLookups",
           "identifyFileFormats"
         ],
@@ -204,7 +206,8 @@
             "enabledOptions": [
               "enableNameLookups",
               "nameLookupGazetteer",
-              "nameLookupExactOnly"
+              "nameLookupExactOnly",
+              "nameLookupGhap"
             ]
           },
           {
@@ -212,6 +215,13 @@
             "enabled": true,
             "enabledOptions": [
               "nameLookupGazetteer"
+            ]
+          },
+          {
+            "name": "nameLookupExactOnly",
+            "enabled": true,
+            "enabledOptions": [
+              "nameLookupExactOnly"
             ]
           },
           {
