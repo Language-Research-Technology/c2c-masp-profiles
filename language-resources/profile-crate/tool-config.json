@@ -123,8 +123,7 @@
       "name": "Location",
       "inputs": [
         "geo",
-        "asWKT",
-        "custom:place"
+        "asWKT"
       ]
     }
   ],
