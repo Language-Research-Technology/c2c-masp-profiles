@@ -153,7 +153,8 @@
           "mergeMappingBuilder",
           "doPlaceLookups",
           "placeExactOnly",
-          "identifyFileFormats"
+          "identifyFileFormats",
+          "textCleanerAction"
         ],
         "plugins": [
           "enableLanguageLookups",
